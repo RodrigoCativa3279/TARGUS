@@ -1,4 +1,5 @@
 import './App.css';
+import { Link } from 'react-router-dom';
 
 import { useState } from 'react';
 import tituloImg from './assets/Titulo.png';
@@ -45,13 +46,17 @@ function App() {
       </nav>
 
       <div className={`menu-lateral ${menuAbierto ? 'abierto' : ''}`}>
-        <button className="cerrar-menu" onClick={toggleMenu}>X</button>
-        <img className="iconocuenta img-fluid" src={iconocuenta}/>
+        <button className="cerrar-menu" onClick={toggleMenu}>×</button>
+        <div className="usuario">
+          <div className="nombre">JuanPedro001</div>
+          <img className="iconocuenta img-fluid" src={iconocuenta}/>
+        </div>
+        
         <ul>
-          <li><a href="#">Editar cuenta</a></li>
-          <li><a href="#">Misiones</a></li>
-          <li><a href="#">Foro de la comunidad</a></li>
-          <li><a href="#">Configuración</a></li>
+          <li><a href="#">&lt;  Editar cuenta</a></li>
+          <li><a href="#">&lt;  Misiones</a></li>
+          <li><a href="#">&lt;  Foro de la comunidad</a></li>
+          <li><a href="#">&lt;  Configuración</a></li>
         </ul>
       </div>
 

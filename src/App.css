@@ -22,6 +22,18 @@ html{
     border-radius: 20px;
 }
 
+.usuario{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.nombre{
+    margin-right: 10px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
 .iconocuenta{
     float: right;    
     width: 30%;
@@ -48,7 +60,6 @@ html{
     position: fixed;
     top: 0;
     background-color: rgba(135, 135, 135, 0.938);
-
     right: -300px;
     width: 300px;
     height: 100%;
@@ -65,7 +76,7 @@ html{
     background: none;
     border: none;
     font-size: 2rem;
-    color: #787878;
+    color: #ffa5a5;
     float: right;
     cursor: pointer;
 }
@@ -77,7 +88,7 @@ html{
 }
 
 .menu-lateral ul li {
-      margin: 20px 0;   
+    margin: 20px 0;   
 }
 
 .menu-lateral ul li a {
