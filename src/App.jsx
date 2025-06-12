@@ -18,6 +18,7 @@ function App() {
 
   return (
     <>
+      {/*INICIO NAVBAR*/}
       <nav className="navbar navbar-expand-lg navbar-light">
         <div className="d-flex align-items-center col-10">
           <img src={tituloImg} className="logo img-fluid" alt="Titulo" />
@@ -60,20 +61,18 @@ function App() {
         </ul>
       </div>
 
-      {/* Resto del contenido */}
-      <div className="principal">
-        {/* ... Tu código original de destacados y juegos ... */}
-      </div>
+      {/*FINAL NAVBAR*/}
 
       <div className="principal">
         <div className="destacados">
           <h1 className="categoria">Clasicos</h1>
           <div className="grid-juegos">
-            <a href="#" className="juego enlace-juego">
+            <Link to="/juego" className="juego enlace-juego">
               <img src={juego1} alt="Juego 1" />
               <h4 className="tituloJuego">Crucigrama</h4>
               <p className="descripcion">¡Desafía tu mente y divertite completando el crucigrama!</p>
-            </a>
+            </Link>
+
             <a href="#" className="juego enlace-juego">
               <img src={juego2} alt="Juego 2" />
               <h4 className="tituloJuego">Sudoku</h4>

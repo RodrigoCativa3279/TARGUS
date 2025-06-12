@@ -1,17 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Exile&family=Smooch+Sans&display=swap');
 
-html{
-    margin: 0 auto;
-    padding: 0;
-}
+/*INICIO NAVBAR*/
 
 .logo{
     width: 20%;
     margin: 15px;
     float: left;
 }
-
-
 
 .menuHamb{
     float: right;    
@@ -98,6 +93,8 @@ html{
     font-weight: 600;
     font-family: "Smooch Sans", sans-serif;
 }
+
+/*FINAL NAVBAR*/
 
 .principal {
     max-width: 1500px;
