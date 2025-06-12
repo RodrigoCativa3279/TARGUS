@@ -1,4 +1,4 @@
-import './Juego.css';
+import './Juego1.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -8,7 +8,7 @@ import menuHamb from '../assets/menuHamb.png';
 import iconocuenta from '../assets/iconocuenta.png';
 
 
-function Juego() {
+function Juego1() {
   const [menuAbierto, setMenuAbierto] = useState(false);
   const toggleMenu = () => setMenuAbierto(!menuAbierto);
 
@@ -16,7 +16,9 @@ function Juego() {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light">
         <div className="d-flex align-items-center col-10">
-          <img src={tituloImg} className="logo img-fluid" alt="Titulo" />
+          <Link to="/">
+            <img src={tituloImg} className="logo"/>
+          </Link>        
         </div>
         <button
           className="navbar-toggler col-2"
@@ -35,7 +37,6 @@ function Juego() {
             src={menuHamb}
             className="menuHamb img-fluid"
             alt="Cuenta"
-            style={{ cursor: 'pointer' }}
             onClick={toggleMenu}
           />
         </div>
@@ -62,4 +63,4 @@ function Juego() {
   );
 }
 
-export default Juego;
+export default Juego1;
