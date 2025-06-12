@@ -11,24 +11,29 @@ html{
     float: left;
 }
 
-.navbar-title {
-    font-size: 80px;
-    font-family: "Exile", system-ui;
-    font-weight: 500;
-    color: rgb(172, 172, 172);
-    font-weight: bolder;
-}
 
-.iconcuenta{
+
+.menuHamb{
     float: right;    
     width: 30%;
     height: auto;
-    background-color: rgb(193, 193, 193);
+    background-color: rgba(210, 210, 210, 0.501);
     padding: 10px;
+    border-radius: 20px;
+}
+
+.iconocuenta{
+    float: right;    
+    width: 30%;
+    height: auto;
+    background-color: rgba(210, 210, 210, 0.501);
+    padding: 10px;
+    border-radius: 50px;
 }
 
 .navbar{
-    background-color: rgba(41, 41, 41, 0.938);
+    background-color: #60676d;
+
 }
 
 .navbar-brand{
@@ -39,9 +44,48 @@ html{
     font-size: 50px;
 }
 
-.background{
-    background-color: rgb(125, 123, 123);
-    min-height: 100vh;
+.menu-lateral {
+    position: fixed;
+    top: 0;
+    background-color: rgba(135, 135, 135, 0.938);
+
+    right: -300px;
+    width: 300px;
+    height: 100%;
+    transition: right 0.3s ease;
+    padding: 20px;
+  
+}
+
+.menu-lateral.abierto {
+     right: 0;
+}
+
+.cerrar-menu {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #787878;
+    float: right;
+    cursor: pointer;
+}
+
+.menu-lateral ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 40px;
+}
+
+.menu-lateral ul li {
+      margin: 20px 0;   
+}
+
+.menu-lateral ul li a {
+    text-decoration: none;
+    font-size: 30px;
+    color: #e1e1e1;
+    font-weight: 600;
+    font-family: "Smooch Sans", sans-serif;
 }
 
 .principal {
@@ -64,10 +108,11 @@ body{
 
 .destacados{
     margin: 80px 100px 0 100px;
+    font-family: "Smooch Sans", sans-serif;
 }
 
 .categoria{
-    font-size: 60px;
+    font-size: 70px;
     margin: 10px;
     font-weight: bold;
 }
@@ -121,6 +166,8 @@ body{
     text-align: center;
     font-size: 26px;
 }
+
+
 
 @media (max-width: 1300px) {
     .grid-juegos{

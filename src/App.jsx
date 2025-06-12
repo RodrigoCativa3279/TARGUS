@@ -1,7 +1,9 @@
 import './App.css';
 
+import { useState } from 'react';
 import tituloImg from './assets/Titulo.png';
-import iconCuenta from './assets/iconcuenta.png';
+import menuHamb from './assets/menuHamb.png';
+import iconocuenta from './assets/iconocuenta.png';
 import juego1 from './assets/Juego 1.png';
 import juego2 from './assets/Juego 2.png';
 import juego3 from './assets/Juego 3.png';
@@ -10,6 +12,9 @@ import juego5 from './assets/Juego 5.png';
 import juego6 from './assets/Juego 6.png';
 
 function App() {
+  const [menuAbierto, setMenuAbierto] = useState(false);
+  const toggleMenu = () => setMenuAbierto(!menuAbierto);
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light">
@@ -28,17 +33,32 @@ function App() {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse col-2" id="navbarSupportedContent">
-          <ul className="navbar-nav mr-auto">
-            <li className="nav-item active row">
-              <a className="nav-link" href="paginaconfig.html">
-                <img src={iconCuenta} className="iconcuenta rounded-circle img-fluid" alt="Cuenta" />
-                <span className="sr-only">(current)</span>
-              </a>
-            </li>
-          </ul>
+        <div className="col-2 text-right">
+          <img
+            src={menuHamb}
+            className="menuHamb img-fluid"
+            alt="Cuenta"
+            style={{ cursor: 'pointer' }}
+            onClick={toggleMenu}
+          />
         </div>
       </nav>
+
+      <div className={`menu-lateral ${menuAbierto ? 'abierto' : ''}`}>
+        <button className="cerrar-menu" onClick={toggleMenu}>X</button>
+        <img className="iconocuenta img-fluid" src={iconocuenta}/>
+        <ul>
+          <li><a href="#">Editar cuenta</a></li>
+          <li><a href="#">Misiones</a></li>
+          <li><a href="#">Foro de la comunidad</a></li>
+          <li><a href="#">Configuración</a></li>
+        </ul>
+      </div>
+
+      {/* Resto del contenido */}
+      <div className="principal">
+        {/* ... Tu código original de destacados y juegos ... */}
+      </div>
 
       <div className="principal">
         <div className="destacados">
