@@ -54,6 +54,18 @@
     border-radius: 50px;
 }
 
+.botonesMenu{
+    opacity: 0.6;
+    padding: 10px;
+}
+
+li :hover{
+    opacity: 1;
+    background-color: #9b9a9a;
+    border-radius: 20px;
+    transition: 0.4s;
+}
+
 .navbar{
     background-color: #60676d;
 
@@ -131,7 +143,7 @@ body{
 }
 
 .destacados{
-    margin: 80px 100px 0 100px;
+    margin: 0 auto;
     font-family: "Smooch Sans", sans-serif;
 }
 

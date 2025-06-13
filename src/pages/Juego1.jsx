@@ -50,10 +50,10 @@ function Juego1() {
         </div>
         
         <ul>
-          <li><a href="#">&lt;  Editar cuenta</a></li>
-          <li><a href="#">&lt;  Misiones</a></li>
-          <li><a href="#">&lt;  Foro de la comunidad</a></li>
-          <li><a href="#">&lt;  Configuración</a></li>
+            <li><Link to="/editCuenta" className="botonesMenu">&lt;  Editar cuenta</Link></li>
+            <li><a href="#" className="botonesMenu">&lt;  Misiones</a></li>
+            <li><a href="#" className="botonesMenu">&lt;  Foro de la comunidad</a></li>
+            <li><a href="#" className="botonesMenu">&lt;  Configuración</a></li>
         </ul>
 
       {/*JUEGO A IMPLEMENTAR*/}
