@@ -1,4 +1,4 @@
-import './editCuenta.css';
+import './foroComunidad.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -8,7 +8,7 @@ import menuHamb from '../assets/menuHamb.png';
 import iconocuenta from '../assets/iconocuenta.png';
 
 
-function editCuenta() {
+function foroComunidad() {
   const [menuAbierto, setMenuAbierto] = useState(false);
   const toggleMenu = () => setMenuAbierto(!menuAbierto);
 
@@ -58,19 +58,7 @@ function editCuenta() {
         </div>
         <div className="background">
             <div className="principal">
-                <div>
-                    <img src={iconocuenta} className="iconcuentaConfig rounded-circle img-fluid"/>
-                    <h1 className="nomUser">Nombre de usuario</h1>
-                </div>
-                <div className="datos">
-                    <p>Correo electrónico</p>
-                    <p className="text-info">Juan123@gmail.com</p>
-                    <p>Fecha de creación de cuenta</p>
-                    <p className="text-info">12/12/2025</p>
-                </div>
-                <div className="estadistica">
-                    <p>Ultimos resultados</p>
-                </div>
+                FORO DE LA COMUNIDAD
             </div>
         </div>
       
@@ -78,4 +66,4 @@ function editCuenta() {
   );
 }
 
-export default editCuenta;
+export default foroComunidad;

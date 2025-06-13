@@ -57,9 +57,9 @@ function App() {
         
         <ul>
           <li><Link to="/editCuenta" className="botonesMenu">&lt;  Editar cuenta</Link></li>
-          <li><a href="#" className="botonesMenu">&lt;  Misiones</a></li>
-          <li><a href="#" className="botonesMenu">&lt;  Foro de la comunidad</a></li>
-          <li><a href="#" className="botonesMenu">&lt;  Configuración</a></li>
+          <li><Link to="/misiones" className="botonesMenu">&lt;  Misiones</Link></li>
+          <li><Link to="/forocomunidad" className="botonesMenu">&lt;  Foro de la comunidad</Link></li>
+          <li><Link to="/pagconfig" className="botonesMenu">&lt;  Configuración</Link></li>
         </ul>
       </div>
 
