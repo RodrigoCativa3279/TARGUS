@@ -8,6 +8,7 @@ import EditCuenta from './pages/editCuenta.jsx'
 import ForoComunidad from './pages/foroComunidad.jsx'
 import Misiones from './pages/Misiones.jsx'
 import PagConfig from './pages/pagConfig.jsx'
+import Login from './pages/Login.jsx'
 
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -23,6 +24,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/misiones" element={<Misiones />} />
         <Route path="/pagconfig" element={<PagConfig />} />
         <Route path="/juego1" element={<Juego1 />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
