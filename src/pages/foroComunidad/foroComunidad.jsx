@@ -1,14 +1,14 @@
-import './pagConfig.css';
+import './foroComunidad.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { useState } from 'react';
-import tituloImg from '../assets/Titulo.png';
-import menuHamb from '../assets/menuHamb.png';
-import iconocuenta from '../assets/iconocuenta.png';
+import tituloImg from '../../assets/Titulo.png';
+import menuHamb from '../../assets/menuHamb.png';
+import iconocuenta from '../../assets/iconocuenta.png';
 
 
-function pagConfig() {
+function foroComunidad() {
   const [menuAbierto, setMenuAbierto] = useState(false);
   const toggleMenu = () => setMenuAbierto(!menuAbierto);
 
@@ -58,7 +58,7 @@ function pagConfig() {
         </div>
         <div className="background">
             <div className="principal">
-                PAGINA DE CONFIGURACION
+                FORO DE LA COMUNIDAD
             </div>
         </div>
       
@@ -66,4 +66,4 @@ function pagConfig() {
   );
 }
 
-export default pagConfig;
+export default foroComunidad;

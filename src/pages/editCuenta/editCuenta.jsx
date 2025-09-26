@@ -3,22 +3,22 @@ import './editCuenta.css';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import tituloImg   from '../assets/Titulo.png';
-import menuHamb    from '../assets/menuHamb.png';
-import iconocuenta from '../assets/iconocuenta.png';
+import tituloImg   from '../../assets/Titulo.png';
+import menuHamb    from '../../assets/menuHamb.png';
+import iconocuenta from '../../assets/iconocuenta.png';
 
 /* ---------- listas de imágenes para el avatar ---------- */
-import cara0       from '../assets/avatar/cara0.png';
-import cara1       from '../assets/avatar/cara1.png';
-import cara2       from '../assets/avatar/cara2.png';
-import cara3       from '../assets/avatar/cara3.png';
-import cara4       from '../assets/avatar/cara4.png';
+import cara0       from '../../assets/avatar/cara0.png';
+import cara1       from '../../assets/avatar/cara1.png';
+import cara2       from '../../assets/avatar/cara2.png';
+import cara3       from '../../assets/avatar/cara3.png';
+import cara4       from '../../assets/avatar/cara4.png';
 
-import sombrero0   from '../assets/avatar/sombrero0.png';
-import sombrero1   from '../assets/avatar/sombrero1.png';
-import sombrero2   from '../assets/avatar/sombrero2.png';
-import sombrero3   from '../assets/avatar/sombrero3.png';
-import sombrero4   from '../assets/avatar/sombrero4.png';
+import sombrero0   from '../../assets/avatar/sombrero0.png';
+import sombrero1   from '../../assets/avatar/sombrero1.png';
+import sombrero2   from '../../assets/avatar/sombrero2.png';
+import sombrero3   from '../../assets/avatar/sombrero3.png';
+import sombrero4   from '../../assets/avatar/sombrero4.png';
 
 
 const caras      = [cara0, cara1, cara2, cara3, cara4];

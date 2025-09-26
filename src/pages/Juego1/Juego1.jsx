@@ -3,9 +3,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { useState } from 'react';
-import tituloImg from '../assets/Titulo.png';
-import menuHamb from '../assets/menuHamb.png';
-import iconocuenta from '../assets/iconocuenta.png';
+import tituloImg from '../../assets/Titulo.png';
+import menuHamb from '../../assets/menuHamb.png';
+import iconocuenta from '../../assets/iconocuenta.png';
 
 
 function Juego1() {

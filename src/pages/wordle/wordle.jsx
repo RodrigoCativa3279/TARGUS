@@ -1,4 +1,3 @@
-// Wordle.jsx
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import palabras from "./palabras.json";
@@ -14,7 +13,7 @@ function Wordle() {
 
   const KEYS = "QWERTYUIOPASDFGHJKLZXCVBNM".split("");
 
-  // Filtrar solo palabras de 5 letras y convertir a mayúsculas
+  
   const palabrasFiltradas = palabras
     .filter((p) => p.length === 5)
     .map((p) => p.toUpperCase());
@@ -136,7 +135,7 @@ function Wordle() {
       {gameOver && (
         <div className="menu-final">
           <button onClick={startNewGame}>🔄 Jugar de nuevo</button>
-          <button onClick={() => navigate("/home")}>🏠 Volver al menú</button>
+          <button onClick={() => navigate("/")}>🏠 Volver al menú</button>
         </div>
       )}
     </div>

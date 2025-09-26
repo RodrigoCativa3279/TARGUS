@@ -91,20 +91,20 @@ function App() {
         <div className="destacados">
           <h1 className="categoria">Nuevos</h1>
           <div className="grid-juegos">
-            <a href="#" className="juego enlace-juego">
+            <a href="wordle" className="juego enlace-juego">
               <img src={juego4} alt="Juego 4" />
               <h4 className="tituloJuego">Adivina la palabra</h4>
-              <p className="descripcion">Gorras</p>
+              <p className="descripcion"></p>
             </a>
             <a href="#" className="juego enlace-juego">
               <img src={juego5} alt="Juego 5" />
               <h4 className="tituloJuego">¿Mayor o menor?</h4>
-              <p className="descripcion">Botines</p>
+              <p className="descripcion"></p>
             </a>
             <a href="#" className="juego enlace-juego">
               <img src={juego6} alt="Juego 6" />
               <h4 className="tituloJuego">Adivina el país</h4>
-              <p className="descripcion">Camperas deportivas</p>
+              <p className="descripcion"></p>
             </a>
           </div>
         </div>
