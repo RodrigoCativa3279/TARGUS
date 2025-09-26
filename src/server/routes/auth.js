@@ -22,7 +22,7 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res) => {
   const { username, password } = req.body;
 
-  const sql = 'SELECT * FROM users WHERE nombreUsuario = ? AND contrasenia = ?';
+  const sql = 'SELECT * FROM Usuario WHERE nombreUsuario = ? AND contrasenia = ?';
   db.query(sql, [username, password], (err, results) => {
     if (err) return res.status(500).json({ error: 'Error en el servidor' });
 
