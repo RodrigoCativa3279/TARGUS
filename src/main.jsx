@@ -9,6 +9,8 @@ import ForoComunidad from './pages/foroComunidad.jsx'
 import Misiones from './pages/Misiones.jsx'
 import PagConfig from './pages/pagConfig.jsx'
 import Login from './pages/Login.jsx'
+import Wordle from './pages/wordle.jsx'
+import Palabras from './pages/palabras.json'
 
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -25,6 +27,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/pagconfig" element={<PagConfig />} />
         <Route path="/juego1" element={<Juego1 />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/wordle" element={<Wordle />} />
+        <Route path="/palabras" element={<Palabras />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
