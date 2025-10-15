@@ -16,7 +16,7 @@
     float: right;
     width: 20%;
     height: auto;
-    background-color: rgba(255, 255, 255, 0.501);
+    background-color: rgba(190, 185, 185, 0.501);
     padding: 10px;
     border-radius: 20px;
     opacity: 0.5;
@@ -60,10 +60,6 @@ li :hover {
     background-color: #9b9a9a;
     border-radius: 20px;
     transition: 0.4s;
-}
-
-.navbar {
-    background-color: #60676d;
 }
 
 .navbar-brand {
@@ -114,6 +110,10 @@ li :hover {
     color: #e1e1e1;
     font-weight: 600;
     font-family: "Smooch Sans", sans-serif;
+}
+
+.navbar {
+    background-color: #767f86 !important;
 }
 
 /*FINAL NAVBAR*/
