@@ -1,73 +1,18 @@
 import "./App.css";
 import { Link } from "react-router-dom";
 
-import { useState } from "react";
-import tituloImg from "./assets/Titulo.png";
-import menuHamb from "./assets/menuHamb.png";
-import iconocuenta from "./assets/iconocuenta.png";
 import juego1 from "./assets/Juego 1.png";
 import juego2 from "./assets/Juego 2.png";
 import juego3 from "./assets/Juego 3.png";
 import juego4 from "./assets/Juego 4.png";
 import juego5 from "./assets/Juego 5.png";
 import juego6 from "./assets/Juego 6.png";
+import Navbar from "./components/navbar/Navbar";
 
 function App() {
-    const [menuAbierto, setMenuAbierto] = useState(false);
-    const toggleMenu = () => setMenuAbierto(!menuAbierto);
-
     return (
         <>
-            {/*INICIO NAVBAR*/}
-            <nav className="navbar navbar-expand-lg navbar-light">
-                <div className="d-flex align-items-center col-10">
-                    <Link to="/">
-                        <img src={tituloImg} className="logo" />
-                    </Link>
-                </div>
-                <button className="navbar-toggler col-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-
-                <div className="col-2 text-right">
-                    <img src={menuHamb} className="menuHamb img-fluid" alt="Cuenta" style={{ cursor: "pointer" }} onClick={toggleMenu} />
-                </div>
-            </nav>
-
-            <div className={`menu-lateral ${menuAbierto ? "abierto" : ""}`}>
-                <button className="cerrar-menu" onClick={toggleMenu}>
-                    ×
-                </button>
-                <div className="usuario">
-                    <div className="nombre">JuanPedro001</div>
-                    <img className="iconocuenta img-fluid" src={iconocuenta} />
-                </div>
-
-                <ul>
-                    <li>
-                        <Link to="/editCuenta" className="botonesMenu">
-                            &lt; Editar cuenta
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/misiones" className="botonesMenu">
-                            &lt; Misiones
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/forocomunidad" className="botonesMenu">
-                            &lt; Foro de la comunidad
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/pagconfig" className="botonesMenu">
-                            &lt; Configuración
-                        </Link>
-                    </li>
-                </ul>
-            </div>
-
-            {/*FINAL NAVBAR*/}
+            <Navbar />
 
             <div className="principal">
                 <div className="destacados">
