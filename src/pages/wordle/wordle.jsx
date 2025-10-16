@@ -71,7 +71,7 @@ function Wordle() {
         <div>
             <Navbar />
             <div className="wordle-container">
-                <h1>Wordle Español</h1>
+                <h1>Wordle Imposible</h1>
 
                 {guesses.map((guess, i) => (
                     <div className="row" key={i}>
