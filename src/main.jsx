@@ -12,6 +12,7 @@ import Login from "./pages/Login/Login.jsx";
 import Wordle from "./pages/wordle/wordle.jsx";
 import Palabras from "./pages/wordle/palabras.json";
 import Sudoku from "./pages/sudoku/sudoku.jsx";
+import LangingPage from "./pages/Landing/LandingPage.jsx";
 
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -21,7 +22,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
         <BrowserRouter basename="/TARGUS/">
             <Routes>
-                <Route path="/" element={<App />} />
+                <Route path="/" element={<LangingPage />} />
                 <Route path="/editCuenta" element={<EditCuenta />} />
                 <Route path="/forocomunidad" element={<ForoComunidad />} />
                 <Route path="/misiones" element={<Misiones />} />
@@ -31,6 +32,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 <Route path="/wordle" element={<Wordle />} />
                 <Route path="/palabras" element={<Palabras />} />
                 <Route path="/sudoku" element={<Sudoku />} />
+                <Route path="/home" element={<App />} />
             </Routes>
         </BrowserRouter>
     </React.StrictMode>
