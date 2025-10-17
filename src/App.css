@@ -21,6 +21,7 @@ body {
 .destacados {
     margin: 0 auto;
     font-family: "Smooch Sans", sans-serif;
+    padding-bottom: 7%;
 }
 
 .categoria {
