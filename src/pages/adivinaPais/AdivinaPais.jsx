@@ -14,7 +14,7 @@ export default function AdivinaPais() {
 
     // obtener datos de países
     useEffect(() => {
-        fetch("https://restcountries.com/v3.1/all?fields=name,flags,region")
+        fetch("https://restcountries.com/v3.1/all?fields=name,flags,translations,region")
             .then((res) => res.json())
             .then((data) => {
                 const filtered = data.filter(
@@ -32,10 +32,15 @@ export default function AdivinaPais() {
             const randomNum = Math.floor(Math.random() * countryData.length);
             const country = countryData[randomNum];
             setRandomCountry({
-                name: country.name.common,
-                officialName: country.name.official || "",
+                name: country.name.common,        // inglés
+                officialName: country.name.official,
                 flagUrl: country.flags?.svg || country.flags?.png,
+                spanishName: country.translations?.spa?.common || country.name.common, // español
+                code: country.cca2,
+                flagEmoji: country.flag,
             });
+                
+
             setCorrect(null);
             setImgLoad(true);
         } else if (round > 10) {
@@ -49,7 +54,8 @@ export default function AdivinaPais() {
         const normalizedAnswer = answer.toLowerCase();
         const correctName =
             randomCountry.name.toLowerCase() === normalizedAnswer ||
-            randomCountry.officialName.toLowerCase() === normalizedAnswer;
+            randomCountry.officialName.toLowerCase() === normalizedAnswer ||
+            randomCountry.spanishName.toLowerCase() === normalizedAnswer;
 
         if (correctName) {
             setCorrect(true);
