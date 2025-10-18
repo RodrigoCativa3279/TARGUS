@@ -12,6 +12,8 @@ import Login from "./pages/Login/Login.jsx";
 import Wordle from "./pages/wordle/wordle.jsx";
 import Palabras from "./pages/wordle/palabras.json";
 import Sudoku from "./pages/sudoku/sudoku.jsx";
+import AdivinaPais from "./pages/adivinaPais/adivinaPais.jsx";
+
 
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -31,6 +33,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 <Route path="/wordle" element={<Wordle />} />
                 <Route path="/palabras" element={<Palabras />} />
                 <Route path="/sudoku" element={<Sudoku />} />
+                <Route path="/adivinaPais" element={<AdivinaPais />} />
+
             </Routes>
         </BrowserRouter>
     </React.StrictMode>

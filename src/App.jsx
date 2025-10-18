@@ -50,7 +50,7 @@ function App() {
                             <h4 className="tituloJuego">¿Mayor o menor?</h4>
                             <p className="descripcion">Poné a prueba tu intuición y memoria comparando números y patrones.</p>
                         </a>
-                        <a href="#" className="juego enlace-juego">
+                        <a href="adivinaPais" className="juego enlace-juego">
                             <img src={juego6} alt="Juego 6" />
                             <h4 className="tituloJuego">Adivina el país</h4>
                             <p className="descripcion">¿Podés reconocer cada país con solo unas pistas? ¡Demostrá tu conocimiento!</p>
