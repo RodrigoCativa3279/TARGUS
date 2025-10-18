@@ -53,7 +53,7 @@ function App() {
                         <a href="adivinaPais" className="juego enlace-juego">
                             <img src={juego6} alt="Juego 6" />
                             <h4 className="tituloJuego">Adivina el país</h4>
-                            <p className="descripcion">¿Podés reconocer cada país con solo unas pistas? ¡Demostrá tu conocimiento!</p>
+                            <p className="descripcion">¿Podés reconocer cada país con solo su bandera? ¡Demostrá tu conocimiento!</p>
                         </a>
                     </div>
                 </div>
