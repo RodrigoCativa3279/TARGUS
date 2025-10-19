@@ -28,7 +28,7 @@ function App() {
                 <div className="destacados">
                     <h1 className="categoria">Clásicos</h1>
                     <div className="grid-juegos">
-                        <Link to="/juego1" className="juego enlace-juego">
+                        <Link to="/crucigrama" className="juego enlace-juego">
                             <img src={juego1} alt="Juego 1" />
                             <h4 className="tituloJuego">Crucigrama</h4>
                             <p className="descripcion">¡Desafía tu mente y divertite completando el crucigrama!</p>

@@ -1,0 +1,117 @@
+SOL: Astro que brilla en el cielo y da luz y calor a la Tierra
+LUNA: Satélite natural que orbita alrededor de la Tierra
+AGUA: Líquido vital para los seres vivos
+FUEGO: Combustión que produce luz y calor
+TIERRA: Planeta donde vivimos
+AIRE: Mezcla de gases que forma la atmósfera
+NUBE: Masa visible de partículas de agua en el cielo
+LLUVIA: Agua que cae de las nubes
+VIENTO: Movimiento del aire
+MONTAÑA: Elevación natural de la superficie terrestre
+RÍO: Corriente de agua que fluye hacia el mar
+MAR: Gran masa de agua salada
+LAGO: Cuerpo de agua rodeado de tierra
+BOSQUE: Gran extensión de árboles y vegetación
+SELVA: Bosque denso y húmedo tropical
+DESIERTO: Región seca con poca vegetación
+ANIMAL: Ser vivo que se mueve y se alimenta
+PLANTA: Ser vivo que realiza fotosíntesis
+ÁRBOL: Planta grande con tronco y ramas
+FLOR: Parte colorida y reproductiva de la planta
+FRUTO: Parte de la planta que contiene semillas
+SEMILLA: Órgano de reproducción de las plantas
+HORMIGA: Insecto social que vive en colonias
+LEÓN: Animal carnívoro y rey de la selva
+TIGRE: Felino grande con rayas
+ELEFANTE: Mamífero grande con trompa
+CABALLO: Animal domesticado usado para montar o trabajar
+PERRO: Animal doméstico, amigo del hombre
+GATO: Animal doméstico de la familia felina
+PÁJARO: Animal que puede volar y tiene plumas
+PEZ: Animal que vive en el agua
+DOLPHÍN: Mamífero acuático inteligente
+BALLENA: Mamífero marino de gran tamaño
+MONO: Primado que vive en árboles
+SERPIENTE: Reptil sin patas
+ARAÑA: Arácnido que teje telas
+ABEJA: Insecto que produce miel
+MARIPOSA: Insecto con alas coloridas
+SOLAR: Relativo al sol
+LUNAR: Relativo a la luna
+GALAXIA: Conjunto de estrellas y materia cósmica
+PLANETA: Cuerpo celeste que orbita una estrella
+COMETA: Cuerpo celeste que tiene cola al acercarse al sol
+ASTEROIDE: Cuerpo rocoso que orbita alrededor del sol
+METEORITO: Fragmento de asteroide que llega a la Tierra
+ESTRELLA: Cuerpo celeste que brilla por su luz propia
+CIELO: Espacio que se ve sobre nosotros
+OCÉANO: Gran extensión de agua salada
+ISLA: Porción de tierra rodeada de agua
+PENÍNSULA: Tierra rodeada de agua por casi todos lados
+VOLCÁN: Montaña que expulsa lava
+TERREMOTO: Movimiento brusco de la corteza terrestre
+TSUNAMI: Ola gigante causada por terremotos
+TORNADO: Columna de aire en rotación violenta
+HURACÁN: Tormenta tropical muy intensa
+RELÁMPAGO: Luz brillante en el cielo durante tormenta
+TRUENO: Sonido producido por el relámpago
+NEVADA: Caída de nieve
+INVIERNO: Estación fría del año
+VERANO: Estación cálida del año
+PRIMAVERA: Estación de flores y renacer
+OTOÑO: Estación de hojas caídas
+DÍA: Período de luz solar
+NOCHE: Período sin luz solar
+HORA: Unidad de tiempo de 60 minutos
+MINUTO: Unidad de tiempo de 60 segundos
+SEGUNDO: Unidad de tiempo básica
+RELOJ: Instrumento para medir el tiempo
+CALENDARIO: Sistema para organizar días y meses
+AÑO: Período de 12 meses
+MES: División del año
+SEMANA: Período de 7 días
+DÍA: Unidad de tiempo de 24 horas
+FAMILIA: Grupo de personas relacionadas
+AMIGO: Persona cercana y confiable
+MAESTRO: Persona que enseña
+ESTUDIANTE: Persona que aprende
+LIBRO: Conjunto de páginas con texto
+CUADERNO: Libro para escribir notas
+PAPEL: Material para escribir o imprimir
+PLUMA: Instrumento para escribir
+LÁPIZ: Instrumento de grafito para escribir
+ESCUELA: Lugar donde se aprende
+UNIVERSIDAD: Institución de educación superior
+TRABAJO: Actividad remunerada
+OFICINA: Lugar donde se trabaja
+HOSPITAL: Lugar donde se atiende la salud
+MEDICINA: Ciencia de la salud
+ENFERMEDAD: Alteración de la salud
+DOCTOR: Profesional de la salud
+ENFERMERA: Persona que asiste al doctor
+COMIDA: Sustancia para nutrirse
+AGRICULTURA: Cultivo de plantas
+FRUTA: Producto comestible de las plantas
+VERDURA: Producto vegetal comestible
+PAN: Alimento hecho de harina
+LECHE: Líquido nutritivo de animales
+CARNE: Alimento de origen animal
+PESCADO: Carne de los peces
+HUEVO: Producto de aves
+ACEITE: Líquido graso para cocinar
+AZÚCAR: Sustancia dulce
+SAL: Condimento básico
+MÚSICA: Arte de los sonidos
+CANTO: Acción de cantar
+DANZA: Movimiento artístico del cuerpo
+PEINTURA: Arte de dibujar o pintar
+ESCULTURA: Arte de modelar objetos
+CINE: Arte audiovisual
+TEATRO: Representación artística en vivo
+PELÍCULA: Obra de cine
+INTERNET: Red mundial de información
+COMPUTADORA: Máquina para procesar datos
+CELULAR: Dispositivo de comunicación móvil
+TELÉFONO: Instrumento para llamar
+RADIO: Medio de comunicación sonora
+TELEVISIÓN: Medio de comunicación audiovisual
