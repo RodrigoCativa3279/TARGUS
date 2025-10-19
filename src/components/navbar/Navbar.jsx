@@ -74,7 +74,7 @@ const Navbar = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="#" className="botonesMenu" onClick={handleLogout}>
+                        <Link to="/" className="botonesMenu" onClick={handleLogout}>
                             &lt; Cerrar sesión
                         </Link>
                     </li>
