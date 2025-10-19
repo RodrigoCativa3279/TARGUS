@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
 import tituloImg from "../../assets/Titulo.png";
@@ -8,21 +8,33 @@ import iconocuenta from "../../assets/iconocuenta.png";
 
 const Navbar = () => {
     const [menuAbierto, setMenuAbierto] = useState(false);
+    const [usuario, setUsuario] = useState(null);
+    const navigate = useNavigate();
+
     const toggleMenu = () => setMenuAbierto(!menuAbierto);
+
+    useEffect(() => {
+        const storedUser = localStorage.getItem("user");
+        if (storedUser) {
+            setUsuario(JSON.parse(storedUser));
+        }
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        navigate("/login");
+    };
 
     return (
         <>
-            {/* INICIO NAVBAR */}
+            {/* NAVBAR SUPERIOR */}
             <nav className="navbar navbar-expand-lg navbar-light">
                 <div className="d-flex align-items-center col-10">
-                    <Link to="/">
+                    <Link to="/home">
                         <img src={tituloImg} className="logo" alt="Logo principal" />
                     </Link>
                 </div>
-
-                <button className="navbar-toggler col-2" type="button" aria-expanded={menuAbierto} onClick={toggleMenu}>
-                    <span className="navbar-toggler-icon"></span>
-                </button>
 
                 <div className="col-2 text-right">
                     <img src={menuHamb} className="menuHamb img-fluid" alt="Menú" style={{ cursor: "pointer" }} onClick={toggleMenu} />
@@ -36,7 +48,7 @@ const Navbar = () => {
                 </button>
 
                 <div className="usuario">
-                    <div className="nombre">JuanPedro001</div>
+                    <div className="nombre">{usuario ? usuario.username : "Invitado"}</div>
                     <img className="iconocuenta img-fluid" src={iconocuenta} alt="Usuario" />
                 </div>
 
@@ -61,9 +73,13 @@ const Navbar = () => {
                             &lt; Configuración
                         </Link>
                     </li>
+                    <li>
+                        <Link to="#" className="botonesMenu" onClick={handleLogout}>
+                            &lt; Cerrar sesión
+                        </Link>
+                    </li>
                 </ul>
             </div>
-            {/* FINAL NAVBAR */}
         </>
     );
 };

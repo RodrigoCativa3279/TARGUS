@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
-import "aos/dist/aos.css"; // estilos de animación
-
+import "aos/dist/aos.css";
 import { useNavigate } from "react-router-dom";
 import styles from "./LandingPage.module.scss";
+import tituloImg from "../../assets/Titulo.png";
 
 export default function LandingPage() {
     const navigate = useNavigate();
@@ -30,47 +30,48 @@ export default function LandingPage() {
             <section className={styles.hero}>
                 <div className={styles.heroText} data-aos="fade-down">
                     <h1>
-                        Bienvenido a <span>SoundVibe</span>
+                        Bienvenido a <img src={tituloImg} className="logo" alt="Logo principal" />
                     </h1>
-                    <p>Tu música favorita, en cualquier momento, en cualquier lugar.</p>
-                    <button onClick={handleStart}>Comenzá ahora</button>
+
+                    <p>Desafiá tu mente con juegos que ponen a prueba tu lógica, memoria y velocidad mental.</p>
+                    <button onClick={handleStart}>Jugar ahora</button>
                 </div>
             </section>
 
             <section className={styles.features}>
                 <div className={styles.feature} data-aos="fade-up">
-                    <i className="bx bx-library"></i>
-                    <h3>Crea tu biblioteca</h3>
-                    <p>Organizá tus canciones y playlists como quieras.</p>
+                    <i className="bx bx-brain"></i>
+                    <h3>Entrená tu cerebro</h3>
+                    <p>Mejorá tu concentración, agilidad mental y memoria mientras te divertís.</p>
                 </div>
                 <div className={styles.feature} data-aos="fade-up" data-aos-delay="100">
-                    <i className="bx bx-headphone"></i>
-                    <h3>Escuchá sin límites</h3>
-                    <p>Disfrutá música sin interrupciones donde sea.</p>
+                    <i className="bx bx-target-lock"></i>
+                    <h3>Superá tus límites</h3>
+                    <p>Probá diferentes desafíos y medí tu progreso con cada partida.</p>
                 </div>
                 <div className={styles.feature} data-aos="fade-up" data-aos-delay="200">
-                    <i className="bx bx-compass"></i>
-                    <h3>Explorá artistas</h3>
-                    <p>Descubrí nuevos sonidos y géneros únicos.</p>
+                    <i className="bx bx-joystick"></i>
+                    <h3>Divertite aprendiendo</h3>
+                    <p>Descubrí nuevas formas de entrenar tu mente de manera entretenida y dinámica.</p>
                 </div>
             </section>
 
             <section className={styles.testimonials}>
-                <h2>Lo que dicen nuestros usuarios</h2>
+                <h2>Lo que dicen nuestros jugadores</h2>
 
                 <div className={styles.testimonialCard}>
-                    <p>"SoundVibe me acompaña todos los días. ¡Lo amo!"</p>
-                    <span>- Usuario feliz</span>
+                    <p>"Ideal para mantener la mente activa cada día. ¡Muy entretenido!"</p>
+                    <span>- Usuario motivado</span>
                 </div>
 
                 <div className={styles.testimonialCard}>
-                    <p>"Nunca fue tan fácil encontrar música nueva."</p>
-                    <span>- Fanático del rock</span>
+                    <p>"Perfecta combinación entre diversión y entrenamiento mental."</p>
+                    <span>- Fan de los desafíos</span>
                 </div>
             </section>
 
             <footer className={styles.footer}>
-                <p>&copy; {new Date().getFullYear()} SoundVibe. Todos los derechos reservados.</p>
+                <p>&copy; {new Date().getFullYear()} TARGUS. Todos los derechos reservados.</p>
             </footer>
         </div>
     );
