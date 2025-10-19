@@ -13,6 +13,8 @@ import Wordle from "./pages/wordle/wordle.jsx";
 import Palabras from "./pages/wordle/palabras.json";
 import Sudoku from "./pages/sudoku/sudoku.jsx";
 import LangingPage from "./pages/Landing/LandingPage.jsx";
+import AdivinaPais from "./pages/adivinaPais/adivinaPais.jsx";
+
 
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -33,6 +35,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 <Route path="/palabras" element={<Palabras />} />
                 <Route path="/sudoku" element={<Sudoku />} />
                 <Route path="/home" element={<App />} />
+                <Route path="/adivinaPais" element={<AdivinaPais />} />
+
             </Routes>
         </BrowserRouter>
     </React.StrictMode>

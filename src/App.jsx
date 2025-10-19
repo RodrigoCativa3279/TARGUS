@@ -60,10 +60,10 @@ function App() {
                             <h4 className="tituloJuego">¿Mayor o menor?</h4>
                             <p className="descripcion">Probá tu intuición comparando datos y estadísticas.</p>
                         </a>
-                        <a href="#" className="juego enlace-juego">
+                        <a href="adivinaPais" className="juego enlace-juego">
                             <img src={juego6} alt="Juego 6" />
                             <h4 className="tituloJuego">Adivina el país</h4>
-                            <p className="descripcion">¿Podés reconocer los países solo con una pista?</p>
+                            <p className="descripcion">¿Podés reconocer cada país con solo su bandera? ¡Demostrá tu conocimiento!</p>
                         </a>
                     </div>
                 </div>
