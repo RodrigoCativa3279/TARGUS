@@ -14,11 +14,14 @@ En otra terminal (ahora para el backend):
 
 
 ---
+
 ## Otras indicaciones que pueden ser utiles
-#### En caso de no tener todas las dependencias:
+
+
+### En caso de no tener todas las dependencias:
 * npm install
 
-#### En caso de no tener node:
+### En caso de no tener node:
 ##### Download and install Chocolatey:
 * powershell -c "irm https://community.chocolatey.org/install.ps1|iex"
 ##### Download and install Node.js:
