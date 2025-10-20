@@ -1,0 +1,52 @@
+{
+  "dificil": {
+    "filas": 15,
+    "columnas": 15,
+    "horizontales": [
+      { "numero": 1, "palabra": "BLANCO", "x": 0, "y": 0, "pista": "Objetivo del destructor." },
+      { "numero": 7, "palabra": "IMAN", "x": 0, "y": 2, "pista": "Objeto que atrae a los metales." },
+      { "numero": 11, "palabra": "SUJETE", "x": 3, "y": 2, "pista": "Agarré con firmeza." },
+      { "numero": 12, "palabra": "NOVA", "x": 0, "y": 4, "pista": "Bossa ___, estilo musical brasileño." },
+      { "numero": 13, "palabra": "COMPASION", "x": 0, "y": 6, "pista": "Inclinación a aliviar el sufrimiento." },
+      { "numero": 14, "palabra": "INSTANTE", "x": 2, "y": 8, "pista": "Espacio breve de tiempo." },
+      { "numero": 15, "palabra": "IZA", "x": 8, "y": 8, "pista": "Eleva una bandera o vela." },
+      { "numero": 16, "palabra": "SOPORTADA", "x": 0, "y": 10, "pista": "Aguantada con resignación." },
+      { "numero": 18, "palabra": "DONARA", "x": 4, "y": 12, "pista": "Ofrecerá voluntariamente." },
+      { "numero": 20, "palabra": "NEUROINGENIERIA", "x": 0, "y": 14, "pista": "Ingeniería enfocada en redes nerviosas." },
+      { "numero": 21, "palabra": "NIDOS", "x": 8, "y": 0, "pista": "Construcciones de los pájaros." },
+      { "numero": 23, "palabra": "CREZCA", "x": 10, "y": 2, "pista": "Se vuelva más grande." },
+      { "numero": 26, "palabra": "AMOR", "x": 12, "y": 4, "pista": "Puede ser platónico." },
+      { "numero": 30, "palabra": "DESENTONA", "x": 6, "y": 6, "pista": "Desafina." },
+      { "numero": 32, "palabra": "ESA", "x": 12, "y": 8, "pista": "'¡No vuelvas a hablarme de ___ manera!'" },
+      { "numero": 33, "palabra": "RETE", "x": 6, "y": 10, "pista": "Desafíe a competir." },
+      { "numero": 34, "palabra": "DAMAS", "x": 0, "y": 12, "pista": "Damas refinadas y eruditas." },
+      { "numero": 36, "palabra": "ORAL", "x": 10, "y": 10, "pista": "Vía de administración de una píldora." },
+      { "numero": 37, "palabra": "CREIA", "x": 10, "y": 12, "pista": "Pensaba." },
+      { "numero": 38, "palabra": "MANO", "x": 0, "y": 8, "pista": "Capa de pintura." },
+      { "numero": 39, "palabra": "AISLAR", "x": 8, "y": 14, "pista": "Poner en soledad o reclusión." }
+    ],
+    "verticales": [
+      { "numero": 1, "palabra": "NAJA", "x": 0, "y": 0, "pista": "Víbora venenosa." },
+      { "numero": 2, "palabra": "SUIZA", "x": 1, "y": 0, "pista": "País con la sede de la FIFA." },
+      { "numero": 3, "palabra": "OJEAR", "x": 2, "y": 0, "pista": "Mirar superficialmente un texto." },
+      { "numero": 4, "palabra": "LED", "x": 4, "y": 0, "pista": "Componente para iluminar con bajo consumo." },
+      { "numero": 5, "palabra": "ATADAS", "x": 6, "y": 0, "pista": "Sujetas con ligaduras." },
+      { "numero": 6, "palabra": "REITERACION", "x": 8, "y": 0, "pista": "Repetición de una palabra." },
+      { "numero": 7, "palabra": "CURIOSA", "x": 10, "y": 0, "pista": "Entrometida." },
+      { "numero": 8, "palabra": "MUERTE", "x": 12, "y": 0, "pista": "___ de hambre: estar famélico (fig.)." },
+      { "numero": 9, "palabra": "AVIDA", "x": 14, "y": 0, "pista": "Codiciosa, ansiosa." },
+      { "numero": 10, "palabra": "NASAL", "x": 3, "y": 2, "pista": "Relativo a la nariz." },
+      { "numero": 17, "palabra": "FEO", "x": 5, "y": 6, "pista": "Desprovisto de belleza." },
+      { "numero": 19, "palabra": "ANZUELO", "x": 7, "y": 4, "pista": "Arponcillo para pescar." },
+      { "numero": 22, "palabra": "ICE", "x": 9, "y": 8, "pista": "Levanté (la bandera)." },
+      { "numero": 23, "palabra": "CD", "x": 11, "y": 8, "pista": "Disco que ya está en desuso." },
+      { "numero": 24, "palabra": "RIO", "x": 13, "y": 8, "pista": "Soltara una carcajada." },
+      { "numero": 25, "palabra": "ESTAN", "x": 2, "y": 10, "pista": "Se encuentran en un lugar." },
+      { "numero": 27, "palabra": "ESTRONCIO", "x": 4, "y": 4, "pista": "Elemento químico como el calcio." },
+      { "numero": 28, "palabra": "ARRIESGABA", "x": 6, "y": 8, "pista": "Arriesgaba." },
+      { "numero": 29, "palabra": "ROZAR", "x": 8, "y": 10, "pista": "Pasar un cuerpo rozando ligeramente otro." },
+      { "numero": 31, "palabra": "AUDI", "x": 10, "y": 12, "pista": "Marca alemana de automóviles de lujo." },
+      { "numero": 35, "palabra": "LES", "x": 12, "y": 14, "pista": "___ Luthiers, maestros de la parodia musical." }
+    ]
+  }
+}
