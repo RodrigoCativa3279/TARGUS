@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./AdivinaPais.css";
 import Navbar from "../../components/navbar/Navbar";
+import juego6 from "../../assets/Juego 6.png";
+
 
 export default function AdivinaPais() {
     const [countryData, setCountryData] = useState([]);
@@ -11,10 +13,12 @@ export default function AdivinaPais() {
     const [imgLoad, setImgLoad] = useState(true);
     const [score, setScore] = useState(0);
     const [gameOver, setGameOver] = useState(false);
-    const [difficulty, setDifficulty] = useState("facil"); // ← nueva variable
+    const [difficulty, setDifficulty] = useState(null); // null = aún no elegida
+    const [gameStarted, setGameStarted] = useState(false);
 
-    // obtener datos de países
+    // obtener datos de países según dificultad
     useEffect(() => {
+        if (!difficulty) return;
         fetch("https://restcountries.com/v3.1/all?fields=name,flags,translations,population")
             .then((res) => res.json())
             .then((data) => {
@@ -22,11 +26,14 @@ export default function AdivinaPais() {
                 if (difficulty === "facil") {
                     filtered = data.filter((c) => c.population > 50000000); // +50M
                 } else if (difficulty === "medio") {
-                    filtered = data.filter((c) => c.population >= 10000000 && c.population <= 50000000); // 10M–50M
+                    filtered = data.filter(
+                        (c) => c.population >= 10000000 && c.population <= 50000000
+                    ); // 10M–50M
                 } else if (difficulty === "dificil") {
                     filtered = data.filter((c) => c.population < 10000000); // <10M
                 }
                 setCountryData(filtered);
+                setGameStarted(true);
             })
             .catch(() => alert("Error al cargar datos de países"));
     }, [difficulty]);
@@ -75,8 +82,31 @@ export default function AdivinaPais() {
         setRound(1);
         setScore(0);
         setGameOver(false);
+        setDifficulty(null);
+        setGameStarted(false);
+        setCountryData([]);
     };
 
+    // pantalla de selección de dificultad
+    if (!gameStarted) {
+        return (
+            <>
+                <Navbar />
+                <div className="difficulty-screen">
+                    <img src={juego6} alt="Adivina el País" className="logo-juego" />
+                    <h1 className="titulo">ADIVINA EL PAÍS</h1>
+                    <p>Selecciona la dificultad para comenzar:</p>
+                    <div className="difficulty-buttons">
+                        <button onClick={() => setDifficulty("facil")}>FÁCIL</button>
+                        <button onClick={() => setDifficulty("medio")}>MEDIO</button>
+                        <button onClick={() => setDifficulty("dificil")}>DIFÍCIL</button>
+                    </div>
+                </div>
+            </>
+        );
+    }
+
+    // pantalla final del juego
     if (gameOver) {
         return (
             <>
@@ -90,26 +120,15 @@ export default function AdivinaPais() {
         );
     }
 
+    // pantalla principal del juego
     return (
         <>
             <Navbar />
             <main className="adivina-main">
                 <h2>Ronda {round}/10</h2>
-
-                {/* Selector de dificultad */}
-                {round === 1 && score === 0 && (
-                    <div className="difficulty-select">
-                        <label>Selecciona dificultad:</label>
-                        <select
-                            value={difficulty}
-                            onChange={(e) => setDifficulty(e.target.value)}
-                        >
-                            <option value="facil">Fácil (población alta)</option>
-                            <option value="medio">Media (población media)</option>
-                            <option value="dificil">Difícil (población baja)</option>
-                        </select>
-                    </div>
-                )}
+                <p className="difficulty-label">
+                    Dificultad: {difficulty === "facil" ? "Fácil" : difficulty === "medio" ? "Media" : "Difícil"}
+                </p>
 
                 <div className="flag-container">
                     {imgLoad && <div className="loader"></div>}
