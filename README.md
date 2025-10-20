@@ -19,11 +19,11 @@ En caso de no tener todas las dependencias:
 npm install
 
 En caso de no tener node:
--- Download and install Chocolatey:
+- Download and install Chocolatey:
 powershell -c "irm https://community.chocolatey.org/install.ps1|iex"
--- Download and install Node.js:
+- Download and install Node.js:
 choco install nodejs --version="25.0.0"
--- Verify the Node.js version:
+- Verify the Node.js version:
 node -v # Should print "v25.0.0".
--- Verify npm version:
+- Verify npm version:
 npm -v # Should print "11.6.2".
