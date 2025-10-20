@@ -11,6 +11,7 @@
 }
 
 .flag-container img {
+    border: 1px solid black;
     width: 300px;
     margin: 1rem 0;
     border-radius: 10px;
@@ -93,4 +94,17 @@ h2{
     padding: 0.8rem 2rem;
     border-radius: 8px;
     font-size: 1.1rem;
+}
+
+.difficulty-select {
+    margin-bottom: 1rem;
+    color: #11161e;
+}
+
+.difficulty-select select {
+    margin-left: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
 }

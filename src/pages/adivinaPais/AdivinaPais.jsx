@@ -11,36 +11,37 @@ export default function AdivinaPais() {
     const [imgLoad, setImgLoad] = useState(true);
     const [score, setScore] = useState(0);
     const [gameOver, setGameOver] = useState(false);
+    const [difficulty, setDifficulty] = useState("facil"); // ← nueva variable
 
     // obtener datos de países
     useEffect(() => {
-        fetch("https://restcountries.com/v3.1/all?fields=name,flags,translations,region")
+        fetch("https://restcountries.com/v3.1/all?fields=name,flags,translations,population")
             .then((res) => res.json())
             .then((data) => {
-                const filtered = data.filter(
-                    (c) => c.region === "Americas" || c.region === "Europe"
-                );
+                let filtered = [];
+                if (difficulty === "facil") {
+                    filtered = data.filter((c) => c.population > 50000000); // +50M
+                } else if (difficulty === "medio") {
+                    filtered = data.filter((c) => c.population >= 10000000 && c.population <= 50000000); // 10M–50M
+                } else if (difficulty === "dificil") {
+                    filtered = data.filter((c) => c.population < 10000000); // <10M
+                }
                 setCountryData(filtered);
             })
             .catch(() => alert("Error al cargar datos de países"));
-    }, []);
+    }, [difficulty]);
 
-
-    // seleccionar país aleatorio en cada ronda
+    // seleccionar país aleatorio
     useEffect(() => {
         if (countryData.length > 0 && round <= 10) {
             const randomNum = Math.floor(Math.random() * countryData.length);
             const country = countryData[randomNum];
             setRandomCountry({
-                name: country.name.common,        // inglés
+                name: country.name.common,
                 officialName: country.name.official,
                 flagUrl: country.flags?.svg || country.flags?.png,
-                spanishName: country.translations?.spa?.common || country.name.common, // español
-                code: country.cca2,
-                flagEmoji: country.flag,
+                spanishName: country.translations?.spa?.common || country.name.common,
             });
-                
-
             setCorrect(null);
             setImgLoad(true);
         } else if (round > 10) {
@@ -94,6 +95,22 @@ export default function AdivinaPais() {
             <Navbar />
             <main className="adivina-main">
                 <h2>Ronda {round}/10</h2>
+
+                {/* Selector de dificultad */}
+                {round === 1 && score === 0 && (
+                    <div className="difficulty-select">
+                        <label>Selecciona dificultad:</label>
+                        <select
+                            value={difficulty}
+                            onChange={(e) => setDifficulty(e.target.value)}
+                        >
+                            <option value="facil">Fácil (población alta)</option>
+                            <option value="medio">Media (población media)</option>
+                            <option value="dificil">Difícil (población baja)</option>
+                        </select>
+                    </div>
+                )}
+
                 <div className="flag-container">
                     {imgLoad && <div className="loader"></div>}
                     <img
@@ -103,10 +120,6 @@ export default function AdivinaPais() {
                         onLoad={() => setImgLoad(false)}
                     />
                 </div>
-
-                {randomCountry.name === "Svalbard and Jan Mayen" && (
-                    <p className="hint">👀 Pista: ¡No es Noruega!</p>
-                )}
 
                 <form onSubmit={handleSubmit} className="answer-form">
                     <input
@@ -125,7 +138,7 @@ export default function AdivinaPais() {
                     <div className={`feedback ${correct ? "correct" : "wrong"}`}>
                         {correct
                             ? "✅ ¡Correcto!"
-                            : `❌ Era ${randomCountry.name}`}
+                            : `❌ Era ${randomCountry.spanishName}`}
                         <button onClick={nextQuestion}>Siguiente</button>
                     </div>
                 )}
