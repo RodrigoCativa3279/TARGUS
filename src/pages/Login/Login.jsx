@@ -51,7 +51,7 @@ export default function Login() {
         }
     };
 
-    // ✅ LOGIN DE USUARIO
+    // LOGIN DE USUARIO
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
@@ -86,7 +86,7 @@ export default function Login() {
         <div className="login">
             <div className="login__content">
                 <div className="login__img">
-                    <img src="/assets/login.svg" alt="Login Visual" />
+                    <img src="../TARGUS/src/assets/img-login.svg" alt="Login Visual" />
                 </div>
 
                 <div className="login__forms">
