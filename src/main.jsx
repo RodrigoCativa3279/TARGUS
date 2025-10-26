@@ -14,8 +14,6 @@ import Sudoku from "./pages/sudoku/sudoku.jsx";
 import LangingPage from "./pages/Landing/LandingPage.jsx";
 import AdivinaPais from "./pages/adivinaPais/AdivinaPais.jsx";
 import Crucigrama from "./pages/crucigrama/crucigrama.jsx";
-import Celda from "./pages/crucigrama/celda.jsx";
-import Data from "./pages/crucigrama/data.json";
 
 
 
@@ -39,8 +37,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 <Route path="/home" element={<App />} />
                 <Route path="/adivinaPais" element={<AdivinaPais />} />
                 <Route path="/crucigrama" element={<Crucigrama />} />
-                <Route path="/celda" element={<Celda />} />
-                <Route path="/data" element={<Data />} />
             </Routes>
         </BrowserRouter>
     </React.StrictMode>
