@@ -14,6 +14,7 @@ import Sudoku from "./pages/sudoku/sudoku.jsx";
 import LangingPage from "./pages/Landing/LandingPage.jsx";
 import AdivinaPais from "./pages/adivinaPais/AdivinaPais.jsx";
 import Crucigrama from "./pages/crucigrama/crucigrama.jsx";
+import SopaDeLetras from "./pages/sopaDeLetras/sopaDeLetras.jsx";
 
 
 
@@ -37,6 +38,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 <Route path="/home" element={<App />} />
                 <Route path="/adivinaPais" element={<AdivinaPais />} />
                 <Route path="/crucigrama" element={<Crucigrama />} />
+                <Route path="/sopaDeLetras" element={<SopaDeLetras />} />
             </Routes>
         </BrowserRouter>
     </React.StrictMode>

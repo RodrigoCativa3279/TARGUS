@@ -49,7 +49,7 @@ function App() {
                             </figure>
                         </Link>
 
-                        <Link to="/sopa-de-letras" className="juego enlace-juego">
+                        <Link to="/sopaDeLetras" className="juego enlace-juego">
                             <figure>
                                 <img src={juego3} alt="Vista previa del juego Sopa de Letras" loading="lazy" />
                                 <figcaption>
@@ -86,7 +86,7 @@ function App() {
                             </figure>
                         </Link>
 
-                        <Link to="/adivina-pais" className="juego enlace-juego">
+                        <Link to="/AdivinaPais" className="juego enlace-juego">
                             <figure>
                                 <img src={juego6} alt="Vista previa del juego Adivina el país" loading="lazy" />
                                 <figcaption>

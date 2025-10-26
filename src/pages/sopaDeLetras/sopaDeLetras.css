@@ -1,0 +1,126 @@
+.sopa-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #f5f5f5;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.sopa-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.sopa-container .buttons-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.hint-btn, .reveal-btn, .start-btn {
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.hint-btn { background-color: #ff9800; }
+.hint-btn:hover { background-color: #fb8c00; }
+
+.reveal-btn { background-color: #f44336; }
+.reveal-btn:hover { background-color: #d32f2f; }
+
+.start-btn { background-color: #4caf50; font-size: 24px; padding: 15px 40px; }
+.start-btn:hover { background-color: #388e3c; }
+
+.board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  max-height: 60vh;
+  overflow: hidden; 
+}
+.board-row { display: flex; justify-content: center; }
+.cell {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #000;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+}
+.cell.selected { background-color: #4caf50; color: #fff; }
+
+.word-list {
+  margin-top: 20px;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.word-list p {
+  background-color: #e0e0e0;
+  padding: 5px 10px;
+  border-radius: 6px;
+  margin: 0;
+}
+
+.win-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 40px 60px;
+  border-radius: 16px;
+  background-color: #ffffff;
+  text-align: center;
+  z-index: 1000;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+.win-message h2 {
+  font-size: 48px;
+  color: #388e3c;
+  margin-bottom: 25px;
+}
+.win-message button {
+  font-size: 20px;
+  padding: 12px 30px;
+  margin: 0 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.sopa-container.blur-board {
+  filter: blur(2px) brightness(0.7);
+  pointer-events: none;
+}
+
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+  text-align: center;
+}
+.menu-container h1 { font-size: 48px; margin-bottom: 30px; }
