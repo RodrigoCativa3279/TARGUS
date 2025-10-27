@@ -1,126 +1,259 @@
+/* --- CONTENEDOR PRINCIPAL --- */
 .sopa-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
-  background-color: #f5f5f5;
+  background: linear-gradient(135deg, #c8e6c9 0%, #81c784 100%);
   padding: 20px;
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
+/* --- CONTENEDOR DE JUEGO --- */
 .sopa-container {
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  max-height: 100%;
-  overflow: hidden;
+  justify-content: flex-start;
+  background: #ffffffee;
+  border-radius: 24px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  padding: 30px 40px;
+  width: 90%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  transition: all 0.3s ease;
 }
 
-.sopa-container .buttons-group {
+.sopa-container::-webkit-scrollbar {
+  width: 8px;
+}
+.sopa-container::-webkit-scrollbar-thumb {
+  background-color: #81c784;
+  border-radius: 10px;
+}
+
+.sopa-container.blur-board {
+  filter: blur(4px) brightness(0.8);
+  pointer-events: none;
+}
+
+/* --- BOTONES --- */
+.buttons-group {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 15px;
+  gap: 15px;
+  margin-bottom: 25px;
 }
 
-.hint-btn, .reveal-btn, .start-btn {
+.hint-btn,
+.reveal-btn,
+.start-btn {
   color: #fff;
-  padding: 10px 20px;
+  padding: 12px 24px;
   font-size: 16px;
-  border-radius: 8px;
+  border-radius: 12px;
   border: none;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: all 0.25s ease;
+  font-weight: 600;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
-.hint-btn { background-color: #ff9800; }
-.hint-btn:hover { background-color: #fb8c00; }
+.hint-btn {
+  background: linear-gradient(135deg, #ffa726, #fb8c00);
+}
+.hint-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #ffb74d, #f57c00);
+}
 
-.reveal-btn { background-color: #f44336; }
-.reveal-btn:hover { background-color: #d32f2f; }
+.reveal-btn {
+  background: linear-gradient(135deg, #ef5350, #e53935);
+}
+.reveal-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #f44336, #c62828);
+}
 
-.start-btn { background-color: #4caf50; font-size: 24px; padding: 15px 40px; }
-.start-btn:hover { background-color: #388e3c; }
+.start-btn {
+  background: linear-gradient(135deg, #66bb6a, #43a047);
+  font-size: 22px;
+  padding: 15px 40px;
+}
+.start-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #81c784, #388e3c);
+}
 
+/* --- TABLERO --- */
 .board {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
-  max-height: 60vh;
-  overflow: hidden; 
+  margin-top: 10px;
+  background: #f1f8e9;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
 }
-.board-row { display: flex; justify-content: center; }
+
+.board-row {
+  display: flex;
+  justify-content: center;
+}
+
 .cell {
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #000;
+  border: 1px solid #9e9e9e;
   font-weight: bold;
+  font-size: 18px;
   cursor: pointer;
   user-select: none;
+  color: #333;
+  background-color: #fff;
+  transition: all 0.2s ease;
+  border-radius: 6px;
 }
-.cell.selected { background-color: #4caf50; color: #fff; }
 
+.cell:hover {
+  background-color: #dcedc8;
+}
+
+.cell.selected {
+  background-color: #66bb6a;
+  color: #fff;
+  border-color: #388e3c;
+  transform: scale(1.1);
+  transition: transform 0.1s ease, background 0.3s ease;
+}
+
+/* --- LISTA DE PALABRAS --- */
 .word-list {
-  margin-top: 20px;
+  margin-top: 25px;
+  margin-bottom: 15px;
   text-align: center;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
-}
-.word-list p {
-  background-color: #e0e0e0;
-  padding: 5px 10px;
-  border-radius: 6px;
-  margin: 0;
+  gap: 12px;
+  background: #e8f5e9;
+  border-radius: 12px;
+  padding: 10px 15px;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
 }
 
+.word-list p {
+  background: #c8e6c9;
+  padding: 6px 14px;
+  border-radius: 8px;
+  margin: 0;
+  font-weight: 600;
+  color: #2e7d32;
+  transition: all 0.3s ease;
+}
+
+.word-list p:hover {
+  background: #a5d6a7;
+  transform: scale(1.05);
+}
+
+.word-list p[style*="line-through"] {
+  background: #d7ccc8;
+  color: #5d4037;
+  text-decoration: line-through;
+}
+
+/* --- MENSAJE DE VICTORIA --- */
 .win-message {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 40px 60px;
-  border-radius: 16px;
-  background-color: #ffffff;
+  transform: translate(-50%, -50%) scale(1);
+  padding: 50px 70px;
+  border-radius: 20px;
+  background: #ffffff;
   text-align: center;
   z-index: 1000;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  animation: popIn 0.4s ease forwards;
 }
+
+@keyframes popIn {
+  from {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
 .win-message h2 {
   font-size: 48px;
-  color: #388e3c;
+  color: #2e7d32;
   margin-bottom: 25px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+
 .win-message button {
   font-size: 20px;
-  padding: 12px 30px;
+  padding: 12px 35px;
   margin: 0 10px;
-  border-radius: 8px;
+  border-radius: 10px;
   border: none;
   cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, #43a047, #388e3c);
+  transition: all 0.25s ease;
 }
 
-.sopa-container.blur-board {
-  filter: blur(2px) brightness(0.7);
-  pointer-events: none;
+.win-message button:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #66bb6a, #2e7d32);
 }
 
+/* --- MENÚ INICIAL --- */
 .menu-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #f5f5f5;
+  background: linear-gradient(135deg, #a5d6a7, #81c784);
   text-align: center;
 }
-.menu-container h1 { font-size: 48px; margin-bottom: 30px; }
+
+.menu-container h1 {
+  font-size: 52px;
+  margin-bottom: 30px;
+  color: #1b5e20;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  font-weight: 700;
+}
+
+.menu-container button {
+  font-size: 22px;
+  padding: 15px 40px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #43a047, #2e7d32);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.menu-container button:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #66bb6a, #1b5e20);
+}

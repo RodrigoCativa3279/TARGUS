@@ -19,7 +19,9 @@ const Cell = ({ letter, i, j, onMouseDown, onMouseEnter, selected }) => {
 export default function SopaDeLetras() {
   const navigate = useNavigate();
   const boardSize = 15;
-  const words = ["SOFTWARE", "DEVELOPER", "SYSTEM", "APP", "FRAMEWORK", "MOBILE", "PHONE"];
+
+  // 🔹 Ya no definimos palabras fijas
+  const [words, setWords] = useState([]);
 
   const [board, setBoard] = useState([]);
   const [selecting, setSelecting] = useState(false);
@@ -30,7 +32,7 @@ export default function SopaDeLetras() {
   const [usedHints, setUsedHints] = useState([]);
   const [gameStarted, setGameStarted] = useState(false);
 
-  const generateBoard = () => {
+  const generateBoard = (selectedWords) => {
     let tempBoard = Array.from({ length: boardSize }, () =>
       Array.from({ length: boardSize }, () => " ")
     );
@@ -84,7 +86,7 @@ export default function SopaDeLetras() {
       }
     };
 
-    words.forEach(placeWord);
+    selectedWords.forEach(placeWord);
 
     for (let i = 0; i < boardSize; i++) {
       for (let j = 0; j < boardSize; j++) {
@@ -237,43 +239,53 @@ export default function SopaDeLetras() {
     setFoundCells(allPositions);
   };
 
-  const hasWon = board.length > 0 && words.every((word) => {
-    outer: for (let row = 0; row < boardSize; row++) {
-      for (let col = 0; col < boardSize; col++) {
-        const directions = [
-          { dr: 0, dc: 1 },
-          { dr: 1, dc: 0 },
-          { dr: 1, dc: 1 },
-        ];
+  const hasWon =
+    board.length > 0 &&
+    words.every((word) => {
+      outer: for (let row = 0; row < boardSize; row++) {
+        for (let col = 0; col < boardSize; col++) {
+          const directions = [
+            { dr: 0, dc: 1 },
+            { dr: 1, dc: 0 },
+            { dr: 1, dc: 1 },
+          ];
 
-        for (let d of directions) {
-          let letters = "";
-          let positions = [];
+          for (let d of directions) {
+            let letters = "";
+            let positions = [];
 
-          for (let k = 0; k < word.length; k++) {
-            const r = row + k * d.dr;
-            const c = col + k * d.dc;
-            if (r >= boardSize || c >= boardSize) break;
-            if (!board[r]) break;
-            letters += board[r][c];
-            positions.push({ i: r, j: c });
-          }
+            for (let k = 0; k < word.length; k++) {
+              const r = row + k * d.dr;
+              const c = col + k * d.dc;
+              if (r >= boardSize || c >= boardSize) break;
+              if (!board[r]) break;
+              letters += board[r][c];
+              positions.push({ i: r, j: c });
+            }
 
-          if (letters === word || letters.split("").reverse().join("") === word) {
-            const allFound = positions.every((pos) =>
-              foundCells.some((f) => f.i === pos.i && f.j === pos.j)
-            );
-            if (allFound) return true;
+            if (letters === word || letters.split("").reverse().join("") === word) {
+              const allFound = positions.every((pos) =>
+                foundCells.some((f) => f.i === pos.i && f.j === pos.j)
+              );
+              if (allFound) return true;
+            }
           }
         }
       }
-    }
-    return false;
-  });
+      return false;
+    });
+
+  // 🔹 NUEVA FUNCIÓN PARA ELEGIR 8 PALABRAS ALEATORIAS DEL JSON
+  const selectRandomWords = () => {
+    const shuffled = [...wordsData].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, 8).map((w) => w.toUpperCase());
+  };
 
   const startGame = () => {
+    const selectedWords = selectRandomWords();
+    setWords(selectedWords);
     setGameStarted(true);
-    generateBoard();
+    generateBoard(selectedWords);
   };
 
   return (
