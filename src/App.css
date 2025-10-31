@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Exile&family=Smooch+Sans&display=swap");
 
-/* 🔹 Estilos generales del sitio */
 body, html, #root {
   margin: 0;
   padding: 0;
@@ -9,13 +8,11 @@ body, html, #root {
   overflow-x: hidden;
 }
 
-/* 🔹 Estilo global del sitio TARGUS */
 body {
   font-family: "Smooch Sans", sans-serif;
   background-color: rgb(233, 231, 231);
 }
 
-/* 🔹 Página principal de juegos */
 .principal {
   max-width: 1500px;
   height: auto;
