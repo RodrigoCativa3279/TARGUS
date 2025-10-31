@@ -1,134 +1,176 @@
 @import url("https://fonts.googleapis.com/css2?family=Exile&family=Smooch+Sans&display=swap");
 
-.principal {
-    max-width: 1500px;
-    height: auto;
-    margin: 0 auto;
-    background-color: white;
-    padding: 40px;
+/* 🔹 Estilos generales del sitio */
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  color: #222;
+  overflow-x: hidden;
 }
 
+/* 🔹 Estilo global del sitio TARGUS */
 body {
-    font-family: "Smooch Sans", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    background-color: rgb(233, 231, 231);
-    margin: 0 auto;
-    padding: 0%;
+  font-family: "Smooch Sans", sans-serif;
+  background-color: rgb(233, 231, 231);
+}
+
+/* 🔹 Página principal de juegos */
+.principal {
+  max-width: 1500px;
+  height: auto;
+  margin: 0 auto;
+  background-color: white;
+  padding: 40px;
 }
 
 .destacados {
-    margin: 0 auto;
-    font-family: "Smooch Sans", sans-serif;
-    padding-bottom: 7%;
+  margin: 0 auto;
+  font-family: "Smooch Sans", sans-serif;
+  padding-bottom: 7%;
 }
 
 .categoria {
-    font-size: 60px;
-    margin: 10px;
-    font-weight: bold;
+  font-size: 60px;
+  margin: 10px;
+  font-weight: bold;
 }
+
 .grid-juegos {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 20px;
-    row-gap: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 20px;
+  row-gap: 15px;
 }
 
 .juego {
-    font-family: "Smooch Sans", sans-serif;
-    width: 100%;
-    border-radius: 10px;
-    font-size: 25px;
-    text-align: left;
-    padding: 20px;
-}
-
-.juego:hover {
-    width: 105%;
-    opacity: 1;
-    transition: 0.3s;
-    cursor: "pointer";
+  width: 100%;
+  border-radius: 10px;
+  font-size: 25px;
+  text-align: left;
+  padding: 20px;
 }
 
 .juego img {
-    display: block;
-    width: 320px;
-    height: 320px;
-    align-items: center;
-    margin: 0 auto;
-    border-radius: 10px;
-    background-color: rgb(246, 245, 245);
-    padding: 60px;
+  display: block;
+  width: 320px;
+  height: 320px;
+  margin: 0 auto;
+  border-radius: 10px;
+  background-color: rgb(246, 245, 245);
+  padding: 60px;
 }
 
 .enlace-juego {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 
 .enlace-juego:hover {
-    text-decoration: none;
-    color: inherit;
-    background-color: lightgrey;
+  background-color: lightgrey;
 }
 
-.tituloJuego {
-    text-align: center;
-    font-size: 40px;
-    margin: 20px 0 30px 0;
+.centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
 }
 
-.descripcion {
-    text-align: center;
-    font-size: 26px;
+.logo {
+  margin-bottom: 20px;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 90%;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+}
+
+.first-video {
+  background-color: #71e98d;
+  border-radius: 10px;
+}
+
+.last-video {
+  background-color: #f85462;
+  border-radius: 10px;
+}
+
+.video-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  width: 85%;
+  padding: 15px;
+  margin: 15px 0;
+  transition: transform 0.2s ease;
+}
+
+.video-card:hover {
+  transform: scale(1.02);
+}
+
+.video-card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.video-card p {
+  margin: 5px 0;
+  font-weight: 600;
+}
+
+h2, h3 {
+  margin: 10px 0;
+}
+
+h2 {
+  font-size: 2rem;
+  color: #111;
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: #444;
+}
+
+button {
+  background: #ffffff;
+  color: green;
+  border: solid green 3px;
+  font-weight: bold;
+  padding: 10px 24px;
+  margin: 10px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1.3rem;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background: rgb(172, 255, 161);
+  transform: scale(1.05);
 }
 
 @media (max-width: 1300px) {
-    .grid-juegos {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .categoria {
-        font-size: 65px;
-    }
-
-    .nomProd {
-        font-size: 24px;
-    }
-
-    .precio {
-        font-size: 22px;
-    }
+  .grid-juegos {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media (max-width: 940px) {
-    .grid-juegos {
-        grid-template-columns: 1fr;
-    }
-
-    .categoria {
-        font-size: 65px;
-    }
-
-    .juego {
-        font-size: 25px;
-    }
-
-    .nomProd {
-        font-size: 20px;
-    }
-
-    .etiqueta {
-        font-size: 18px;
-    }
-
-    .precio {
-        font-size: 20px;
-    }
-
-    .destacados {
-        margin: 40px 10px;
-    }
+  .grid-juegos {
+    grid-template-columns: 1fr;
+  }
 }

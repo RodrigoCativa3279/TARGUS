@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+.two-options {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+.video-section {
+    position: relative;
+    flex: 1;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    overflow: hidden;
+}
+
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.55);
+    top: 0;
+    left: 0;
+}
+
+.content {
+    position: relative;
+    text-align: center;
+    z-index: 2;
+    padding: 20px;
+}
+
+.content h2 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 12px;
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.6);
+}
+
+.views {
+    font-size: 1.1rem;
+    color: #ddd;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.buttons button {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    font-size: 20px;
+    padding: 22px 38px;
+    border-radius: 55px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.buttons button:hover {
+    background-color: white;
+    color: black;
+}
+
+.scoreboard {
+    color: gold;
+    position: absolute;
+    bottom: 15px;
+    left: 25px;
+    z-index: 3;
+    text-align: left;
+}
+
+.scoreboard p {
+    margin: 3px 0;
+    font-size: 1rem;
+    color: #eee;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
