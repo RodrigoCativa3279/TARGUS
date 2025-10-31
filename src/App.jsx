@@ -19,7 +19,7 @@ function App() {
   const navigate = useNavigate();
   const [pages, setPages] = useState(0);
   const [score, setScore] = useState(0);
-  const { videos, loading, error } = useVideos(); // suponiendo que useVideos puede devolver error
+  const { videos, loading, error } = useVideos();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -110,10 +110,9 @@ function App() {
           }
         />
 
-        {/* 🔹 Rutas del juego Higher or Lower */}
-        <Route path="/higherorlower" element={<Initial setPages={setPages} />} />
+        <Route path="/higherorlower/*" element={<Initial setPages={setPages} />} />
         <Route
-          path="/higherorlower/game"
+          path="/higherorlower/Game.jsx"
           element={
             error || !videos || videos.length === 0 ? (
               <div style={{ textAlign: "center", marginTop: "30px" }}>

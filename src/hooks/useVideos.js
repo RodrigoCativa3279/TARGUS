@@ -13,7 +13,6 @@ export const useVideos = () => {
       } catch (error) {
         console.error("💥 Error al cargar los videos:", error);
 
-        // 🔹 Fallback: videos de ejemplo para modo sin conexión
         const mockVideos = [
           {
             id: "1",

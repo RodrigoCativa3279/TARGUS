@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
-import Navbar from "../../components/navbar/Navbar";
+import Navbar from "../../components/navbar/Navbar.jsx";
 
 function Initial() {
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ function Initial() {
       <Navbar />
       <div className="centered">
         <img src={logo} className="logo" alt="Logo" />
-        <button onClick={() => navigate("/higherorlower/game")}>JUGAR</button>
+        <button onClick={() => navigate("game")}>JUGAR</button>
       </div>
     </>
   );

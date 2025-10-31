@@ -42,13 +42,13 @@ function Game({ videos, score, setScore, setPages }) {
   if (!videos || videos.length === 0)
     return (
       <div className="centered">
-        ❌ No se pudieron cargar los videos. <br />
+         No se pudieron cargar los videos. <br />
         <small>Modo sin conexión</small>
       </div>
     );
 
   if (!played) return <div className="centered">Cargando...</div>;
-  if (lose) return <Lose score={score} setPages={setPages} setScore={setScore} />;
+  if (lose) return <Lose score={score} setScore={setScore} />;
 
   const [firstVideo, lastVideo] = played;
 
