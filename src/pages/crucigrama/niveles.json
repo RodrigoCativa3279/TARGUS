@@ -1,0 +1,38 @@
+{
+  "niveles": [
+    {
+      "palabras": ["CAMINO", "PLANTA", "PERROS", "BOTELLA", "AMIGOS", "CONEJO"],
+      "pistas": [
+        "Lugar por donde se puede andar o viajar.",
+        "Ser vivo que no se mueve y tiene hojas y flores.",
+        "Animales domésticos que ladran.",
+        "Envase para líquidos, generalmente con cuello estrecho.",
+        "Personas con las que compartes confianza y cariño sin ser familiares.",
+        "Animal que salta y tiene orejas largas."
+      ]
+    },
+    {
+      "palabras": ["AMPARO", "MAYORIA", "ESTUDIO", "VEHICULO", "ABOGADO", "MONITOR"],
+      "pistas": [
+        "Protección o ayuda que se brinda a alguien en una situación difícil.",
+        "Cuando algo gana con más votos que los demás.",
+        "Es la acción de aprender o repasar conocimientos.",
+        "Medio de transporte que puede tener ruedas y motor.",
+        "Profesional que ayuda con temas legales y defiende a las personas en juicios.",
+        "Dispositivo de salida de imagen de una computadora."
+      ]
+    },
+    {
+      "palabras": ["BATIDOR", "CARROZA", "GRANEL", "CEBADO", "GRANJA", "OBJETIVO", "ENORME"],
+      "pistas": [
+        "Utensilio de cocina para mezclar ingredientes.",
+        "Vehículo grande y lujoso tirado por caballos.",
+        "Almacén de productos a granel o cantidad grande de algo.",
+        "Cereal usado en la fabricación de bebidas.",
+        "Lugar donde cuidan animales.",
+        "Meta o propósito que se quiere lograr.",
+        "De gran tamaño."
+      ]
+    }
+  ]
+}
