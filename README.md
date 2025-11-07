@@ -1,86 +1,93 @@
 # [TARGUS](https://targus-app.onrender.com/home)
 
-## Guía de Instalación para uso Local
+## Guía de instalación y ejecución local
 
-Para clonar el repositorio en tu computadora:
-* git clone https://github.com/RodrigoCativa3279/TARGUS
+## Requisitos
+- Node.js 18 LTS o superior (recomendado 18.x)
+- npm 9+
+- PostgreSQL (local o gestionado)
 
----
+## Estructura del proyecto
+- `frontend/` (Vite + React)
+- `backend/` (Node + Express + PostgreSQL)
+- `render.yaml` (despliegue en Render con Blueprint)
 
-Para la Base de Datos:
+## 1) Clonar el repositorio
+```bash
+git clone https://github.com/RodrigoCativa3279/TARGUS
+cd TARGUS
+```
 
-Conectarte desde pgAdmin a Render (recomendado)
+## 2) Variables de entorno (backend/.env)
+Crea un archivo `backend/.env` con, por ejemplo:
+```
+JWT_SECRET=tu_secreto_seguro
+DATABASE_URL=postgres://usuario:password@host:5432/base
 
-🔹 Paso a paso:
+# Opcional: si servís el frontend por separado
+FRONTEND_URL=http://localhost:5173
+```
+Notas:
+- Para PostgreSQL local podrías usar: `postgres://postgres:postgres@localhost:5432/targus`.
+- En Render, `DATABASE_URL` la inyecta el servicio. No subas `.env` a Git.
 
-1. Abrí pgAdmin
+## 3) Instalar dependencias y build del frontend
+Terminal 1 (frontend):
+```bash
+cd frontend
+npm ci
+npm run build
+```
 
-2. En el panel izquierdo → clic derecho en “Servers” → Create > Server
+## 4) Instalar dependencias del backend
+Terminal 2 (backend):
+```bash
+cd backend
+npm ci
+```
 
-3. Completá los datos así 👇
+## 5) Preparar la base de datos
+- Crea la base y la tabla `usuario` con las columnas usadas por las rutas (`/api/auth`).
+- Podés ejecutar un script SQL desde pgAdmin/psql. (Si necesitás, agregamos `backend/sql/schema.sql`.)
 
-General:
-* Name: RenderDB (o como quieras)
-Connection:
-* Host name / address: dpg-d46upi1r0fns73bgevr0-a.oregon-postgres.render.com
-* Port: 5432
-* Maintenance database: targus_db
-* Username: targus_db_user
-* Password: ccn3NpKQCmdFnPXSybxPIHbTQLIisG6L
+## 6) Ejecutar localmente
+Levantar el backend (sirve también el frontend compilado en `frontend/dist`):
+```bash
+cd backend
+node server.js
+```
 
-⚠️ Marcar la casilla “Save password”
+Abrir en el navegador:
+- App: `http://localhost:3001/`
+- Health: `http://localhost:3001/healthz`
 
-SSL:
-* Mode: Require
+Modo desarrollo de frontend (opcional, con HMR):
+```bash
+cd frontend
+npm run dev
+```
+Las llamadas del frontend usan rutas relativas `/api/...`, y el backend permite CORS para `localhost` y `*.onrender.com`.
 
-Luego → “Save”.
+## 7) Rutas principales
+- `POST /api/auth/register`
+- `POST /api/auth/login`
+- `PUT /api/auth/update` (Bearer token)
+- `DELETE /api/auth/delete` (Bearer token)
 
-✅ Si todo está bien, deberías ver tu base targus_db en el panel izquierdo.
+## 8) Despliegue en Render (Blueprint)
+1. Subí el repo a GitHub.
+2. Render → New → Blueprint → seleccioná el repo.
+3. Verificá recursos detectados por `render.yaml`:
+   - Web Service: `targus-app`
+   - Database: `targus-db`
+4. Variables (en el servicio web):
+   - `NODE_VERSION=18` (ya en yaml)
+   - `JWT_SECRET` (Render la genera)
+   - `DATABASE_URL` (enlazada a `targus-db`)
+   - `FRONTEND_URL` (opcional)
+5. Deploy y verificá `https://<tu-app>.onrender.com/healthz`.
 
-Ahora tenés que copiar las sentencias SQL del arhcivo targus_db.sql y ejecutarlas en pgAdmin
-
-🧠 Cómo ejecutarlo en pgAdmin
-
-1. Abrí pgAdmin
-
-2. En el panel izquierdo → expandí tu Server RenderDB → Databases → targus_db
-
-3. Hacé clic derecho sobre targus_db → Query Tool
-
-4. Pegá todo el SQL anterior
-
-5. Clic en el botón “▶ Ejecutar (F5)”
-
-Deberías ver en la consola:
-
-" Query returned successfully in X ms. "
-
-
-Y las tablas aparecerán en Schemas → public → Tables.
-
----
-
-En VSCode abrir una terminal en la ruta del proyecto:
-* npm run dev
-
-En otra terminal (ahora para el backend):
-* cd src/server
-* node server.js
-
----
-
-## Otras indicaciones que pueden ser utiles
-
-
-### En caso de no tener todas las dependencias:
-* npm install
-
-### En caso de no tener node:
-##### Download and install Chocolatey:
-* powershell -c "irm https://community.chocolatey.org/install.ps1|iex"
-##### Download and install Node.js:
-* choco install nodejs --version="25.0.0"
-##### Verify the Node.js version:
-* node -v # Should print "v25.0.0".
-##### Verify npm version:
-* npm -v # Should print "11.6.2".
+## 9) Troubleshooting
+- CORS: si usás otro dominio, seteá `FRONTEND_URL`.
+- DB: el backend habilita SSL automáticamente si el host no es `localhost`.
+- Si ves 404 del frontend, asegurate de haber corrido `npm run build` en `frontend/`.
