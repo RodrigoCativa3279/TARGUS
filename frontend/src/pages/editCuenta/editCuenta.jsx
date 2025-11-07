@@ -24,6 +24,7 @@ const sombreros = [sombrero0, sombrero1, sombrero2, sombrero3, sombrero4];
 function EditCuenta() {
     /* ---------- Estados generales ---------- */
     const [customizadorAbierto, setCustomizador] = useState(false);
+    const [usuario, setUsuario] = useState(null);
 
     /* ---------- Estados del avatar ---------- */
     const [cara, setCara] = useState(0);
@@ -39,6 +40,17 @@ function EditCuenta() {
     useEffect(() => {
         localStorage.setItem("avatarTargus", JSON.stringify({ cara, sombrero }));
     }, [cara, sombrero]);
+
+    useEffect(() => {
+        const storedUser = localStorage.getItem("user");
+        if (storedUser) {
+            try {
+                setUsuario(JSON.parse(storedUser));
+            } catch (_) {
+                setUsuario(null);
+            }
+        }
+    }, []);
 
     /* ---------- Helpers ---------- */
     const toggleCustomizador = () => setCustomizador(!customizadorAbierto);
@@ -65,9 +77,9 @@ function EditCuenta() {
                     {/* INFO DEL USUARIO */}
                     <div className="datos">
                         <p>Correo electrónico</p>
-                        <p className="text-info">Juan123@gmail.com</p>
+                        <p className="text-info">{usuario?.email || "-"}</p>
                         <p>Fecha de creación de cuenta</p>
-                        <p className="text-info">12/12/2025</p>
+                        <p className="text-info">{usuario?.created_at ? new Date(usuario.created_at).toLocaleDateString() : "-"}</p>
                     </div>
                 </div>
             </div>

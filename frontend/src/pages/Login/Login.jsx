@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import loginIllustration from "../../assets/img-login.svg";
 
 export default function Login() {
     const [showSignUp, setShowSignUp] = useState(false);
@@ -86,7 +87,7 @@ export default function Login() {
         <div className="login">
             <div className="login__content">
                 <div className="login__img">
-                    <img src="../TARGUS/src/assets/img-login.svg" alt="Login Visual" />
+                    <img src={loginIllustration} alt="Ilustración de acceso" />
                 </div>
 
                 <div className="login__forms">
