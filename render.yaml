@@ -23,10 +23,6 @@ services:
         fromDatabase:
           name: targus-db
           property: connectionString
-      - key: INTERNAL_DATABASE_URL
-        fromDatabase:
-          name: targus-db
-          property: internalConnectionString
 
 databases:
   - name: targus-db
