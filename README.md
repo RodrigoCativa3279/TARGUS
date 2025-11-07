@@ -11,11 +11,11 @@ Conectarte desde pgAdmin a Render (recomendado)
 
 🔹 Paso a paso:
 
-Abrí pgAdmin
+1. Abrí pgAdmin
 
-En el panel izquierdo → clic derecho en “Servers” → Create > Server
+2. En el panel izquierdo → clic derecho en “Servers” → Create > Server
 
-Completá los datos así 👇
+3. Completá los datos así 👇
 
 General:
 * Name: RenderDB (o como quieras)
