@@ -7,8 +7,11 @@ Para la Base de Datos:
 Conectarte desde pgAdmin a Render (recomendado)
 🔹 Paso a paso:
 Abrí pgAdmin
+
 En el panel izquierdo → clic derecho en “Servers” → Create > Server
+
 Completá los datos así 👇
+
 General:
 * Name: RenderDB (o como quieras)
 Connection:
