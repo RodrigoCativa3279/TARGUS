@@ -38,6 +38,7 @@ body {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   column-gap: 20px;
   row-gap: 15px;
+  width: 100%;
 }
 
 .juego {
@@ -55,7 +56,7 @@ body {
   margin: 0 auto;
   border-radius: 10px;
   background-color: rgb(246, 245, 245);
-  padding: 28px;
+  padding: 16px;
 }
 
 .enlace-juego {
@@ -160,7 +161,7 @@ button:hover {
   transform: scale(1.05);
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
   .grid-juegos {
     grid-template-columns: 1fr 1fr;
   }
