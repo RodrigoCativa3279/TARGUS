@@ -52,6 +52,51 @@ function EditCuenta() {
         }
     }, []);
 
+    // Traer perfil desde backend con token para datos actualizados
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (!token) return;
+        (async () => {
+            try {
+                const res = await fetch("/api/auth/profile", {
+                    headers: { Authorization: `Bearer ${token}` },
+                });
+                if (!res.ok) return; // en caso de token inválido se mantiene localStorage
+                const data = await res.json();
+                // data.userData esperado desde backend
+                if (data && data.userData) {
+                    const u = {
+                        id: data.userData.id_usuario,
+                        username: data.userData.nombre_usuario,
+                        email: data.userData.email,
+                        monedas: data.userData.monedas,
+                        musica_activa: data.userData.musica_activa,
+                        volumen_musica: data.userData.volumen_musica,
+                        modo_oscuro: data.userData.modo_oscuro,
+                        idioma: data.userData.idioma,
+                        created_at: data.userData.created_at,
+                    };
+                    setUsuario(u);
+                    localStorage.setItem("user", JSON.stringify(u));
+
+                    const caraDb = data.userData.cara ?? data.userData.avatar_cara;
+                    const sombreroDb = data.userData.sombrero ?? data.userData.avatar_sombrero;
+                    if (Number.isInteger(caraDb) || Number.isInteger(sombreroDb)) {
+                        const next = {
+                            cara: Number.isInteger(caraDb) ? caraDb : 0,
+                            sombrero: Number.isInteger(sombreroDb) ? sombreroDb : 0,
+                        };
+                        setCara(next.cara);
+                        setSombrero(next.sombrero);
+                        localStorage.setItem("avatarTargus", JSON.stringify(next));
+                    }
+                }
+            } catch (_) {
+                // ignorar errores silenciosamente
+            }
+        })();
+    }, []);
+
     /* ---------- Helpers ---------- */
     const toggleCustomizador = () => setCustomizador(!customizadorAbierto);
 
@@ -61,6 +106,7 @@ function EditCuenta() {
             {/* ---------- SECCIÓN PRINCIPAL ---------- */}
             <div className="background">
                 <div className="principal">
+                    <h2 className="nomUser">{usuario?.username || "Usuario"}</h2>
                     <div className="avatar-wrapper">
                         <div className="avatar-container">
                             {/* Cara */}

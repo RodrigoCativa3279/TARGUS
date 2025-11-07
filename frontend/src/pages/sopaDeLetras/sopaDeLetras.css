@@ -257,3 +257,29 @@
   transform: translateY(-2px);
   background: linear-gradient(135deg, #66bb6a, #1b5e20);
 }
+
+@media (max-width: 768px) {
+  .sopa-container {
+    padding: 24px 28px;
+  }
+  .cell {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sopa-container {
+    padding: 20px;
+  }
+  .buttons-group {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .cell {
+    width: 32px;
+    height: 32px;
+    font-size: 15px;
+  }
+}

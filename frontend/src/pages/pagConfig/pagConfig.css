@@ -3,7 +3,8 @@
     background-color: #f5f5f5;
     display: flex;
     justify-content: center;
-    padding-top: 60px;
+    align-items: flex-start;
+    padding: 60px 16px;
 }
 
 .config-container {
@@ -11,7 +12,8 @@
     padding: 2rem;
     border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    width: 400px;
+    width: 100%;
+    max-width: 440px;
 }
 
 .config-container h2 {
@@ -66,4 +68,27 @@
     color: white;
     font-weight: bold;
     cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .config-container {
+        padding: 1.5rem;
+        max-width: 520px;
+    }
+}
+
+@media (max-width: 480px) {
+    .background {
+        padding: 40px 12px;
+    }
+    .config-container {
+        padding: 1.25rem;
+        border-radius: 12px;
+    }
+    .config-form label {
+        margin-top: 8px;
+    }
+    .btn-guardar, .btn-eliminar {
+        padding: 12px;
+    }
 }

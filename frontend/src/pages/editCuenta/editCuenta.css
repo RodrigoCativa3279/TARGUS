@@ -25,17 +25,20 @@
 }
 
 .principal {
-    max-width: 1500px;
-    height: 100vh;
+    max-width: 1100px;
     margin: 0 auto;
     background-color: white;
-    padding: 130px;
+    padding: 40px;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 
 .datos{
-    font-size: 25px;
+    font-size: 20px;
     font-weight:600;
-    margin: 100px 0 30px 30px;
+    margin: 0;
 }
 
 .text-info{
@@ -44,7 +47,7 @@
 
 /* Vista previa del avatar */
 .avatar-wrapper {
-    margin:40px 0; 
+    margin: 0; 
 }
 .avatar-preview {
     position:relative; 
@@ -139,6 +142,7 @@
     border: solid #a1a1a1;
     border-radius: 100px;
     background-color: grey;
+    flex-shrink: 0;
 }
 
 .avatar-layer {
@@ -158,4 +162,48 @@
 
 .avatar-face {
      z-index: 2;
+}
+
+/* Header username spacing */
+.nomUser{
+    font-size: 32px;
+    margin: 0 0 20px 0;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .principal {
+        padding: 28px;
+        gap: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .principal {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .datos {
+        font-size: 18px;
+    }
+    .avatar-container {
+        width: 180px;
+        height: 180px;
+        padding: 44px;
+    }
+}
+
+@media (max-width: 480px) {
+    .principal {
+        padding: 20px 16px;
+    }
+    .nomUser{
+        font-size: 26px;
+    }
+    .avatar-container {
+        width: 160px;
+        height: 160px;
+        padding: 36px;
+    }
 }

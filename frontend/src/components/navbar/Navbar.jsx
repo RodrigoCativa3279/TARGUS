@@ -4,19 +4,55 @@ import "./Navbar.css";
 
 import tituloImg from "../../assets/Titulo.png";
 import menuHamb from "../../assets/menuHamb.png";
-import iconocuenta from "../../assets/iconocuenta.png";
+// Avatar assets
+import cara0 from "../../assets/avatar/cara0.png";
+import cara1 from "../../assets/avatar/cara1.png";
+import cara2 from "../../assets/avatar/cara2.png";
+import cara3 from "../../assets/avatar/cara3.png";
+import cara4 from "../../assets/avatar/cara4.png";
+import sombrero0 from "../../assets/avatar/sombrero0.png";
+import sombrero1 from "../../assets/avatar/sombrero1.png";
+import sombrero2 from "../../assets/avatar/sombrero2.png";
+import sombrero3 from "../../assets/avatar/sombrero3.png";
+import sombrero4 from "../../assets/avatar/sombrero4.png";
 
 const Navbar = () => {
     const [menuAbierto, setMenuAbierto] = useState(false);
     const [usuario, setUsuario] = useState(null);
+    const [avatar, setAvatar] = useState({ cara: 0, sombrero: 0 });
+
     const navigate = useNavigate();
 
-    const toggleMenu = () => setMenuAbierto(!menuAbierto);
+    const toggleMenu = () => {
+        setMenuAbierto((prev) => !prev);
+        try {
+            const su = localStorage.getItem("user");
+            if (su) setUsuario(JSON.parse(su));
+            const sa = localStorage.getItem("avatarTargus");
+            if (sa) {
+                const av = JSON.parse(sa);
+                setAvatar({
+                    cara: Number.isInteger(av.cara) ? av.cara : 0,
+                    sombrero: Number.isInteger(av.sombrero) ? av.sombrero : 0,
+                });
+            }
+        } catch (_) {}
+    };
 
     useEffect(() => {
         const storedUser = localStorage.getItem("user");
         if (storedUser) {
             setUsuario(JSON.parse(storedUser));
+        }
+        const storedAvatar = localStorage.getItem("avatarTargus");
+        if (storedAvatar) {
+            try {
+                const av = JSON.parse(storedAvatar);
+                setAvatar({
+                    cara: Number.isInteger(av.cara) ? av.cara : 0,
+                    sombrero: Number.isInteger(av.sombrero) ? av.sombrero : 0,
+                });
+            } catch (_) {}
         }
     }, []);
 
@@ -49,7 +85,10 @@ const Navbar = () => {
 
                 <div className="usuario">
                     <div className="nombre">{usuario ? usuario.username : "Invitado"}</div>
-                    <img className="iconocuenta img-fluid" src={iconocuenta} alt="Usuario" />
+                    <div className="mini-avatar">
+                        <img className="mini-avatar-layer mini-face" src={[cara0, cara1, cara2, cara3, cara4][avatar.cara]} alt="Avatar cara" />
+                        <img className="mini-avatar-layer mini-hat" src={[sombrero0, sombrero1, sombrero2, sombrero3, sombrero4][avatar.sombrero]} alt="Avatar sombrero" />
+                    </div>
                 </div>
 
                 <ul className="menu-opciones">
