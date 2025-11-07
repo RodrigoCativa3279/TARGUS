@@ -9,7 +9,7 @@
 .logo:hover {
     width: 31%;
     transition: 0.3s;
-    cursor: "pointer";
+    cursor: pointer;
 }
 
 .menuHamb {
@@ -26,7 +26,7 @@
     width: 25%;
     opacity: 1;
     transition: 0.3s;
-    cursor: "pointer";
+    cursor: pointer;
 }
 
 .usuario {
@@ -114,6 +114,51 @@ li :hover {
 
 .navbar {
     background-color: #767f86 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .logo {
+        width: 45%;
+    }
+    .menuHamb {
+        width: 24%;
+    }
+    .menu-lateral {
+        width: 320px;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo {
+        width: 50%;
+        margin: 10px;
+    }
+    .menuHamb {
+        width: 26%;
+        padding: 8px;
+    }
+    .menu-lateral ul li a {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 576px) {
+    .logo {
+        width: 60%;
+    }
+    .menuHamb {
+        width: 30%;
+    }
+    .navbar-brand {
+        font-size: 32px;
+    }
+    .menu-lateral {
+        width: 85vw;
+    }
+    .menu-lateral ul li a {
+        font-size: 20px;
+    }
 }
 
 /*FINAL NAVBAR*/

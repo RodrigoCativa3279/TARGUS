@@ -101,6 +101,76 @@
     }
 }
 
+@media (max-width: 1024px) {
+    .heroText {
+        max-width: 600px;
+    }
+    .heroText h1 {
+        font-size: 3.2rem;
+    }
+    .heroText p {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 3rem 1rem;
+    }
+    .heroText {
+        padding: 1.5rem;
+        max-width: 520px;
+    }
+    .heroText h1 {
+        font-size: 2.6rem;
+    }
+    .heroText p {
+        font-size: 1.1rem;
+    }
+    .heroText button {
+        padding: 0.7rem 1.6rem;
+        font-size: 1rem;
+    }
+    .features {
+        padding: 3rem 1rem;
+    }
+    .features .feature {
+        max-width: 280px;
+        flex: 1 1 280px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 2rem 1rem;
+    }
+    .heroText {
+        padding: 1rem;
+        max-width: 100%;
+    }
+    .heroText h1 {
+        font-size: 2rem;
+    }
+    .heroText p {
+        font-size: 1rem;
+    }
+    .heroText button {
+        width: 100%;
+        padding: 0.8rem 1rem;
+        font-size: 1rem;
+    }
+    .features {
+        padding: 2rem 1rem;
+    }
+    .features .feature {
+        max-width: 100%;
+        margin: 0.5rem 0;
+    }
+    .testimonials h2 {
+        font-size: 1.4rem;
+    }
+}
+
 .testimonials {
     padding: 2rem 1rem;
     background-color: #0a0a0a;
