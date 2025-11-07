@@ -50,12 +50,13 @@ body {
 
 .juego img {
   display: block;
-  width: 320px;
-  height: 320px;
+  width: 100%;
+  height: auto;
+  max-width: 320px;
   margin: 0 auto;
   border-radius: 10px;
   background-color: rgb(246, 245, 245);
-  padding: 60px;
+  padding: 40px;
 }
 
 .enlace-juego {
@@ -169,5 +170,40 @@ button:hover {
 @media (max-width: 940px) {
   .grid-juegos {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .principal {
+    padding: 24px;
+  }
+  .categoria {
+    font-size: 42px;
+  }
+  .juego {
+    padding: 16px;
+  }
+  .juego img {
+    padding: 28px;
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .principal {
+    padding: 16px 12px;
+  }
+  .categoria {
+    font-size: 32px;
+  }
+  .grid-juegos {
+    row-gap: 12px;
+  }
+  .juego {
+    padding: 12px;
+  }
+  .juego img {
+    padding: 20px;
+    max-width: 240px;
   }
 }
