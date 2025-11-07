@@ -14,6 +14,8 @@ body {
 }
 
 .principal {
+  display: flex;
+  flex-direction: column;
   max-width: 1500px;
   height: auto;
   margin: 0 auto;
@@ -35,10 +37,9 @@ body {
 
 .grid-juegos {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: 1fr 1fr 1fr;
   column-gap: 20px;
-  row-gap: 15px;
-  width: 100%;
+  row-gap: 16px;
 }
 
 .juego {
