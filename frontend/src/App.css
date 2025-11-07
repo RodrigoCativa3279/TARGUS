@@ -35,7 +35,7 @@ body {
 
 .grid-juegos {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   column-gap: 20px;
   row-gap: 15px;
 }
@@ -52,11 +52,10 @@ body {
   display: block;
   width: 100%;
   height: auto;
-  max-width: 320px;
   margin: 0 auto;
   border-radius: 10px;
   background-color: rgb(246, 245, 245);
-  padding: 40px;
+  padding: 28px;
 }
 
 .enlace-juego {

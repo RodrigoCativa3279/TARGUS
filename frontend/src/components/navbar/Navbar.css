@@ -1,31 +1,32 @@
 /*INICIO NAVBAR*/
 
 .logo {
-    width: 30%;
-    margin: 15px;
-    float: left;
+    margin: 12px 12px 12px 16px;
+    float: none;
+    height: 48px;
+    width: auto;
+    display: block;
 }
 
 .logo:hover {
-    width: 31%;
-    transition: 0.3s;
+    transition: 0.2s;
     cursor: pointer;
+    transform: scale(1.02);
 }
 
 .menuHamb {
-    float: right;
-    width: 20%;
+    float: none;
+    width: 40px;
     height: auto;
     background-color: rgba(190, 185, 185, 0.501);
-    padding: 10px;
-    border-radius: 20px;
-    opacity: 0.5;
+    padding: 8px;
+    border-radius: 14px;
+    opacity: 0.7;
 }
 
 .menuHamb:hover {
-    width: 25%;
     opacity: 1;
-    transition: 0.3s;
+    transition: 0.2s;
     cursor: pointer;
 }
 
@@ -73,18 +74,19 @@ li :hover {
 .menu-lateral {
     position: fixed;
     top: 0;
+    right: 0;
     background-color: rgba(135, 135, 135, 0.938);
-    right: -300px;
     width: 300px;
     height: 100%;
-    transition: right 0.3s ease;
     padding: 20px;
     z-index: 1200;
     overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
 }
 
 .menu-lateral.abierto {
-    right: 0;
+    transform: translateX(0);
 }
 
 .cerrar-menu {
@@ -123,45 +125,25 @@ li :hover {
 
 /* Responsive adjustments */
 @media (max-width: 992px) {
-    .logo {
-        width: 45%;
-    }
-    .menuHamb {
-        width: 24%;
-    }
-    .menu-lateral {
-        width: 320px;
-    }
+    .logo { height: 44px; }
+    .menuHamb { width: 38px; }
+    .menu-lateral { width: 320px; }
 }
 
 @media (max-width: 768px) {
-    .logo {
-        width: 52%;
-        margin: 10px;
-        float: none;
-    }
-    .menuHamb {
-        width: 28%;
-        padding: 8px;
-        float: none;
-    }
+    .logo { height: 42px; margin: 10px 10px 10px 14px; }
+    .menuHamb { width: 34px; padding: 8px; }
     .menu-lateral ul li a {
         font-size: 24px;
     }
     /* Desactivar efectos hover que agrandan elementos en touch */
-    .logo:hover { width: 52%; transition: none; }
-    .menuHamb:hover { width: 28%; transition: none; }
+    .logo:hover { transform: none; transition: none; }
+    .menuHamb:hover { transition: none; }
 }
 
 @media (max-width: 576px) {
-    .logo {
-        width: 58%;
-        float: none;
-    }
-    .menuHamb {
-        width: 32%;
-        float: none;
-    }
+    .logo { height: 40px; }
+    .menuHamb { width: 32px; }
     .navbar-brand {
         font-size: 32px;
     }
@@ -172,8 +154,8 @@ li :hover {
         font-size: 20px;
     }
     /* Hover neutralizado en móviles */
-    .logo:hover { width: 58%; transition: none; }
-    .menuHamb:hover { width: 32%; transition: none; }
+    .logo:hover { transform: none; transition: none; }
+    .menuHamb:hover { transition: none; }
 }
 
 /*FINAL NAVBAR*/
@@ -197,7 +179,6 @@ li :hover {
 .mini-face { z-index: 2; }
 .mini-hat { z-index: 3; }
 
-/* Utility to lock body scroll when sidebar is open */
 body.no-scroll {
     overflow: hidden;
 }
