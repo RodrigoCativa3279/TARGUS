@@ -35,6 +35,42 @@
     justify-content: flex-start;
 }
 
+.perfil-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    background: #f1f1f1;
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.perfil-avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.perfil-info {
+    flex: 1 1 auto;
+}
+
+/* Responsive layout for the horizontal header */
+@media (max-width: 768px) {
+    .perfil-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+        padding: 20px;
+    }
+    .perfil-info .text-info {
+        margin: 12px 0;
+    }
+}
+
 .datos{
     font-size: 20px;
     font-weight:600;

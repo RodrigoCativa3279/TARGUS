@@ -57,9 +57,11 @@ const Navbar = () => {
         if (storedAvatar) {
             try {
                 const av = JSON.parse(storedAvatar);
+                const cara = parseInt(av.cara, 10);
+                const sombrero = parseInt(av.sombrero, 10);
                 setAvatar({
-                    cara: Number.isInteger(av.cara) ? av.cara : 0,
-                    sombrero: Number.isInteger(av.sombrero) ? av.sombrero : 0,
+                    cara: Number.isNaN(cara) ? 0 : cara,
+                    sombrero: Number.isNaN(sombrero) ? 0 : sombrero,
                 });
             } catch (_) {}
         }
@@ -70,6 +72,14 @@ const Navbar = () => {
         localStorage.removeItem("user");
         navigate("/login");
     };
+
+    // Fuentes de imágenes y fallbacks seguros para el mini avatar
+    const faces = [cara0, cara1, cara2, cara3, cara4];
+    const hats = [sombrero0, sombrero1, sombrero2, sombrero3, sombrero4];
+    const faceIdx = Number.isInteger(avatar.cara) && avatar.cara >= 0 && avatar.cara < faces.length ? avatar.cara : 0;
+    const hatIdx = Number.isInteger(avatar.sombrero) && avatar.sombrero >= 0 && avatar.sombrero < hats.length ? avatar.sombrero : 0;
+    const faceSrc = faces[faceIdx] || faces[0];
+    const hatSrc = hats[hatIdx] || hats[0];
 
     return (
         <>
@@ -95,8 +105,8 @@ const Navbar = () => {
                 <div className="usuario">
                     <div className="nombre">{usuario ? usuario.username : "Invitado"}</div>
                     <div className="mini-avatar">
-                        <img className="mini-avatar-layer mini-face" src={[cara0, cara1, cara2, cara3, cara4][avatar.cara]} alt="Avatar cara" />
-                        <img className="mini-avatar-layer mini-hat" src={[sombrero0, sombrero1, sombrero2, sombrero3, sombrero4][avatar.sombrero]} alt="Avatar sombrero" />
+                        <img className="mini-avatar-layer mini-face" src={faceSrc} alt="Avatar cara" />
+                        <img className="mini-avatar-layer mini-hat" src={hatSrc} alt="Avatar sombrero" />
                     </div>
                 </div>
 

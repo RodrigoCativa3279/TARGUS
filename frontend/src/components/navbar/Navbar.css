@@ -139,6 +139,7 @@ li :hover {
     /* Desactivar efectos hover que agrandan elementos en touch */
     .logo:hover { transform: none; transition: none; }
     .menuHamb:hover { transition: none; }
+    .mini-avatar { width: 64px; height: 64px; }
 }
 
 @media (max-width: 576px) {
@@ -156,6 +157,7 @@ li :hover {
     /* Hover neutralizado en móviles */
     .logo:hover { transform: none; transition: none; }
     .menuHamb:hover { transition: none; }
+    .mini-avatar { width: 56px; height: 56px; }
 }
 
 /*FINAL NAVBAR*/
@@ -163,9 +165,11 @@ li :hover {
 /* Mini avatar in sidebar */
 .mini-avatar {
     position: relative;
-    width: 64px;
-    height: 64px;
+    width: 80px;
+    height: 80px;
     margin-left: 8px;
+    flex-shrink: 0;
+    overflow: visible;
 }
 .mini-avatar-layer {
     position: absolute;

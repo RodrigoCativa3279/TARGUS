@@ -106,26 +106,23 @@ function EditCuenta() {
             {/* ---------- SECCIÓN PRINCIPAL ---------- */}
             <div className="background">
                 <div className="principal">
-                    <h2 className="nomUser">{usuario?.username || "Usuario"}</h2>
-                    <div className="avatar-wrapper">
-                        <div className="avatar-container">
-                            {/* Cara */}
-                            <img src={caras[cara]} className="avatar-layer avatar-face" alt="Cara" />
-                            {/* Sombrero */}
-                            <img src={sombreros[sombrero]} className="avatar-layer avatar-hat" alt="Sombrero" />
+                    <div className="perfil-header">
+                        <div className="perfil-avatar">
+                            <div className="avatar-container">
+                                <img src={caras[cara]} className="avatar-layer avatar-face" alt="Cara" />
+                                <img src={sombreros[sombrero]} className="avatar-layer avatar-hat" alt="Sombrero" />
+                            </div>
+                            <button className="btn-personalizar" onClick={toggleCustomizador}>Personalizar avatar</button>
                         </div>
-
-                        <button className="btn-personalizar" onClick={toggleCustomizador}>
-                            Personalizar avatar
-                        </button>
-                    </div>
-
-                    {/* INFO DEL USUARIO */}
-                    <div className="datos">
-                        <p>Correo electrónico</p>
-                        <p className="text-info">{usuario?.email || "-"}</p>
-                        <p>Fecha de creación de cuenta</p>
-                        <p className="text-info">{usuario?.created_at ? new Date(usuario.created_at).toLocaleDateString() : "-"}</p>
+                        <div className="perfil-info">
+                            <h2 className="nomUser">{usuario?.username || "Usuario"}</h2>
+                            <div className="datos">
+                                <p>Correo electrónico</p>
+                                <p className="text-info">{usuario?.email || "-"}</p>
+                                <p>Fecha de creación de cuenta</p>
+                                <p className="text-info">{usuario?.created_at ? new Date(usuario.created_at).toLocaleDateString() : "-"}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

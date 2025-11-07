@@ -21,12 +21,12 @@ function App() {
   const [score, setScore] = useState(0);
   const { videos, loading, error } = useVideos();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/login");
-    }
-  }, [navigate]);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (!token) {
+  //     navigate("/login");
+  //   }
+  // }, [navigate]);
 
   return (
     <>
