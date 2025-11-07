@@ -1,23 +1,17 @@
-const express = require("express");
-const cors = require("cors");
-const path = require("path");
-require("dotenv").config();
-const authRoutes = require("./routes/auth");
+import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const app = express();
-app.use(cors());
-app.use(express.json());
 
-app.use("/api/auth", authRoutes);
-
-const distPath = path.join(__dirname, "../../dist");
+const distPath = path.resolve(__dirname, "../../dist");
 app.use(express.static(distPath));
 
-app.use((req, res) => {
+app.get("*", (_, res) => {
     res.sendFile(path.join(distPath, "index.html"));
 });
 
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, "0.0.0.0", () => {
-    console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
-});
+app.listen(PORT, () => console.log(`🚀 Servidor corriendo en puerto ${PORT}`));
