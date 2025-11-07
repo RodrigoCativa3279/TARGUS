@@ -1,5 +1,7 @@
 # Guía de Instalación para uso Local
 
+## Guía de Instalación para uso Local
+
 Para clonar el repositorio en tu computadora:
 * git clone https://github.com/RodrigoCativa3279/TARGUS
 
