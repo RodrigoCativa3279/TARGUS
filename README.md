@@ -48,7 +48,7 @@ npm ci
 
 ## 5) Preparar la base de datos
 - Crea la base y la tabla `usuario` con las columnas usadas por las rutas (`/api/auth`).
-- Podés ejecutar un script SQL desde pgAdmin/psql. (Si necesitás, agregamos `backend/sql/schema.sql`.)
+- Podés ejecutar un script SQL desde pgAdmin/psql.
 
 ## 6) Ejecutar localmente
 Levantar el backend (sirve también el frontend compilado en `frontend/dist`):
@@ -68,13 +68,7 @@ npm run dev
 ```
 Las llamadas del frontend usan rutas relativas `/api/...`, y el backend permite CORS para `localhost` y `*.onrender.com`.
 
-## 7) Rutas principales
-- `POST /api/auth/register`
-- `POST /api/auth/login`
-- `PUT /api/auth/update` (Bearer token)
-- `DELETE /api/auth/delete` (Bearer token)
-
-## 8) Despliegue en Render (Blueprint)
+## 7) Despliegue en Render (Blueprint)
 1. Subí el repo a GitHub.
 2. Render → New → Blueprint → seleccioná el repo.
 3. Verificá recursos detectados por `render.yaml`:
@@ -87,7 +81,7 @@ Las llamadas del frontend usan rutas relativas `/api/...`, y el backend permite 
    - `FRONTEND_URL` (opcional)
 5. Deploy y verificá `https://<tu-app>.onrender.com/healthz`.
 
-## 9) Troubleshooting
+## 8) Troubleshooting
 - CORS: si usás otro dominio, seteá `FRONTEND_URL`.
 - DB: el backend habilita SSL automáticamente si el host no es `localhost`.
 - Si ves 404 del frontend, asegurate de haber corrido `npm run build` en `frontend/`.
