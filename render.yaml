@@ -1,0 +1,34 @@
+services:
+  - type: web
+    name: targus-app
+    env: node
+    plan: free
+    region: oregon
+    buildCommand: |
+      echo "Installing backend deps"
+      cd backend && npm ci && cd ..
+      echo "Installing frontend deps"
+      cd frontend && npm ci && npm run build && cd ..
+    startCommand: node backend/server.js
+    autoDeploy: true
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: 18
+      - key: FRONTEND_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: targus-db
+          property: connectionString
+      - key: INTERNAL_DATABASE_URL
+        fromDatabase:
+          name: targus-db
+          property: internalConnectionString
+
+databases:
+  - name: targus-db
+    databaseName: targus
+    plan: free

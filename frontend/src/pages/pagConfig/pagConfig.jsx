@@ -46,7 +46,7 @@ export default function PagConfig() {
         e.preventDefault();
         try {
             const token = localStorage.getItem("token");
-            const res = await fetch("http://localhost:3001/api/auth/update", {
+            const res = await fetch("/api/auth/update", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -85,7 +85,7 @@ export default function PagConfig() {
 
         try {
             const token = localStorage.getItem("token");
-            const res = await fetch("http://localhost:3001/api/auth/delete", {
+            const res = await fetch("/api/auth/delete", {
                 method: "DELETE",
                 headers: { Authorization: `Bearer ${token}` },
             });
