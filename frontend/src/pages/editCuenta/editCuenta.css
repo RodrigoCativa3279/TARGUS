@@ -192,6 +192,15 @@
         height: 180px;
         padding: 44px;
     }
+    /* Reducir desplazamiento del sombrero para evitar solapamientos */
+    .avatar-hat {
+        top: -80px;
+    }
+    /* Neutralizar efectos hover que mueven layout en mobile */
+    .btn-personalizar:hover {
+        transform: none;
+        transition: none;
+    }
 }
 
 @media (max-width: 480px) {
@@ -205,5 +214,12 @@
         width: 160px;
         height: 160px;
         padding: 36px;
+    }
+    .avatar-hat {
+        top: -64px;
+    }
+    /* Asegurar separación vertical suficiente */
+    .text-info {
+        margin: 16px 0;
     }
 }

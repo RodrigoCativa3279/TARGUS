@@ -40,6 +40,15 @@ const Navbar = () => {
     };
 
     useEffect(() => {
+        if (menuAbierto) {
+            document.body.classList.add("no-scroll");
+        } else {
+            document.body.classList.remove("no-scroll");
+        }
+        return () => document.body.classList.remove("no-scroll");
+    }, [menuAbierto]);
+
+    useEffect(() => {
         const storedUser = localStorage.getItem("user");
         if (storedUser) {
             setUsuario(JSON.parse(storedUser));

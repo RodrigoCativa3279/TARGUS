@@ -161,15 +161,18 @@ button:hover {
   transform: scale(1.05);
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1024px) {
   .grid-juegos {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-@media (max-width: 940px) {
+@media (max-width: 600px) {
   .grid-juegos {
     grid-template-columns: 1fr;
+  }
+  .descripcion {
+    display: none;
   }
 }
 

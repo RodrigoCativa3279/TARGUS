@@ -79,6 +79,8 @@ li :hover {
     height: 100%;
     transition: right 0.3s ease;
     padding: 20px;
+    z-index: 1200;
+    overflow-y: auto;
 }
 
 .menu-lateral.abierto {
@@ -114,6 +116,9 @@ li :hover {
 
 .navbar {
     background-color: #767f86 !important;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 /* Responsive adjustments */
@@ -131,24 +136,31 @@ li :hover {
 
 @media (max-width: 768px) {
     .logo {
-        width: 50%;
+        width: 52%;
         margin: 10px;
+        float: none;
     }
     .menuHamb {
-        width: 26%;
+        width: 28%;
         padding: 8px;
+        float: none;
     }
     .menu-lateral ul li a {
         font-size: 24px;
     }
+    /* Desactivar efectos hover que agrandan elementos en touch */
+    .logo:hover { width: 52%; transition: none; }
+    .menuHamb:hover { width: 28%; transition: none; }
 }
 
 @media (max-width: 576px) {
     .logo {
-        width: 60%;
+        width: 58%;
+        float: none;
     }
     .menuHamb {
-        width: 30%;
+        width: 32%;
+        float: none;
     }
     .navbar-brand {
         font-size: 32px;
@@ -159,6 +171,9 @@ li :hover {
     .menu-lateral ul li a {
         font-size: 20px;
     }
+    /* Hover neutralizado en móviles */
+    .logo:hover { width: 58%; transition: none; }
+    .menuHamb:hover { width: 32%; transition: none; }
 }
 
 /*FINAL NAVBAR*/
@@ -181,3 +196,8 @@ li :hover {
 }
 .mini-face { z-index: 2; }
 .mini-hat { z-index: 3; }
+
+/* Utility to lock body scroll when sidebar is open */
+body.no-scroll {
+    overflow: hidden;
+}
