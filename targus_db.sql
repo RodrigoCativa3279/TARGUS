@@ -1,68 +1,49 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Servidor: 127.0.0.1
--- Tiempo de generación: 19-10-2025 a las 05:34:57
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.0.28
+-- Copiá este bloque entero y pegalo en el Query Tool de pgAdmin, conectado a tu base targus_db (la de Render o local, da igual):
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+-- Creación de tablas para PostgreSQL
+-- Base de datos: targus_db
 
---
--- Base de datos: `targus_db`
---
-CREATE DATABASE IF NOT EXISTS `targus_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `targus_db`;
+-- Si querés asegurarte de crear desde cero:
+-- DROP TABLE IF EXISTS estadistica, juego, usuario CASCADE;
 
--- --------------------------------------------------------
+-- ===========================
+-- Tabla: usuario
+-- ===========================
 
---
--- Estructura de tabla para la tabla `estadistica`
---
+CREATE TABLE IF NOT EXISTS usuario (
+  id_usuario SERIAL PRIMARY KEY,
+  nombre_usuario VARCHAR(250) NOT NULL,
+  password VARCHAR(250) NOT NULL,
+  email VARCHAR(250) NOT NULL,
+  monedas INT DEFAULT 0,
+  musica_activa BOOLEAN NOT NULL,
+  volumen_musica INT NOT NULL,
+  modo_oscuro BOOLEAN NOT NULL,
+  idioma VARCHAR(50) NOT NULL
+);
 
-CREATE TABLE IF NOT EXISTS `estadistica` (
-  `id_usuario` int(11) NOT NULL,
-  `partidas_jugadas` int(11) NOT NULL,
-  `partidas_ganadas` int(11) NOT NULL,
-  `mejor_puntuacion` int(11) NOT NULL,
-  `total_puntos` int(11) NOT NULL,
-  PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+-- ===========================
+-- Tabla: juego
+-- ===========================
 
--- --------------------------------------------------------
+CREATE TABLE IF NOT EXISTS juego (
+  id_juego SERIAL PRIMARY KEY,
+  nombre VARCHAR(50) NOT NULL,
+  tipo VARCHAR(50) NOT NULL,
+  tiempo_limite INT NOT NULL,
+  puntuacion_maxima INT NOT NULL,
+  desafio_diario BOOLEAN NOT NULL
+);
 
---
--- Estructura de tabla para la tabla `juego`
---
+-- ===========================
+-- Tabla: estadistica
+-- ===========================
 
-CREATE TABLE IF NOT EXISTS `juego` (
-  `id_juego` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) NOT NULL,
-  `tipo` varchar(50) NOT NULL,
-  `tiempo_limite` int(11) NOT NULL,
-  `puntuación_maxima` int(11) NOT NULL,
-  `desafio_diario` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id_juego`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuario`
---
-
-CREATE TABLE IF NOT EXISTS `usuario` (
-  `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_usuario` varchar(250) NOT NULL,
-  `password` varchar(250) NOT NULL,
-  `email` varchar(250) NOT NULL,
-  `monedas` int(11) NOT NULL DEFAULT 0,
-  `musica_activa` tinyint(1) NOT NULL,
-  `volumen_musica` int(11) NOT NULL,
-  `modo_oscuro` tinyint(1) NOT NULL,
-  `idioma` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE IF NOT EXISTS estadistica (
+  id_usuario INT PRIMARY KEY,
+  partidas_jugadas INT NOT NULL,
+  partidas_ganadas INT NOT NULL,
+  mejor_puntuacion INT NOT NULL,
+  total_puntos INT NOT NULL,
+  FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario) ON DELETE CASCADE
+);
