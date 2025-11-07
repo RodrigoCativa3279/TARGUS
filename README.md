@@ -4,8 +4,11 @@ Para clonar el repositorio en tu computadora:
 * git clone https://github.com/RodrigoCativa3279/TARGUS
 
 Para la Base de Datos:
+
 Conectarte desde pgAdmin a Render (recomendado)
+
 🔹 Paso a paso:
+
 Abrí pgAdmin
 
 En el panel izquierdo → clic derecho en “Servers” → Create > Server
@@ -20,16 +23,21 @@ Connection:
 * Maintenance database: targus_db
 * Username: targus_db_user
 * Password: ccn3NpKQCmdFnPXSybxPIHbTQLIisG6L
+
 ⚠️ Marcar la casilla “Save password”
+
 SSL:
 * Mode: Require
+
 Luego → “Save”.
+
 ✅ Si todo está bien, deberías ver tu base targus_db en el panel izquierdo.
 
 ---
 
 En VSCode abrir una terminal en la ruta del proyecto:
 * npm run dev
+
 En otra terminal (ahora para el backend):
 * cd src/server
 * node server.js
