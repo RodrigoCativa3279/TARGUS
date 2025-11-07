@@ -3,6 +3,8 @@
 Para clonar el repositorio en tu computadora:
 * git clone https://github.com/RodrigoCativa3279/TARGUS
 
+---
+
 Para la Base de Datos:
 
 Conectarte desde pgAdmin a Render (recomendado)
