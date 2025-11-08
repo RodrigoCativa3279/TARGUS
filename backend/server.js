@@ -3,7 +3,7 @@ import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
-import authRoutes from "./routes/auth.js";
+import usersRoutes from "./routes/users.routes.js";
 
 dotenv.config();
 
@@ -49,7 +49,7 @@ app.use(
 );
 
 // Rutas del backend
-app.use("/api/auth", authRoutes);
+app.use("/api/auth", usersRoutes);
 
 // Healthcheck para Render
 app.get("/healthz", (_req, res) => {
