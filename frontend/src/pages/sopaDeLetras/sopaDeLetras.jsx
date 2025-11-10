@@ -6,7 +6,7 @@ import Navbar from "../../components/navbar/Navbar";
 
 const Cell = ({ letter, i, j, onMouseDown, onMouseEnter, selected }) => {
     return (
-        <div className={`cell ${selected ? "selected" : ""}`} onMouseDown={() => onMouseDown(i, j)} onMouseEnter={() => onMouseEnter(i, j)}>
+        <div className={`sopa-cell ${selected ? "selected" : ""}`} onMouseDown={() => onMouseDown(i, j)} onMouseEnter={() => onMouseEnter(i, j)}>
             {letter}
         </div>
     );
