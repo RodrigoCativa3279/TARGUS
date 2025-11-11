@@ -14,7 +14,7 @@ import LandingPage from "./pages/Landing/LandingPage.jsx";
 import AdivinaPais from "./pages/adivinaPais/AdivinaPais.jsx";
 import Crucigrama from "./pages/crucigrama/crucigrama.jsx";
 import SopaDeLetras from "./pages/sopaDeLetras/sopaDeLetras.jsx";
-import HigherOrLowerApp from "./pages/higherorlower/HigherOrLowerApp.jsx";
+import Mathrix from "./pages/mathrix/mathrix.jsx";
 
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -31,7 +31,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 <Route path="/sopaDeLetras" element={<SopaDeLetras />} />
                 <Route path="/wordle" element={<Wordle />} />
                 <Route path="/adivinaPais" element={<AdivinaPais />} />
-                <Route path="/higherorlower/*" element={<HigherOrLowerApp />} />
+                <Route path="/mathrix" element={<Mathrix />} />
                 <Route path="/editCuenta" element={<EditCuenta />} />
                 <Route path="/forocomunidad" element={<ForoComunidad />} />
                 <Route path="/misiones" element={<Misiones />} />
