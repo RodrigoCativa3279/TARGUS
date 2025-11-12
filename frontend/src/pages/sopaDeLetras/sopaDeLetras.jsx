@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./sopaDeLetras.css";
-import wordsData from "../wordle/palabras.json";
+import wordsData from "../wordle/palabras5.json";
 import Navbar from "../../components/navbar/Navbar";
 
 const Cell = ({ letter, i, j, onMouseDown, onMouseEnter, selected, gameOver }) => {
