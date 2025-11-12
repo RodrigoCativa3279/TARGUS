@@ -6,20 +6,18 @@ import juego5 from "../../assets/Juego 5.png";
 export default function Mathrix() {
   const [level, setLevel] = useState(1);
   const [grid, setGrid] = useState(generateGrid(level));
-  // sin puntaje por ahora
   const [wrong, setWrong] = useState({ rows: [], cols: [] });
+  const [gameStarted, setGameStarted] = useState(false);
 
   function generateGrid(lvl) {
     const size = 3;
     const allowedOps =
       lvl === 1 ? ["+", "-"] : lvl === 2 ? ["×", "÷"] : ["+", "-", "×", "÷"];
 
-    // matriz de celdas con solución y valor visible (vacío si editable)
     const newGrid = [];
     for (let i = 0; i < size; i++) {
       const row = [];
       for (let j = 0; j < size; j++) {
-        // Nivel 2 evita 0 y 1 => rango 2..9. Otros niveles 1..9
         const minVal = lvl === 2 ? 2 : 1;
         const solution = Math.floor(Math.random() * (10 - minVal)) + minVal;
         const editable = Math.random() < 0.5;
@@ -32,7 +30,6 @@ export default function Mathrix() {
       newGrid.push(row);
     }
 
-    // operadores entre columnas (horizontal) y entre filas (vertical)
     const horizontalOps = Array.from({ length: size }, () =>
       Array.from({ length: size - 1 }, () =>
         allowedOps[Math.floor(Math.random() * allowedOps.length)]
@@ -44,7 +41,6 @@ export default function Mathrix() {
       )
     );
 
-    // Forzar divisiones sin resto en ambas direcciones (varias pasadas)
     const divisorsOf = (n, minDiv) => {
       const ds = [];
       for (let k = minDiv; k <= 9; k++) if (n % k === 0) ds.push(k);
@@ -54,13 +50,11 @@ export default function Mathrix() {
 
     const minDiv = lvl === 2 ? 2 : 1;
     for (let pass = 0; pass < 2; pass++) {
-      // Horizontal: a ÷ b => b divisor de a
       for (let r = 0; r < size; r++) {
         for (let c = 0; c < size - 1; c++) {
           if (horizontalOps[r][c] === "÷") {
             const a = newGrid[r][c].solution;
             let candidates = divisorsOf(a, minDiv);
-            // Si además arriba hay división hacia esta celda, intersectar divisores
             if (r > 0 && verticalOps[r - 1][c + 0] === "÷") {
               const topA = newGrid[r - 1][c + 0].solution;
               const topDivs = divisorsOf(topA, minDiv);
@@ -73,13 +67,11 @@ export default function Mathrix() {
           }
         }
       }
-      // Vertical: a ÷ b => b divisor de a
       for (let r = 0; r < size - 1; r++) {
         for (let c = 0; c < size; c++) {
           if (verticalOps[r][c] === "÷") {
             const a = newGrid[r][c].solution;
             let candidates = divisorsOf(a, minDiv);
-            // Si además a la izquierda hay división hacia esta celda, intersectar divisores
             if (c > 0 && horizontalOps[r + 0][c - 1] === "÷") {
               const leftA = newGrid[r + 0][c - 1].solution;
               const leftDivs = divisorsOf(leftA, minDiv);
@@ -109,7 +101,6 @@ export default function Mathrix() {
       }
     };
 
-    // objetivos por fila usando horizontalOps y soluciones
     const rowResults = newGrid.map((row, r) => {
       let acc = row[0].solution;
       for (let c = 0; c < size - 1; c++) {
@@ -118,7 +109,6 @@ export default function Mathrix() {
       return acc;
     });
 
-    // objetivos por columna usando verticalOps y soluciones
     const colResults = Array.from({ length: size }, (_, c) => {
       let acc = newGrid[0][c].solution;
       for (let r = 0; r < size - 1; r++) {
@@ -127,7 +117,6 @@ export default function Mathrix() {
       return acc;
     });
 
-    // Evitar objetivos 0 en nivel 2 (regenerar si ocurre)
     if (lvl === 2) {
       const hasZero = rowResults.some((v) => v === 0) || colResults.some((v) => v === 0);
       if (hasZero) return generateGrid(lvl);
@@ -138,7 +127,6 @@ export default function Mathrix() {
 
   const handleInput = (r, c, val) => {
     const newData = structuredClone(grid);
-    // Sanitizar entradas según nivel
     if (val === "") {
       newData.newGrid[r][c].value = "";
     } else {
@@ -242,6 +230,24 @@ export default function Mathrix() {
     setGrid(generateGrid(level));
   };
 
+  if (!gameStarted) {
+    return (
+      <>
+        <Navbar/>
+        <div className="difficulty-screen">
+          <img src={juego5} alt="Mathrix" className="logo-juego" />
+          <h1 className="titulo">MATHRIX</h1>
+          <p>Selecciona la dificultad para comenzar:</p>
+          <div className="difficulty-buttons">
+            <button onClick={() => { setLevel(1); setGrid(generateGrid(1)); setGameStarted(true); }}>FÁCIL</button>
+            <button onClick={() => { setLevel(2); setGrid(generateGrid(2)); setGameStarted(true); }}>MEDIO</button>
+            <button onClick={() => { setLevel(3); setGrid(generateGrid(3)); setGameStarted(true); }}>DIFÍCIL</button>
+          </div>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       <Navbar/>
@@ -260,7 +266,7 @@ export default function Mathrix() {
             >
               <option value={1}>1 (Sumas/Restas)</option>
               <option value={2}>2 (Multiplicación/División)</option>
-              <option value={4}>3 (Mixto)</option>
+              <option value={3}>3 (Mixto)</option>
             </select>
           </label>
           <button onClick={reset}>Reiniciar</button>

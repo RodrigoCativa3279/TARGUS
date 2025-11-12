@@ -4,22 +4,16 @@ import "./Navbar.css";
 
 import tituloImg from "../../assets/Titulo.png";
 import menuHamb from "../../assets/menuHamb.png";
-// Avatar assets
 import cara0 from "../../assets/avatar/cara0.png";
 import cara1 from "../../assets/avatar/cara1.png";
 import cara2 from "../../assets/avatar/cara2.png";
 import cara3 from "../../assets/avatar/cara3.png";
 import cara4 from "../../assets/avatar/cara4.png";
-import sombrero0 from "../../assets/avatar/sombrero0.png";
-import sombrero1 from "../../assets/avatar/sombrero1.png";
-import sombrero2 from "../../assets/avatar/sombrero2.png";
-import sombrero3 from "../../assets/avatar/sombrero3.png";
-import sombrero4 from "../../assets/avatar/sombrero4.png";
 
 const Navbar = () => {
     const [menuAbierto, setMenuAbierto] = useState(false);
     const [usuario, setUsuario] = useState(null);
-    const [avatar, setAvatar] = useState({ cara: 0, sombrero: 0 });
+    const [avatar, setAvatar] = useState({ cara: 0 });
 
     const navigate = useNavigate();
 
@@ -31,10 +25,7 @@ const Navbar = () => {
             const sa = localStorage.getItem("avatarTargus");
             if (sa) {
                 const av = JSON.parse(sa);
-                setAvatar({
-                    cara: Number.isInteger(av.cara) ? av.cara : 0,
-                    sombrero: Number.isInteger(av.sombrero) ? av.sombrero : 0,
-                });
+                setAvatar({ cara: Number.isInteger(av.cara) ? av.cara : 0 });
             }
         } catch (_) {}
     };
@@ -58,11 +49,7 @@ const Navbar = () => {
             try {
                 const av = JSON.parse(storedAvatar);
                 const cara = parseInt(av.cara, 10);
-                const sombrero = parseInt(av.sombrero, 10);
-                setAvatar({
-                    cara: Number.isNaN(cara) ? 0 : cara,
-                    sombrero: Number.isNaN(sombrero) ? 0 : sombrero,
-                });
+                setAvatar({ cara: Number.isNaN(cara) ? 0 : cara });
             } catch (_) {}
         }
     }, []);
@@ -73,25 +60,18 @@ const Navbar = () => {
         navigate("/login");
     };
 
-    // Fuentes de imágenes y fallbacks seguros para el mini avatar
     const faces = [cara0, cara1, cara2, cara3, cara4];
-    const hats = [sombrero0, sombrero1, sombrero2, sombrero3, sombrero4];
     const faceIdx = Number.isInteger(avatar.cara) && avatar.cara >= 0 && avatar.cara < faces.length ? avatar.cara : 0;
-    const hatIdx = Number.isInteger(avatar.sombrero) && avatar.sombrero >= 0 && avatar.sombrero < hats.length ? avatar.sombrero : 0;
     const faceSrc = faces[faceIdx] || faces[0];
-    const hatSrc = hats[hatIdx] || hats[0];
 
     return (
         <>
             {/* NAVBAR SUPERIOR */}
             <nav className="navbar navbar-expand-lg navbar-light">
-                <div className="d-flex align-items-center col-10">
-                    <Link to="/home">
-                        <img src={tituloImg} className="logo" alt="Logo principal" />
-                    </Link>
-                </div>
-
-                <div className="col-2 text-right">
+                <Link to="/home" className="logo-link" aria-label="Ir a inicio">
+                    <img src={tituloImg} className="logo" alt="Logo principal" />
+                </Link>
+                <div className="menu-right">
                     <img src={menuHamb} className="menuHamb img-fluid" alt="Menú" style={{ cursor: "pointer" }} onClick={toggleMenu} />
                 </div>
             </nav>
@@ -106,34 +86,23 @@ const Navbar = () => {
                     <div className="nombre">{usuario ? usuario.username : "Invitado"}</div>
                     <div className="mini-avatar">
                         <img className="mini-avatar-layer mini-face" src={faceSrc} alt="Avatar cara" />
-                        <img className="mini-avatar-layer mini-hat" src={hatSrc} alt="Avatar sombrero" />
                     </div>
                 </div>
 
                 <ul className="menu-opciones">
                     <li>
                         <Link to="/editCuenta" className="botonesMenu" onClick={toggleMenu}>
-                            &lt; Editar cuenta
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/misiones" className="botonesMenu" onClick={toggleMenu}>
-                            &lt; Misiones
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/forocomunidad" className="botonesMenu" onClick={toggleMenu}>
-                            &lt; Foro de la comunidad
+                            Editar cuenta
                         </Link>
                     </li>
                     <li>
                         <Link to="/pagconfig" className="botonesMenu" onClick={toggleMenu}>
-                            &lt; Configuración
+                            Configuración
                         </Link>
                     </li>
                     <li>
                         <Link to="/" className="botonesMenu" onClick={handleLogout}>
-                            &lt; Cerrar sesión
+                            Cerrar sesión
                         </Link>
                     </li>
                 </ul>

@@ -13,10 +13,9 @@ export default function AdivinaPais() {
     const [imgLoad, setImgLoad] = useState(true);
     const [score, setScore] = useState(0);
     const [gameOver, setGameOver] = useState(false);
-    const [difficulty, setDifficulty] = useState(null); // null = aún no elegida
+    const [difficulty, setDifficulty] = useState(null); 
     const [gameStarted, setGameStarted] = useState(false);
 
-    // obtener datos de países según dificultad
     useEffect(() => {
         if (!difficulty) return;
         fetch("https://restcountries.com/v3.1/all?fields=name,flags,translations,population")
@@ -24,13 +23,13 @@ export default function AdivinaPais() {
             .then((data) => {
                 let filtered = [];
                 if (difficulty === "facil") {
-                    filtered = data.filter((c) => c.population > 50000000); // +50M
+                    filtered = data.filter((c) => c.population > 50000000); 
                 } else if (difficulty === "medio") {
                     filtered = data.filter(
                         (c) => c.population >= 10000000 && c.population <= 50000000
-                    ); // 10M–50M
+                    ); 
                 } else if (difficulty === "dificil") {
-                    filtered = data.filter((c) => c.population < 10000000); // <10M
+                    filtered = data.filter((c) => c.population < 10000000); 
                 }
                 setCountryData(filtered);
                 setGameStarted(true);
@@ -38,7 +37,6 @@ export default function AdivinaPais() {
             .catch(() => alert("Error al cargar datos de países"));
     }, [difficulty]);
 
-    // seleccionar país aleatorio
     useEffect(() => {
         if (countryData.length > 0 && round <= 10) {
             const randomNum = Math.floor(Math.random() * countryData.length);
@@ -87,7 +85,6 @@ export default function AdivinaPais() {
         setCountryData([]);
     };
 
-    // pantalla de selección de dificultad
     if (!gameStarted) {
         return (
             <>
@@ -106,7 +103,6 @@ export default function AdivinaPais() {
         );
     }
 
-    // pantalla final del juego
     if (gameOver) {
         return (
             <>
@@ -120,7 +116,6 @@ export default function AdivinaPais() {
         );
     }
 
-    // pantalla principal del juego
     return (
         <>
             <Navbar />

@@ -244,7 +244,6 @@ export default function MiniCodyCross() {
 
             {feedback && <div className={`feedback ${feedback.startsWith("+") ? "positivo" : "negativo"}`}>{feedback}</div>}
 
-            {/* PISTAS */}
             <div className="pistas-container">
                 <button onClick={usarPistaLetra} className="pista-btn">
                     🅰️ Letra (-10)

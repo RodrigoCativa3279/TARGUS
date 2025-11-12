@@ -69,6 +69,14 @@ body {
   background-color: lightgrey;
 }
 
+.enlace-juego:link,
+.enlace-juego:visited,
+.enlace-juego:hover,
+.enlace-juego:active {
+  text-decoration: none;
+  color: inherit;
+}
+
 .centered {
   display: flex;
   flex-direction: column;

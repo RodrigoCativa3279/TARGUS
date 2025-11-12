@@ -2,26 +2,21 @@ import React, { useState, useEffect } from "react";
 import "./sudoku.css";
 import Navbar from "../../components/navbar/Navbar";
 
-// 🔹 Generador de Sudoku estable y funcional
 const generateSudoku = () => {
     const base = 3;
     const side = base * base;
 
-    // patrón base para filas y columnas
     const pattern = (r, c) => (base * (r % base) + Math.floor(r / base) + c) % side;
 
-    // función para mezclar arrays
     const shuffle = (array) => [...array].sort(() => Math.random() - 0.5);
 
-    const rBase = [...Array(base).keys()]; // [0,1,2]
+    const rBase = [...Array(base).keys()];
     const rows = [].concat(...rBase.map((r) => rBase.map((g) => g * base + r)));
     const cols = [].concat(...rBase.map((r) => rBase.map((g) => g * base + r)));
     const nums = shuffle([...Array(side).keys()].map((n) => n + 1));
 
-    // crea el tablero base
     const board = rows.map((r) => cols.map((c) => nums[pattern(r, c)]));
 
-    // 🔸 vacía celdas según dificultad (0.55 = medio)
     const empties = Math.floor(side * side * 0.55);
     for (let i = 0; i < empties; i++) {
         const x = Math.floor(Math.random() * side);
@@ -37,14 +32,12 @@ const Sudoku = () => {
     const [initialBoard, setInitialBoard] = useState(null);
     const [message, setMessage] = useState("");
 
-    // generar tablero al cargar
     useEffect(() => {
         const newBoard = generateSudoku();
         setBoard(newBoard);
         setInitialBoard(JSON.parse(JSON.stringify(newBoard)));
     }, []);
 
-    // manejar cambios de usuario
     const handleChange = (r, c, value) => {
         if (initialBoard[r][c] !== "") return;
         if (!/^[1-9]?$/.test(value)) return;
@@ -53,7 +46,6 @@ const Sudoku = () => {
         setBoard(updated);
     };
 
-    // comprobar solución
     const checkSolution = () => {
         const isValid = (arr) => {
             const nums = arr.filter(Boolean);

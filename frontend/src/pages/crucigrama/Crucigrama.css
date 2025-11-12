@@ -1,16 +1,13 @@
-/* Fondo general */
 .mini-codycross {
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(180deg, #1e1e3c, #2b2b55);
   min-height: 100vh;
   color: #fff;
   text-align: center;
-  padding: 30px;
   user-select: none;
   overflow-x: hidden;
 }
 
-/* Títulos */
 .mini-codycross h1 {
   font-size: 2.5rem;
   color: #ffd700;
@@ -26,7 +23,6 @@
   font-size: 1.1rem;
 }
 
-/* Contenedor de palabras */
 .palabra-container {
   margin-top: 40px;
 }
@@ -41,7 +37,6 @@
   transform: scale(1.02);
 }
 
-/* Letras */
 .letra {
   display: inline-block;
   width: 45px;
@@ -56,7 +51,6 @@
   text-transform: uppercase;
 }
 
-/* Palabra completada */
 .letra.correcta {
   background-color: #00b300;
   color: #fff;
@@ -64,14 +58,12 @@
   box-shadow: 0 0 10px #00ff66;
 }
 
-/* Letra que pertenece a la palabra oculta */
 .letra.oculta {
   color: #ffea00;
   border-color: #ffea00;
   box-shadow: 0 0 8px #ffea00;
 }
 
-/* Palabra seleccionada */
 .palabra-row.seleccionada .letra {
   border-color: #00bcd4;
   background-color: #2a2a70;
@@ -84,7 +76,6 @@
   margin-top: 8px;
 }
 
-/* Palabra oculta */
 .palabra-oculta {
   margin-top: 40px;
   font-size: 1.3rem;
@@ -92,7 +83,6 @@
   letter-spacing: 4px;
 }
 
-/* Popup */
 .popup {
   background-color: rgba(0, 0, 0, 0.85);
   border: 2px solid #ffea00;
@@ -115,7 +105,6 @@
   }
 }
 
-/* Pantalla final */
 .finalizado {
   margin-top: 60px;
 }
@@ -157,7 +146,6 @@
   transform: scale(1.05);
 }
 
-/* Feedback de puntos (+10, -5) */
 .feedback {
   font-size: 2rem;
   font-weight: bold;
@@ -186,7 +174,6 @@
   }
 }
 
-/* Nivel completado transición */
 @keyframes fadeLevel {
   from {
     opacity: 0;
@@ -200,7 +187,6 @@
   animation: fadeLevel 0.6s ease;
 }
 
-/* Scrollbar elegante */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -212,7 +198,6 @@
   background: #666;
 }
 
-/* Controles de pistas */
 .pistas-container {
   margin-top: 20px;
   margin-bottom: 25px;

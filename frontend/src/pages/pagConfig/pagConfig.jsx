@@ -41,7 +41,6 @@ export default function PagConfig() {
         });
     };
 
-    // ✅ Guardar cambios de cuenta
     const handleSave = async (e) => {
         e.preventDefault();
         try {
@@ -79,7 +78,6 @@ export default function PagConfig() {
         }
     };
 
-    // ✅ Eliminar cuenta
     const handleDeleteAccount = async () => {
         if (!window.confirm("¿Seguro que querés eliminar tu cuenta? Esta acción es irreversible.")) return;
 

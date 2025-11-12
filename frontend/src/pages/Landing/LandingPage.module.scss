@@ -1,5 +1,3 @@
-/* src/pages/LandingPage.module.scss */
-
 .landing {
     color: white;
     font-family: "Segoe UI", sans-serif;
@@ -7,10 +5,8 @@
     overflow-x: hidden;
 }
 
-/* HERO CON IMAGEN DE FONDO */
 .hero {
     position: relative;
-    background-image: url("../assets/istockphoto-685111998-612x612.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -23,7 +19,7 @@
         content: "";
         position: absolute;
         inset: 0;
-        background: #767f86;
+        background: #001995;
         z-index: 0;
     }
 
@@ -55,7 +51,7 @@
         }
 
         button {
-            background: linear-gradient(45deg, #555f69, #000000);
+            background: linear-gradient(45deg, #188cff, #001dff);
             color: white;
             padding: 0.8rem 2rem;
             border: none;

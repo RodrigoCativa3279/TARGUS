@@ -16,7 +16,6 @@ export default function SopaDeLetras() {
     const navigate = useNavigate();
     const boardSize = 15;
 
-    // 🔹 Ya no definimos palabras fijas
     const [words, setWords] = useState([]);
 
     const [board, setBoard] = useState([]);
@@ -264,7 +263,6 @@ export default function SopaDeLetras() {
             return false;
         });
 
-    // 🔹 NUEVA FUNCIÓN PARA ELEGIR 8 PALABRAS ALEATORIAS DEL JSON
     const selectRandomWords = () => {
         const shuffled = [...wordsData].sort(() => Math.random() - 0.5);
         return shuffled.slice(0, 8).map((w) => w.toUpperCase());

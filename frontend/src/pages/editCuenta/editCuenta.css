@@ -57,7 +57,6 @@
     flex: 1 1 auto;
 }
 
-/* Responsive layout for the horizontal header */
 @media (max-width: 768px) {
     .perfil-header {
         flex-direction: column;
@@ -81,7 +80,6 @@
     margin: 30px;
 }
 
-/* Vista previa del avatar */
 .avatar-wrapper {
     margin: 0; 
 }
@@ -191,22 +189,14 @@
     pointer-events: none;
 }
 
-.avatar-hat {
-    z-index: 3;
-    top: -110px;
-}
-
 .avatar-face {
      z-index: 2;
 }
 
-/* Header username spacing */
 .nomUser{
     font-size: 32px;
     margin: 0 0 20px 0;
 }
-
-/* Responsive */
 @media (max-width: 992px) {
     .principal {
         padding: 28px;
@@ -228,11 +218,6 @@
         height: 180px;
         padding: 44px;
     }
-    /* Reducir desplazamiento del sombrero para evitar solapamientos */
-    .avatar-hat {
-        top: -80px;
-    }
-    /* Neutralizar efectos hover que mueven layout en mobile */
     .btn-personalizar:hover {
         transform: none;
         transition: none;
@@ -251,10 +236,6 @@
         height: 160px;
         padding: 36px;
     }
-    .avatar-hat {
-        top: -64px;
-    }
-    /* Asegurar separación vertical suficiente */
     .text-info {
         margin: 16px 0;
     }

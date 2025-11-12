@@ -3,6 +3,7 @@ import "./Login.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import loginIllustration from "../../assets/img-login.svg";
+import TituloLogo from "../../assets/Titulo.png";
 
 export default function Login() {
     const [showSignUp, setShowSignUp] = useState(false);
@@ -19,7 +20,6 @@ export default function Login() {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    // ✅ REGISTRO DE USUARIO
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
@@ -36,23 +36,20 @@ export default function Login() {
             const data = await res.json();
             console.log("Respuesta del backend (registro):", data);
 
-            // 🔍 Verifica si el backend devolvió error o no
             if (!res.ok) {
                 alert(data.error || "Error en el registro");
                 return;
             }
 
-            // ✅ Registro exitoso real
             alert(data.message || "Usuario registrado correctamente");
-            setShowSignUp(false); // cambia a la vista de login
-            setFormData({ username: "", email: "", password: "" }); // limpia inputs
+            setShowSignUp(false);
+            setFormData({ username: "", email: "", password: "" });
         } catch (error) {
             console.error("❌ Error de red o conexión en registro:", error);
             alert("Error en el registro. Verifica el servidor.");
         }
     };
 
-    // LOGIN DE USUARIO
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
@@ -69,7 +66,6 @@ export default function Login() {
             console.log("Respuesta del backend (login):", data);
 
             if (res.ok) {
-                // Guardamos token y datos del usuario
                 localStorage.setItem("token", data.token);
                 localStorage.setItem("user", JSON.stringify(data.user));
 
@@ -86,11 +82,8 @@ export default function Login() {
     return (
         <div className="login">
             <div className="login__content">
-                <div className="login__img">
-                    <img src={loginIllustration} alt="Ilustración de acceso" />
-                </div>
-
                 <div className="login__forms">
+                    <img src={TituloLogo} alt="Targus" className="login__logo" />
                     {showSignUp ? (
                         <form className="login__create" onSubmit={handleRegister}>
                             <h1 className="login__title">Crear Cuenta</h1>

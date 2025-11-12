@@ -64,7 +64,6 @@ input.editable:focus {
   line-height: 70px;
 }
 
-/* Inputs vacíos casi invisibles, pero clickeables */
 .editable.empty {
   background: transparent;
   color: transparent;
@@ -142,6 +141,42 @@ input.editable:focus {
 
 .check-btn:hover {
   background-color: #265ec7;
+}
+
+.difficulty-screen {
+  background: #ffffff;
+  color: #000;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.difficulty-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.difficulty-buttons button {
+  background-color: #bb8001;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.difficulty-buttons button:hover {
+  color: #000850;
+  background-color: #ffffff;
+  border: 4px solid #000850;
+  font-weight: bold;
 }
 
 @media (max-width: 600px) {
