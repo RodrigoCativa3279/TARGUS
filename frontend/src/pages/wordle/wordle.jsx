@@ -108,7 +108,7 @@ function Wordle() {
                 {!gameOver && (
                     <div className="row">
                         {[...Array(5)].map((_, i) => (
-                            <span className="cell" key={i}>
+                            <span className="wordle-cell" key={i}>
                                 {currentGuess[i] || ""}
                             </span>
                         ))}
