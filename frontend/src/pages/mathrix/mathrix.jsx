@@ -8,6 +8,9 @@ export default function Mathrix() {
   const [grid, setGrid] = useState(generateGrid(level));
   const [wrong, setWrong] = useState({ rows: [], cols: [] });
   const [gameStarted, setGameStarted] = useState(false);
+  const [feedback, setFeedback] = useState({ type: "", message: "" });
+  const [score, setScore] = useState(0);
+  const [attempts, setAttempts] = useState(0);
 
   function generateGrid(lvl) {
     const size = 3;
@@ -19,7 +22,8 @@ export default function Mathrix() {
       const row = [];
       for (let j = 0; j < size; j++) {
         const minVal = lvl === 2 ? 2 : 1;
-        const solution = Math.floor(Math.random() * (10 - minVal)) + minVal;
+        const maxVal = lvl === 3 ? 15 : 12; // aumentar dificultad por nivel
+        const solution = Math.floor(Math.random() * (maxVal - minVal + 1)) + minVal;
         const editable = Math.random() < 0.5;
         row.push({
           solution,
@@ -43,7 +47,7 @@ export default function Mathrix() {
 
     const divisorsOf = (n, minDiv) => {
       const ds = [];
-      for (let k = minDiv; k <= 9; k++) if (n % k === 0) ds.push(k);
+      for (let k = minDiv; k <= 12; k++) if (n % k === 0) ds.push(k);
       return ds;
     };
     const randPick = (arr) => arr[Math.floor(Math.random() * arr.length)];
@@ -130,16 +134,16 @@ export default function Mathrix() {
     if (val === "") {
       newData.newGrid[r][c].value = "";
     } else {
-      let n = parseInt(val, 10);
-      if (Number.isNaN(n)) {
-        n = "";
+      // permitir dos dígitos y 0/1 durante la edición
+      const cleaned = val.replace(/[^0-9]/g, "").slice(0, 2);
+      if (cleaned === "") {
+        newData.newGrid[r][c].value = "";
       } else {
-        const min = level === 2 ? 2 : 1;
-        const max = 9;
-        if (n < min) n = min;
+        let n = parseInt(cleaned, 10);
+        const max = level === 3 ? 15 : 12;
         if (n > max) n = max;
+        newData.newGrid[r][c].value = n;
       }
-      newData.newGrid[r][c].value = n;
     }
     setGrid(newData);
   };
@@ -212,28 +216,39 @@ export default function Mathrix() {
       }
     }
 
+    // aumentar intento al presionar comprobar
+    const nextAttempts = attempts + 1;
+    setAttempts(nextAttempts);
     const allOk = correctRows === size && correctCols === size;
     setWrong({ rows: wrongRows, cols: wrongCols });
     if (allOk) {
-      alert("✅ ¡Correcto!");
+      const base = 100;
+      const penalty = 15 * (nextAttempts - 1);
+      const levelBonus = 10 * (level - 1);
+      const puntos = Math.max(0, base - penalty) + levelBonus;
+      setScore((s) => s + puntos);
+      setFeedback({ type: "success", message: `¡Correcto! +${puntos} puntos` });
     } else {
       const nameRow = (i) => (i === 0 ? "Fila superior" : i === size - 1 ? "Fila inferior" : `Fila ${i + 1}`);
       const nameCol = (i) => (i === 0 ? "Columna izquierda" : i === size - 1 ? "Columna derecha" : `Columna ${i + 1}`);
-      const rowHints = wrongRows.length ? `Incorrectas: ${wrongRows.map(nameRow).join(", ")}.` : "";
-      const colHints = wrongCols.length ? `Incorrectas: ${wrongCols.map(nameCol).join(", ")}.` : "";
+      const rowHints = wrongRows.length ? `Filas incorrectas: ${wrongRows.map(nameRow).join(", ")}.` : "";
+      const colHints = wrongCols.length ? `Columnas incorrectas: ${wrongCols.map(nameCol).join(", ")}.` : "";
       const hint = [rowHints, colHints].filter(Boolean).join(" ");
-      alert(`❌ ${hint || "Hay errores"} Inténtalo de nuevo.`);
+      setFeedback({ type: "error", message: hint || "Hay errores. Inténtalo de nuevo." });
     }
   };
 
   const reset = () => {
     setGrid(generateGrid(level));
+    setWrong({ rows: [], cols: [] });
+    setFeedback({ type: "", message: "" });
+    setAttempts(0);
   };
 
   if (!gameStarted) {
     return (
       <>
-        <Navbar/>
+        <Navbar />
         <div className="difficulty-screen">
           <img src={juego5} alt="Mathrix" className="logo-juego" />
           <h1 className="titulo">MATHRIX</h1>
@@ -250,7 +265,7 @@ export default function Mathrix() {
 
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <div className="mathrix-container">
         <img src={juego5} alt="mathrix" className="logo-juego" />
         <div className="controls">
@@ -262,6 +277,8 @@ export default function Mathrix() {
                 const lvl = parseInt(e.target.value);
                 setLevel(lvl);
                 setGrid(generateGrid(lvl));
+                setFeedback({ type: "", message: "" });
+                setAttempts(0);
               }}
             >
               <option value={1}>1 (Sumas/Restas)</option>
@@ -272,11 +289,18 @@ export default function Mathrix() {
           <button onClick={reset}>Reiniciar</button>
         </div>
 
+        <h2 className="score">🏆 Puntuación: {score}</h2>
+
+        {feedback.message && (
+          <div className={`mathrix-feedback ${feedback.type}`}>
+            {feedback.message}
+          </div>
+        )}
+
         <p className="instructions">
           Completa los cuadros vacíos. Los signos indican las operaciones entre
           los números. Los valores objetivo están al final de cada fila y columna.
-          <br/> <strong>IMPORTANTE:</strong> No hay orden de operaciones, se resuelve de izquierda a derecha por <strong>fila</strong> y de arriba a abajo por <strong>columna</strong>.
-          <br/> (En la dificultad 2, los números no pueden ser 0 o 1)
+          <br /> <strong>IMPORTANTE:</strong> No hay orden de operaciones, se resuelve de izquierda a derecha por <strong>fila</strong> y de arriba a abajo por <strong>columna</strong>.
         </p>
 
         <div className="matrix-wrapper">
@@ -295,14 +319,14 @@ export default function Mathrix() {
                         >
                           {cell.editable ? (
                             <input
-                            type="number"
-                            value={cell.value}
-                            onChange={(e) => handleInput(r, c, e.target.value)}
-                            className={`editable ${cell.value === "" ? "empty" : ""}`}
-                            min={level === 2 ? 2 : 1}
-                            max={9}
-                            placeholder=" "
-                          />
+                              type="number"
+                              value={cell.value}
+                              onChange={(e) => handleInput(r, c, e.target.value)}
+                              className={`editable ${cell.value === "" ? "empty" : ""}`}
+                              min={0}
+                              max={level === 3 ? 15 : 12}
+                              placeholder=" "
+                            />
                           ) : (
                             <div className="fixed">{cell.solution}</div>
                           )}

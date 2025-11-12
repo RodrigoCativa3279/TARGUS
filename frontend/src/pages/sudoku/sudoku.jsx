@@ -31,6 +31,8 @@ const Sudoku = () => {
     const [board, setBoard] = useState(null);
     const [initialBoard, setInitialBoard] = useState(null);
     const [message, setMessage] = useState("");
+    const [score, setScore] = useState(0);
+    const [attempts, setAttempts] = useState(0);
 
     useEffect(() => {
         const newBoard = generateSudoku();
@@ -47,27 +49,36 @@ const Sudoku = () => {
     };
 
     const checkSolution = () => {
+        const nextAttempts = attempts + 1;
+        setAttempts(nextAttempts);
         const isValid = (arr) => {
             const nums = arr.filter(Boolean);
             return new Set(nums).size === nums.length;
         };
 
-        for (let row of board) if (!isValid(row)) return setMessage("❌ Error en una fila");
+        for (let row of board) if (!isValid(row)) { setMessage("❌ Error en una fila"); return; }
         for (let c = 0; c < 9; c++) {
             const col = board.map((r) => r[c]);
-            if (!isValid(col)) return setMessage("❌ Error en una columna");
+            if (!isValid(col)) { setMessage("❌ Error en una columna"); return; }
         }
 
         for (let br = 0; br < 9; br += 3) {
             for (let bc = 0; bc < 9; bc += 3) {
                 const box = [];
                 for (let r = 0; r < 3; r++) for (let c = 0; c < 3; c++) box.push(board[br + r][bc + c]);
-                if (!isValid(box)) return setMessage("❌ Error en un bloque");
+                if (!isValid(box)) { setMessage("❌ Error en un bloque"); return; }
             }
         }
 
-        if (board.flat().includes("")) setMessage("🟡 Aún hay espacios vacíos");
-        else setMessage("🎉 ¡Sudoku completo y válido!");
+        if (board.flat().includes("")) {
+            setMessage("🟡 Aún hay espacios vacíos");
+        } else {
+            const base = 100;
+            const penalty = 10 * (nextAttempts - 1);
+            const puntos = Math.max(0, base - penalty);
+            setScore((s) => s + puntos);
+            setMessage(`🎉 ¡Sudoku completo y válido! +${puntos} puntos`);
+        }
     };
 
     const newGame = () => {
@@ -75,6 +86,7 @@ const Sudoku = () => {
         setBoard(newBoard);
         setInitialBoard(JSON.parse(JSON.stringify(newBoard)));
         setMessage("");
+        setAttempts(0);
     };
 
     if (!board) return <p style={{ textAlign: "center", marginTop: "50px" }}>Cargando Sudoku...</p>;
@@ -84,6 +96,7 @@ const Sudoku = () => {
             <Navbar />
             <div className="sudoku-container">
                 <h1>Sudoku</h1>
+                <h2 className="score">🏆 Puntuación: {score}</h2>
 
                 <div className="sudoku-grid">{board.map((row, r) => row.map((cell, c) => <input key={`${r}-${c}`} value={cell} onChange={(e) => handleChange(r, c, e.target.value)} className={"cell " + (initialBoard[r][c] !== "" ? "fixed " : "") + ((r + 1) % 3 === 0 && r !== 8 ? "thick-bottom " : "") + ((c + 1) % 3 === 0 && c !== 8 ? "thick-right" : "")} maxLength={1} />))}</div>
 

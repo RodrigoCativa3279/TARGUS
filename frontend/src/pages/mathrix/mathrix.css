@@ -1,4 +1,4 @@
-.logo-juego {
+.mathrix-container .logo-juego {
   width: 200px;
   display: flex;
   justify-content: center;
@@ -12,27 +12,28 @@
   justify-content: center;
   text-align: center;
   padding: 2rem;
-  background: #f4f6fb;
+  background: var(--bg);
+  color: var(--text);
   min-height: 100vh;
 }
 
-.controls {
+.mathrix-container .controls {
   display: flex;
   justify-content: center;
   gap: 1rem;
   margin-bottom: 1rem;
 }
 
-.math-table {
+.mathrix-container .math-table {
   border-collapse: collapse;
   margin: 2rem auto;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
 
-.math-table td {
-  border: 1px solid #dcdcdc;
+.mathrix-container .math-table td {
+  border: 1px solid #d1d5db;
   width: 70px;
   height: 70px;
   text-align: center;
@@ -41,45 +42,45 @@
   font-size: 1.3rem;
 }
 
-input {
+.mathrix-container input {
   width: 100%;
   height: 100%;
   border: none;
   text-align: center;
   font-size: 1.3rem;
-  background: #eef4ff;
+  background: #f9fafb;
   border-radius: 8px;
   outline: none;
   transition: background 0.2s ease;
 }
 
-input.editable:focus {
-  background: #d6e3ff;
+.mathrix-container input.editable:focus {
+  background: #eef2ff;
 }
 
-.fixed {
-  background: #e6e6e6;
+.mathrix-container .fixed {
+  background: #eef2ff;
   font-weight: bold;
   border-radius: 8px;
   line-height: 70px;
 }
 
-.editable.empty {
+.mathrix-container .editable.empty {
   background: transparent;
   color: transparent;
   caret-color: #333;
 }
 
-.editable.empty::placeholder {
+.mathrix-container .editable.empty::placeholder {
   color: transparent;
 }
 
-.empty-cell {
+.mathrix-container .empty-cell {
   background: transparent;
   border: none;
 }
 
-.signo {
+.mathrix-container .signo {
   background: #fff;
   font-size: 28px;
   font-weight: bold;
@@ -88,7 +89,7 @@ input.editable:focus {
   border: none;
 }
 
-.signo-col {
+.mathrix-container .signo-col {
   background: #fff;
   font-size: 28px;
   font-weight: bold;
@@ -99,37 +100,37 @@ input.editable:focus {
   border: none;
 }
 
-.objetivo {
+.mathrix-container .objetivo {
   background-color: #f4fff0;
-  color: #0f7a2a;
+  color: var(--primary-600);
   font-weight: bold;
   font-size: 22px;
-  border-left: 3px solid #c3d3ff;
+  border-left: 3px solid var(--primary);
 }
 
-.objetivo.wrong {
+.mathrix-container .objetivo.wrong {
   background-color: #fff4f4;
   color: #a31212;
   border-left-color: #ffb3b3;
 }
 
-.spacer {
+.mathrix-container .spacer {
   background: transparent;
   border: none;
   width: 40px;
   height: 40px;
 }
 
-.instructions {
+.mathrix-container .instructions {
   max-width: 700px;
   margin: 0 auto;
   font-size: 1.1rem;
-  color: #333;
+  color: var(--text);
 }
 
-.check-btn {
-  background-color: #3478f6;
-  color: white;
+.mathrix-container .check-btn {
+  background: var(--primary);
+  color: #fff;
   font-weight: bold;
   padding: 10px 24px;
   border: none;
@@ -139,13 +140,32 @@ input.editable:focus {
   margin-top: 1rem;
 }
 
-.check-btn:hover {
-  background-color: #265ec7;
+.mathrix-container .check-btn:hover {
+  background: var(--primary-600);
 }
 
-.difficulty-screen {
-  background: #ffffff;
-  color: #000;
+.mathrix-feedback {
+  margin: 12px 0 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.mathrix-feedback.success {
+  background: #e5f6ed;
+  color: var(--primary-600);
+  border: 1px solid var(--primary);
+}
+
+.mathrix-feedback.error {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.mathrix-container .difficulty-screen {
+  background: var(--surface);
+  color: var(--text);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -155,14 +175,14 @@ input.editable:focus {
   text-align: center;
 }
 
-.difficulty-buttons {
+.mathrix-container .difficulty-buttons {
   display: flex;
   gap: 1rem;
 }
 
-.difficulty-buttons button {
-  background-color: #bb8001;
-  color: white;
+.mathrix-container .difficulty-buttons button {
+  background: var(--secondary);
+  color: #fff;
   font-weight: bold;
   border: none;
   padding: 0.8rem 2rem;
@@ -172,28 +192,25 @@ input.editable:focus {
   transition: 0.2s;
 }
 
-.difficulty-buttons button:hover {
-  color: #000850;
-  background-color: #ffffff;
-  border: 4px solid #000850;
-  font-weight: bold;
+.mathrix-container .difficulty-buttons button:hover {
+  filter: brightness(0.93);
 }
 
 @media (max-width: 600px) {
-  .math-table td {
+  .mathrix-container .math-table td {
     width: 50px;
     height: 50px;
   }
 
-  input {
+  .mathrix-container input {
     font-size: 1rem;
   }
 
-  .signo {
+  .mathrix-container .signo {
     font-size: 22px;
   }
 
-  .objetivo {
+  .mathrix-container .objetivo {
     font-size: 18px;
   }
 }

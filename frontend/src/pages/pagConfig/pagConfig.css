@@ -56,6 +56,7 @@
     color: white;
     font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
 }
 
 .btn-eliminar {
@@ -68,6 +69,21 @@
     color: white;
     font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-guardar:hover {
+    background: #0a6ef1;
+}
+
+.btn-eliminar:hover {
+    background: #c82333;
+}
+
+.btn-guardar:disabled,
+.btn-eliminar:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 @media (max-width: 768px) {
@@ -81,14 +97,18 @@
     .background {
         padding: 40px 12px;
     }
+
     .config-container {
         padding: 1.25rem;
         border-radius: 12px;
     }
+
     .config-form label {
         margin-top: 8px;
     }
-    .btn-guardar, .btn-eliminar {
+
+    .btn-guardar,
+    .btn-eliminar {
         padding: 12px;
     }
 }

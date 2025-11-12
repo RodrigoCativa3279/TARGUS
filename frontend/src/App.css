@@ -170,6 +170,13 @@ button:hover {
   transform: scale(1.05);
 }
 
+button:disabled,
+button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
 @media (max-width: 900px) {
   .grid-juegos {
     grid-template-columns: 1fr 1fr;

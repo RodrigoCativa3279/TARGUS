@@ -11,7 +11,8 @@ function Wordle() {
     const [currentGuess, setCurrentGuess] = useState("");
     const [gameOver, setGameOver] = useState(false);
     const [message, setMessage] = useState("");
-    const [score, setScore] = useState(0); // 🟢 Puntuación
+    const [score, setScore] = useState(0); // 🟢 Puntuación (solo sesión)
+    const [attempts, setAttempts] = useState(0);
     const navigate = useNavigate();
 
     const KEYS = "QWERTYUIOPASDFGHJKLZXCVBNM".split("");
@@ -20,17 +21,10 @@ function Wordle() {
     const palabrasValidas = palabras.map((p) => p.toUpperCase()); // todas las que se pueden escribir
     const palabrasPosibles = palabras6.map((p) => p.toUpperCase()); // las que pueden salir como solución
 
-    // 🟢 Cargar puntuación previa
+    // 🟢 Iniciar juego (puntuación solo sesión)
     useEffect(() => {
-        const savedScore = localStorage.getItem("wordleScore");
-        if (savedScore) setScore(Number(savedScore));
         startNewGame();
     }, []);
-
-    // 🟢 Guardar puntuación
-    useEffect(() => {
-        localStorage.setItem("wordleScore", score);
-    }, [score]);
 
     const startNewGame = () => {
         const randomWord = palabrasPosibles[Math.floor(Math.random() * palabrasPosibles.length)];
@@ -39,6 +33,7 @@ function Wordle() {
         setCurrentGuess("");
         setGameOver(false);
         setMessage("");
+        setAttempts(0);
     };
 
     const handleKeyPress = (e) => {
@@ -57,8 +52,10 @@ function Wordle() {
 
             const newGuesses = [...guesses, currentGuess.toUpperCase()];
             setGuesses(newGuesses);
+            setAttempts((prev) => prev + 1);
 
             if (currentGuess.toUpperCase() === solution) {
+                // base 100, penaliza intentos previos (15 por intento adicional)
                 const puntosGanados = Math.max(0, 100 - (newGuesses.length - 1) * 15);
                 setScore((prev) => prev + puntosGanados);
                 setMessage(`🎉 ¡Ganaste! +${puntosGanados} puntos`);

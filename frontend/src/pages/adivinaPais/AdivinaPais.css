@@ -1,6 +1,6 @@
 .adivina-main {
-    background: #ffffff;
-    color: #11161e;
+    background: var(--bg);
+    color: var(--text);
     min-height: 50vh;
     display: flex;
     flex-direction: column;
@@ -16,7 +16,7 @@
 
 .flag-container img {
     display: block;
-    border: 1px solid black;
+    border: 1px solid #cfcfcf;
     width: 300px;
     margin: 1rem 0;
     border-radius: 10px;
@@ -69,6 +69,14 @@
     cursor: pointer;
 }
 
+.feedback button:disabled,
+.answer-form button:disabled,
+.results-container button:disabled,
+.difficulty-buttons button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 h2 { color: #11161e; }
 
 .titulo {
@@ -91,7 +99,9 @@ p { font-size: 25px; }
 .answer-form input {
     padding: 0.7rem 1rem;
     border-radius: 8px;
-    border: none;
+    border: 1px solid #d1d5db;
+    background: #f9fafb;
+    color: var(--text);
     font-size: 1.1rem;
 }
 
@@ -99,15 +109,17 @@ p { font-size: 25px; }
     padding: 0.7rem 1.5rem;
     font-size: 1.1rem;
     border: none;
-    border-radius: 8px;
-    background-color: #00c27a;
-    color: white;
+    border-radius: 999px;
+    background: var(--primary);
+    color: #fff;
     cursor: pointer;
+    transition: background-color 0.2s ease;
 }
+.answer-form button:hover { background: var(--primary-600); }
 
 .results-container {
-    background: #11161e;
-    color: white;
+    background: var(--bg);
+    color: var(--text);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -117,18 +129,20 @@ p { font-size: 25px; }
 }
 
 .results-container button {
-    background-color: #00c27a;
-    color: white;
+    background: var(--primary);
+    color: #fff;
     border: none;
     padding: 0.8rem 2rem;
-    border-radius: 8px;
+    border-radius: 999px;
     font-size: 1.1rem;
     cursor: pointer;
+    transition: background-color 0.2s ease;
 }
+.results-container button:hover { background: var(--primary-600); }
 
 .difficulty-select {
     margin-bottom: 1rem;
-    color: #11161e;
+    color: var(--text);
 }
 
 .difficulty-select select {
@@ -140,8 +154,8 @@ p { font-size: 25px; }
 }
 
 .difficulty-screen {
-    background: #ffffff;
-    color: rgb(0, 0, 0);
+    background: var(--surface);
+    color: var(--text);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -157,22 +171,18 @@ p { font-size: 25px; }
 }
 
 .difficulty-buttons button {
-    background-color: #bb8001;
-    color: white;
+    background: var(--secondary);
+    color: #fff;
     font-weight: bold;
     border: none;
     padding: 0.8rem 2rem;
-    border-radius: 10px;
+    border-radius: 999px;
     font-size: 1.1rem;
     cursor: pointer;
-    transition: 0.2s;
+    transition: filter 0.2s ease;
 }
-
 .difficulty-buttons button:hover {
-    color: #000850;
-    background-color: #ffffff;
-    border: 4px solid #000850;
-    font-weight: bold;
+    filter: brightness(0.93);
 }
 
 .difficulty-label {

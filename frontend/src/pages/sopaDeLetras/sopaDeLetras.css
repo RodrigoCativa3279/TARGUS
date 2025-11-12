@@ -5,7 +5,7 @@
   justify-content: center;
   min-height: 100vh;
   overflow: hidden;
-  background: linear-gradient(135deg, #c8e6c9 0%, #81c784 100%);
+  background: var(--bg);
   padding: 20px;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
@@ -17,24 +17,21 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background: #ffffffee;
-  border-radius: 24px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  padding: 30px 40px;
-  width: 90%;
-  max-width: 900px;
-  max-height: 90vh;
-  overflow-y: auto;
-  transition: all 0.3s ease;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  width: 100%;
+  max-width: 1100px;
+  max-height: none;
+  overflow: visible;
+  transition: none;
 }
 
-.sopa-container::-webkit-scrollbar {
-  width: 8px;
-}
-.sopa-container::-webkit-scrollbar-thumb {
-  background-color: #81c784;
-  border-radius: 10px;
-}
+/* ocultar scrollbars si algún contenedor interno los genera */
+.sopa-container { scrollbar-width: none; }
+.sopa-container::-webkit-scrollbar { width: 0; height: 0; }
+.sopa-container::-webkit-scrollbar-thumb { background: transparent; }
 
 .sopa-container.blur-board {
   filter: blur(4px) brightness(0.8);
@@ -62,30 +59,38 @@
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
+.hint-btn:disabled,
+.reveal-btn:disabled,
+.start-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
 .hint-btn {
-  background: linear-gradient(135deg, #ffa726, #fb8c00);
+  background: var(--secondary);
 }
 .hint-btn:hover {
   transform: translateY(-2px);
-  background: linear-gradient(135deg, #ffb74d, #f57c00);
+  filter: brightness(1.05);
 }
 
 .reveal-btn {
-  background: linear-gradient(135deg, #ef5350, #e53935);
+  background: var(--danger);
 }
 .reveal-btn:hover {
   transform: translateY(-2px);
-  background: linear-gradient(135deg, #f44336, #c62828);
+  filter: brightness(1.05);
 }
 
 .start-btn {
-  background: linear-gradient(135deg, #66bb6a, #43a047);
+  background: var(--primary);
   font-size: 22px;
   padding: 15px 40px;
 }
 .start-btn:hover {
   transform: translateY(-2px);
-  background: linear-gradient(135deg, #81c784, #388e3c);
+  background: var(--primary-600);
 }
 
 .board {
@@ -93,10 +98,10 @@
   flex-direction: column;
   align-items: center;
   margin-top: 10px;
-  background: #f1f8e9;
+  background: var(--surface);
   padding: 15px;
   border-radius: 12px;
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.06);
 }
 
 .board-row {
@@ -141,24 +146,24 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 12px;
-  background: #e8f5e9;
+  background: #f3f4f6;
   border-radius: 12px;
   padding: 10px 15px;
-  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.06);
 }
 
 .word-list p {
-  background: #c8e6c9;
+  background: #e5f6ed;
   padding: 6px 14px;
   border-radius: 8px;
   margin: 0;
   font-weight: 600;
-  color: #2e7d32;
+  color: var(--primary-600);
   transition: all 0.3s ease;
 }
 
 .word-list p:hover {
-  background: #a5d6a7;
+  background: #d3f1df;
   transform: scale(1.05);
 }
 
@@ -212,6 +217,12 @@
   transition: all 0.25s ease;
 }
 
+.win-message button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
 .win-message button:hover {
   transform: translateY(-2px);
   background: linear-gradient(135deg, #66bb6a, #2e7d32);
@@ -223,32 +234,31 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: linear-gradient(135deg, #a5d6a7, #81c784);
+  background: var(--bg);
   text-align: center;
 }
 
 .menu-container h1 {
   font-size: 52px;
   margin-bottom: 30px;
-  color: #1b5e20;
-  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  color: var(--text);
   font-weight: 700;
 }
 
 .menu-container button {
   font-size: 22px;
   padding: 15px 40px;
-  border-radius: 12px;
+  border-radius: 999px;
   border: none;
-  background: linear-gradient(135deg, #43a047, #2e7d32);
+  background: var(--primary);
   color: #fff;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: background-color 0.2s ease, transform 0.25s ease;
 }
 
 .menu-container button:hover {
   transform: translateY(-2px);
-  background: linear-gradient(135deg, #66bb6a, #1b5e20);
+  background: var(--primary-600);
 }
 
 @media (max-width: 768px) {

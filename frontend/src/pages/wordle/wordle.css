@@ -4,6 +4,10 @@
   align-items: center;
   font-family: sans-serif;
   margin-top: 20px;
+  color: var(--text);
+  background: var(--bg);
+  min-height: 100vh;
+  padding-bottom: 40px;
 }
 
 .row {
@@ -15,7 +19,7 @@
 .wordle-cell {
   width: 50px;
   height: 50px;
-  border: 2px solid #999;
+  border: 2px solid #d1d5db;
   margin: 2px;
   display: flex;
   align-items: center;
@@ -23,6 +27,9 @@
   font-weight: bold;
   font-size: 22px;
   text-transform: uppercase;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  background: var(--surface);
 }
 
 .keyboard {
@@ -40,11 +47,24 @@
   font-size: 16px;
   cursor: pointer;
   text-transform: uppercase;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  background: var(--primary);
+  color: #fff;
+  border: none;
 }
+
+.keyboard button:hover { background: var(--primary-600); }
 
 .keyboard .enter,
 .keyboard .delete {
   width: 80px;
+}
+
+.keyboard button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .menu-final {

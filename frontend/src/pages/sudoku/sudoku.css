@@ -1,6 +1,14 @@
 .sudoku-container {
     text-align: center;
     margin-top: 30px;
+    color: var(--text);
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-bottom: 40px;
 }
 
 .sudoku-grid {
@@ -17,11 +25,13 @@
     height: 40px;
     text-align: center;
     font-size: 20px;
-    border: 1px solid #888;
+    border: 1px solid #d1d5db;
+    background: var(--surface);
+    border-radius: 6px;
 }
 
 .fixed {
-    background-color: #e0e0e0;
+    background-color: #eef2ff;
     font-weight: bold;
 }
 
@@ -37,11 +47,23 @@
     margin-top: 20px;
 }
 
-button {
+.sudoku-container button {
     margin: 5px;
     padding: 8px 16px;
     font-size: 16px;
     cursor: pointer;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    transition: background-color 0.2s ease;
+}
+
+.sudoku-container button:hover { background: var(--primary-600); }
+
+.sudoku-container button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .message {

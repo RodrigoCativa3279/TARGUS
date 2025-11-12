@@ -1,8 +1,8 @@
 .mini-codycross {
   font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at top, #181833, #0f0f1f 70%, #080813);
+  background: var(--bg);
   min-height: 100vh;
-  color: #fefefe;
+  color: var(--text);
   text-align: center;
   user-select: none;
   overflow-x: hidden;
@@ -11,23 +11,21 @@
 
 .mini-codycross h1 {
   font-size: 3rem;
-  color: #ffde59;
+  color: var(--text);
   margin-bottom: 10px;
   letter-spacing: 3px;
-  text-shadow: 0 0 25px rgba(255, 222, 89, 0.8);
   font-weight: 700;
 }
 
 .mini-codycross h2 {
   font-size: 1.4rem;
-  color: #67e8f9;
+  color: var(--text);
   margin-bottom: 8px;
-  text-shadow: 0 0 15px rgba(103, 232, 249, 0.5);
 }
 
 .mini-codycross p {
   font-size: 1.1rem;
-  color: #ddd;
+  color: var(--text);
 }
 
 .palabra-container {
@@ -57,60 +55,62 @@
   height: 54px;
   margin: 4px;
   border-radius: 12px;
-  border: 2px solid #444;
-  background: linear-gradient(145deg, #252540, #1c1c2e);
+  border: 2px solid #d1d5db;
+  background: var(--surface);
   font-size: 1.5rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--text);
   text-transform: uppercase;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
   transition: all 0.25s ease;
 }
 
 .letra.correcta {
-  background: linear-gradient(145deg, #00c851, #00993a);
-  border-color: #00ff88;
-  box-shadow: 0 0 14px #00ff88, 0 0 30px rgba(0, 255, 136, 0.4);
+  background: #e5f6ed;
+  border-color: var(--primary);
+  color: var(--primary-600);
+  box-shadow: 0 0 0 2px rgba(34,197,94,0.25) inset;
 }
 
 .letra.oculta {
-  color: #ffeb3b;
-  border-color: #ffeb3b;
-  box-shadow: 0 0 10px #ffeb3b, 0 0 25px rgba(255, 235, 59, 0.4);
+  color: var(--text);
+  border-color: #d1d5db;
+  box-shadow: none;
 }
 
 .palabra-row.seleccionada .letra {
-  border-color: #00bcd4;
-  background: linear-gradient(145deg, #2f2f70, #23235a);
-  box-shadow: 0 0 18px #00bcd4, 0 0 30px rgba(0, 188, 212, 0.4);
+  border-color: var(--secondary);
+  background: #eef2ff;
+  box-shadow: 0 0 0 2px rgba(37,99,235,0.25) inset;
 }
 
 .pista {
-  color: #ffe97f;
+  color: #374151; /* gray-700 */
   font-size: 1rem;
   margin-top: 6px;
   font-style: italic;
-  opacity: 0.95;
+  background: #f3f4f6;
+  padding: 6px 10px;
+  border-radius: 8px;
 }
 
 .palabra-oculta {
   margin-top: 50px;
   font-size: 1.5rem;
-  color: #ffd700;
+  color: var(--text);
   letter-spacing: 6px;
-  text-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
 }
 
 .popup {
   margin-top: 25px;
-  background: rgba(30, 30, 60, 0.9);
-  border: 2px solid #ffeb3b;
+  background: var(--surface);
+  border: 1px solid #e5e7eb;
   padding: 18px 50px;
   border-radius: 14px;
-  color: #fff;
+  color: var(--text);
   display: inline-block;
   font-size: 1.1rem;
-  box-shadow: 0 0 15px rgba(255, 235, 59, 0.3);
+  box-shadow: var(--shadow);
   animation: aparecer 0.35s ease;
 }
 
@@ -118,29 +118,27 @@
   margin-top: 70px;
   padding: 35px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
+  background: var(--surface);
+  box-shadow: var(--shadow);
 }
 
 .finalizado h2 {
-  color: #00e5ff;
+  color: var(--secondary);
   margin-bottom: 12px;
-  text-shadow: 0 0 20px rgba(0, 229, 255, 0.7);
 }
 
 .finalizado input {
   padding: 10px;
   border-radius: 8px;
-  border: none;
+  border: 1px solid #d1d5db;
   outline: none;
   width: 230px;
   text-align: center;
   margin-top: 10px;
-  background: #282845;
-  color: #fff;
+  background: #f9fafb;
+  color: var(--text);
   font-size: 1rem;
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
+  box-shadow: none;
 }
 
 .finalizado button {
@@ -149,32 +147,31 @@
   font-size: 1rem;
   border: none;
   border-radius: 8px;
-  background: linear-gradient(135deg, #00bcd4, #0097a7);
-  color: white;
+  background: var(--primary);
+  color: #fff;
   cursor: pointer;
   transition: all 0.25s ease;
-  box-shadow: 0 0 12px rgba(0, 188, 212, 0.4);
+  box-shadow: none;
 }
 
 .finalizado button:hover {
-  background: linear-gradient(135deg, #00e5ff, #00acc1);
+  background: var(--primary-600);
   transform: scale(1.08);
-  box-shadow: 0 0 20px rgba(0, 229, 255, 0.6);
 }
 
-.feedback {
+.mini-codycross .feedback {
   font-size: 2.2rem;
   font-weight: bold;
   margin: 14px auto;
   animation: subir 0.8s ease forwards;
 }
 
-.feedback.positivo {
+.mini-codycross .feedback.positivo {
   color: #00ff66;
   text-shadow: 0 0 20px #00ff66;
 }
 
-.feedback.negativo {
+.mini-codycross .feedback.negativo {
   color: #ff4444;
   text-shadow: 0 0 20px #ff4444;
 }
@@ -202,14 +199,14 @@
   animation: fadeLevel 0.6s ease;
 }
 
-::-webkit-scrollbar {
+.mini-codycross::-webkit-scrollbar {
   width: 10px;
 }
-::-webkit-scrollbar-thumb {
+.mini-codycross::-webkit-scrollbar-thumb {
   background: #444;
   border-radius: 6px;
 }
-::-webkit-scrollbar-thumb:hover {
+.mini-codycross::-webkit-scrollbar-thumb:hover {
   background: #666;
 }
 
@@ -219,9 +216,9 @@
 }
 
 .pista-btn {
-  background-color: #444;
-  color: #fff;
-  border: 2px solid #888;
+  background-color: var(--surface);
+  color: var(--text);
+  border: 1px solid #d1d5db;
   border-radius: 8px;
   padding: 10px 18px;
   margin: 0 8px;
@@ -231,7 +228,7 @@
 }
 
 .pista-btn:hover {
-  background-color: #666;
+  background-color: #f3f4f6;
   transform: scale(1.05);
 }
 
