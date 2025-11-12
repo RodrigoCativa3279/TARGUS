@@ -15,6 +15,7 @@ export default function AdivinaPais() {
     const [gameOver, setGameOver] = useState(false);
     const [difficulty, setDifficulty] = useState(null);
     const [gameStarted, setGameStarted] = useState(false);
+    const [usedCountries, setUsedCountries] = useState([]); // 👈 países ya usados
 
     // función para quitar tildes y normalizar texto
     const normalizeText = (text) => {
@@ -47,17 +48,33 @@ export default function AdivinaPais() {
             .catch(() => alert("Error al cargar datos de países"));
     }, [difficulty]);
 
-    // seleccionar país aleatorio
+    // seleccionar país aleatorio sin repetir
     useEffect(() => {
         if (countryData.length > 0 && round <= 10) {
-            const randomNum = Math.floor(Math.random() * countryData.length);
-            const country = countryData[randomNum];
+            let newCountry = null;
+            let attempts = 0;
+
+            do {
+                const randomNum = Math.floor(Math.random() * countryData.length);
+                newCountry = countryData[randomNum];
+                attempts++;
+                // seguridad: si intenta muchas veces (por si hay pocos países)
+                if (attempts > 1000) break;
+            } while (usedCountries.includes(newCountry.name.common));
+
+            // si ya no quedan países disponibles, terminar el juego
+            if (!newCountry || usedCountries.length >= countryData.length) {
+                setGameOver(true);
+                return;
+            }
+
             setRandomCountry({
-                name: country.name.common,
-                officialName: country.name.official,
-                flagUrl: country.flags?.svg || country.flags?.png,
-                spanishName: country.translations?.spa?.common || country.name.common,
+                name: newCountry.name.common,
+                officialName: newCountry.name.official,
+                flagUrl: newCountry.flags?.svg || newCountry.flags?.png,
+                spanishName: newCountry.translations?.spa?.common || newCountry.name.common,
             });
+            setUsedCountries((prev) => [...prev, newCountry.name.common]); // registrar país usado
             setCorrect(null);
             setImgLoad(true);
         } else if (round > 10) {
@@ -76,7 +93,6 @@ export default function AdivinaPais() {
         e.preventDefault();
         if (!answer.trim()) return;
 
-        // normalizar ambas cadenas (sin tildes ni mayúsculas)
         const normalizedAnswer = normalizeText(answer);
         const normalizedNames = [
             normalizeText(randomCountry.name),
@@ -108,6 +124,7 @@ export default function AdivinaPais() {
         setRound(1);
         setScore(0);
         setStreak(0);
+        setUsedCountries([]); // 👈 limpiar países usados
         setGameOver(false);
         setDifficulty(null);
         setGameStarted(false);
