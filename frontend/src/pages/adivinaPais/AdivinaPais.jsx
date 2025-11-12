@@ -3,7 +3,6 @@ import "./AdivinaPais.css";
 import Navbar from "../../components/navbar/Navbar";
 import juego6 from "../../assets/Juego 6.png";
 
-
 export default function AdivinaPais() {
     const [countryData, setCountryData] = useState([]);
     const [randomCountry, setRandomCountry] = useState({});
@@ -12,11 +11,12 @@ export default function AdivinaPais() {
     const [correct, setCorrect] = useState(null);
     const [imgLoad, setImgLoad] = useState(true);
     const [score, setScore] = useState(0);
+    const [streak, setStreak] = useState(0); // racha de aciertos
     const [gameOver, setGameOver] = useState(false);
-    const [difficulty, setDifficulty] = useState(null); // null = aún no elegida
+    const [difficulty, setDifficulty] = useState(null);
     const [gameStarted, setGameStarted] = useState(false);
 
-    // obtener datos de países según dificultad
+    // obtener datos según dificultad
     useEffect(() => {
         if (!difficulty) return;
         fetch("https://restcountries.com/v3.1/all?fields=name,flags,translations,population")
@@ -24,13 +24,13 @@ export default function AdivinaPais() {
             .then((data) => {
                 let filtered = [];
                 if (difficulty === "facil") {
-                    filtered = data.filter((c) => c.population > 50000000); // +50M
+                    filtered = data.filter((c) => c.population > 50000000);
                 } else if (difficulty === "medio") {
                     filtered = data.filter(
                         (c) => c.population >= 10000000 && c.population <= 50000000
-                    ); // 10M–50M
+                    );
                 } else if (difficulty === "dificil") {
-                    filtered = data.filter((c) => c.population < 10000000); // <10M
+                    filtered = data.filter((c) => c.population < 10000000);
                 }
                 setCountryData(filtered);
                 setGameStarted(true);
@@ -56,10 +56,18 @@ export default function AdivinaPais() {
         }
     }, [round, countryData]);
 
+    const getPointsByDifficulty = (diff) => {
+        if (diff === "facil") return 10;
+        if (diff === "medio") return 20;
+        if (diff === "dificil") return 30;
+        return 0;
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!answer.trim()) return;
-        const normalizedAnswer = answer.toLowerCase();
+
+        const normalizedAnswer = answer.toLowerCase().trim();
         const correctName =
             randomCountry.name.toLowerCase() === normalizedAnswer ||
             randomCountry.officialName.toLowerCase() === normalizedAnswer ||
@@ -67,9 +75,14 @@ export default function AdivinaPais() {
 
         if (correctName) {
             setCorrect(true);
-            setScore((prev) => prev + 1);
+            const basePoints = getPointsByDifficulty(difficulty);
+            const streakBonus = streak >= 2 ? 5 * streak : 0; // bonificación por racha
+            const gained = basePoints + streakBonus;
+            setScore((prev) => prev + gained);
+            setStreak((prev) => prev + 1);
         } else {
             setCorrect(false);
+            setStreak(0); // pierde la racha
         }
     };
 
@@ -81,13 +94,14 @@ export default function AdivinaPais() {
     const restartGame = () => {
         setRound(1);
         setScore(0);
+        setStreak(0);
         setGameOver(false);
         setDifficulty(null);
         setGameStarted(false);
         setCountryData([]);
     };
 
-    // pantalla de selección de dificultad
+    // pantalla selección dificultad
     if (!gameStarted) {
         return (
             <>
@@ -106,14 +120,21 @@ export default function AdivinaPais() {
         );
     }
 
-    // pantalla final del juego
+    // pantalla final
     if (gameOver) {
         return (
             <>
                 <Navbar />
                 <div className="results-container">
                     <h1>🎉 ¡Juego terminado!</h1>
-                    <p>Tu puntaje final: {score}/10</p>
+                    <p>Tu puntaje final: <strong>{score}</strong> puntos</p>
+                    <p>
+                        {score >= 250
+                            ? "🏆 ¡Eres un experto en geografía!"
+                            : score >= 150
+                            ? "🌍 Muy bien, conoces bastantes países"
+                            : "📚 Sigue practicando, lo harás mejor la próxima"}
+                    </p>
                     <button onClick={restartGame}>Jugar de nuevo</button>
                 </div>
             </>
@@ -127,8 +148,15 @@ export default function AdivinaPais() {
             <main className="adivina-main">
                 <h2>Ronda {round}/10</h2>
                 <p className="difficulty-label">
-                    Dificultad: {difficulty === "facil" ? "Fácil" : difficulty === "medio" ? "Media" : "Difícil"}
+                    Dificultad:{" "}
+                    {difficulty === "facil"
+                        ? "Fácil"
+                        : difficulty === "medio"
+                        ? "Media"
+                        : "Difícil"}
                 </p>
+
+                <p className="score-display">Puntaje: {score} ⭐ | Racha: {streak}</p>
 
                 <div className="flag-container">
                     {imgLoad && <div className="loader"></div>}
