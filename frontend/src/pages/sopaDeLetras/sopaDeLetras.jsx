@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./sopaDeLetras.css";
-import wordsData from "../wordle/palabras.json";
+import wordsData from "../wordle/palabras5.json";
 import Navbar from "../../components/navbar/Navbar";
 
-const Cell = ({ letter, i, j, onMouseDown, onMouseEnter, selected }) => {
+const Cell = ({ letter, i, j, onMouseDown, onMouseEnter, selected, gameOver }) => {
     return (
-        <div className={`sopa-cell ${selected ? "selected" : ""}`} onMouseDown={() => onMouseDown(i, j)} onMouseEnter={() => onMouseEnter(i, j)}>
+        <div
+            className={`sopa-cell ${selected ? "selected" : ""} ${gameOver ? "blocked" : ""}`}
+            onMouseDown={() => !gameOver && onMouseDown(i, j)}
+            onMouseEnter={() => !gameOver && onMouseEnter(i, j)}
+        >
             {letter}
         </div>
     );
@@ -17,7 +21,6 @@ export default function SopaDeLetras() {
     const boardSize = 15;
 
     const [words, setWords] = useState([]);
-
     const [board, setBoard] = useState([]);
     const [selecting, setSelecting] = useState(false);
     const [currentSelection, setCurrentSelection] = useState([]);
@@ -27,8 +30,26 @@ export default function SopaDeLetras() {
     const [usedHints, setUsedHints] = useState([]);
     const [gameStarted, setGameStarted] = useState(false);
 
+    // Cronómetro y puntuación
+    const [time, setTime] = useState(0);
+    const [timerActive, setTimerActive] = useState(false);
+    const [score, setScore] = useState(null);
+
+    // 👇 Nueva variable: indica si el juego terminó o se reveló
+    const [gameOver, setGameOver] = useState(false);
+
+    useEffect(() => {
+        let interval;
+        if (timerActive) {
+            interval = setInterval(() => setTime((t) => t + 1), 1000);
+        }
+        return () => clearInterval(interval);
+    }, [timerActive]);
+
     const generateBoard = (selectedWords) => {
-        let tempBoard = Array.from({ length: boardSize }, () => Array.from({ length: boardSize }, () => " "));
+        let tempBoard = Array.from({ length: boardSize }, () =>
+            Array.from({ length: boardSize }, () => " ")
+        );
 
         const directions = ["horizontal", "vertical", "diagonal"];
 
@@ -43,34 +64,22 @@ export default function SopaDeLetras() {
                 let fits = true;
 
                 for (let i = 0; i < word.length; i++) {
-                    let r = row;
-                    let c = col;
+                    let r = row, c = col;
                     if (direction === "horizontal") c += i;
                     if (direction === "vertical") r += i;
-                    if (direction === "diagonal") {
-                        r += i;
-                        c += i;
-                    }
-                    if (r >= boardSize || c >= boardSize) {
-                        fits = false;
-                        break;
-                    }
-                    if (tempBoard[r][c] !== " " && tempBoard[r][c] !== word[i]) {
-                        fits = false;
-                        break;
+                    if (direction === "diagonal") { r += i; c += i; }
+                    if (r >= boardSize || c >= boardSize || 
+                        (tempBoard[r][c] !== " " && tempBoard[r][c] !== word[i])) {
+                        fits = false; break;
                     }
                 }
 
                 if (fits) {
                     for (let i = 0; i < word.length; i++) {
-                        let r = row;
-                        let c = col;
+                        let r = row, c = col;
                         if (direction === "horizontal") c += i;
                         if (direction === "vertical") r += i;
-                        if (direction === "diagonal") {
-                            r += i;
-                            c += i;
-                        }
+                        if (direction === "diagonal") { r += i; c += i; }
                         tempBoard[r][c] = word[i];
                     }
                     placed = true;
@@ -96,16 +105,21 @@ export default function SopaDeLetras() {
         setSelecting(false);
         setSelectionDirection(null);
         setUsedHints([]);
+        setTime(0);
+        setTimerActive(true);
+        setScore(null);
+        setGameOver(false);
     };
 
     const startSelection = (i, j) => {
+        if (gameOver) return;
         setSelecting(true);
         setCurrentSelection([{ i, j }]);
         setSelectionDirection(null);
     };
 
     const continueSelection = (i, j) => {
-        if (!selecting) return;
+        if (!selecting || gameOver) return;
 
         if (currentSelection.length === 1) {
             const first = currentSelection[0];
@@ -116,7 +130,6 @@ export default function SopaDeLetras() {
             const stepJ = deltaJ === 0 ? 0 : deltaJ / Math.abs(deltaJ);
 
             if (stepI === 0 && stepJ === 0) return;
-
             setSelectionDirection({ stepI, stepJ });
         } else if (selectionDirection) {
             const last = currentSelection[currentSelection.length - 1];
@@ -129,6 +142,7 @@ export default function SopaDeLetras() {
     };
 
     const finishSelection = () => {
+        if (gameOver) return;
         setSelecting(false);
         setSelectionDirection(null);
 
@@ -151,10 +165,14 @@ export default function SopaDeLetras() {
     }, [selecting, currentSelection, board]);
 
     const isSelected = (i, j) => {
-        return currentSelection.some((cell) => cell.i === i && cell.j === j) || foundCells.some((cell) => cell.i === i && cell.j === j);
+        return (
+            currentSelection.some((cell) => cell.i === i && cell.j === j) ||
+            foundCells.some((cell) => cell.i === i && cell.j === j)
+        );
     };
 
     const giveHint = () => {
+        if (gameOver) return;
         const remainingWords = words.filter((word) => !usedHints.includes(word));
         if (remainingWords.length === 0) return;
 
@@ -177,12 +195,14 @@ export default function SopaDeLetras() {
                         const r = row + k * d.dr;
                         const c = col + k * d.dc;
                         if (r >= boardSize || c >= boardSize) break;
-                        if (!board[r]) break;
                         letters += board[r][c];
                         positions.push({ i: r, j: c });
                     }
 
-                    if (letters === hintWord || letters.split("").reverse().join("") === hintWord) {
+                    if (
+                        letters === hintWord ||
+                        letters.split("").reverse().join("") === hintWord
+                    ) {
                         const firstPos = positions[0];
                         setFoundCells((prev) => [...prev, firstPos]);
                         break outer2;
@@ -192,9 +212,11 @@ export default function SopaDeLetras() {
         }
     };
 
+    // 👇 Botón Revelar — tipo A
     const revealAll = () => {
-        let allPositions = [];
+        if (gameOver) return;
 
+        let allPositions = [];
         words.forEach((word) => {
             outer: for (let row = 0; row < boardSize; row++) {
                 for (let col = 0; col < boardSize; col++) {
@@ -212,7 +234,6 @@ export default function SopaDeLetras() {
                             const r = row + k * d.dr;
                             const c = col + k * d.dc;
                             if (r >= boardSize || c >= boardSize) break;
-                            if (!board[r]) break;
                             letters += board[r][c];
                             positions.push({ i: r, j: c });
                         }
@@ -227,6 +248,9 @@ export default function SopaDeLetras() {
         });
 
         setFoundCells(allPositions);
+        setTimerActive(false);
+        setScore(0);
+        setGameOver(true); // bloquea interacción
     };
 
     const hasWon =
@@ -248,13 +272,14 @@ export default function SopaDeLetras() {
                             const r = row + k * d.dr;
                             const c = col + k * d.dc;
                             if (r >= boardSize || c >= boardSize) break;
-                            if (!board[r]) break;
                             letters += board[r][c];
                             positions.push({ i: r, j: c });
                         }
 
                         if (letters === word || letters.split("").reverse().join("") === word) {
-                            const allFound = positions.every((pos) => foundCells.some((f) => f.i === pos.i && f.j === pos.j));
+                            const allFound = positions.every((pos) =>
+                                foundCells.some((f) => f.i === pos.i && f.j === pos.j)
+                            );
                             if (allFound) return true;
                         }
                     }
@@ -263,6 +288,7 @@ export default function SopaDeLetras() {
             return false;
         });
 
+    // 🔹 NUEVA FUNCIÓN PARA ELEGIR 8 PALABRAS ALEATORIAS DEL JSON
     const selectRandomWords = () => {
         const shuffled = [...wordsData].sort(() => Math.random() - 0.5);
         return shuffled.slice(0, 8).map((w) => w.toUpperCase());
@@ -273,6 +299,12 @@ export default function SopaDeLetras() {
         setWords(selectedWords);
         setGameStarted(true);
         generateBoard(selectedWords);
+    };
+
+    const formatTime = (t) => {
+        const m = Math.floor(t / 60).toString().padStart(2, "0");
+        const s = (t % 60).toString().padStart(2, "0");
+        return `${m}:${s}`;
     };
 
     return (
@@ -293,11 +325,16 @@ export default function SopaDeLetras() {
                     <div className={`sopa-container ${hasWon ? "blur-board" : ""}`}>
                         <div className="buttons-group">
                             <button className="hint-btn" onClick={giveHint}>
-                                Pista
+                                Pista ({usedHints.length})
                             </button>
                             <button className="reveal-btn" onClick={revealAll}>
                                 Revelar
                             </button>
+                        </div>
+
+                        <div className="game-info">
+                            <p>Tiempo: {formatTime(time)}</p>
+                            <p>Puntuación: {score !== null ? score : "---"}</p>
                         </div>
 
                         {showBoard && (
@@ -305,7 +342,16 @@ export default function SopaDeLetras() {
                                 {board.map((row, i) => (
                                     <div key={i} className="board-row">
                                         {row.map((letter, j) => (
-                                            <Cell key={j} letter={letter} i={i} j={j} selected={isSelected(i, j)} onMouseDown={startSelection} onMouseEnter={continueSelection} />
+                                            <Cell
+                                                key={j}
+                                                letter={letter}
+                                                i={i}
+                                                j={j}
+                                                selected={isSelected(i, j)}
+                                                onMouseDown={startSelection}
+                                                onMouseEnter={continueSelection}
+                                                gameOver={gameOver}
+                                            />
                                         ))}
                                     </div>
                                 ))}
@@ -329,13 +375,19 @@ export default function SopaDeLetras() {
                                                         const r = row + k * d.dr;
                                                         const c = col + k * d.dc;
                                                         if (r >= boardSize || c >= boardSize) break;
-                                                        if (!board[r]) break;
                                                         letters += board[r][c];
                                                         positions.push({ i: r, j: c });
                                                     }
 
-                                                    if (letters === word || letters.split("").reverse().join("") === word) {
-                                                        const allFound = positions.every((pos) => foundCells.some((f) => f.i === pos.i && f.j === pos.j));
+                                                    if (
+                                                        letters === word ||
+                                                        letters.split("").reverse().join("") === word
+                                                    ) {
+                                                        const allFound = positions.every((pos) =>
+                                                            foundCells.some(
+                                                                (f) => f.i === pos.i && f.j === pos.j
+                                                            )
+                                                        );
                                                         if (allFound) {
                                                             foundWord = true;
                                                             break outer;
@@ -346,7 +398,14 @@ export default function SopaDeLetras() {
                                         }
 
                                         return (
-                                            <p key={i} style={{ textDecoration: foundWord ? "line-through" : "none" }}>
+                                            <p
+                                                key={i}
+                                                style={{
+                                                    textDecoration: foundWord
+                                                        ? "line-through"
+                                                        : "none",
+                                                }}
+                                            >
                                                 - {word}
                                             </p>
                                         );
@@ -356,9 +415,12 @@ export default function SopaDeLetras() {
                         )}
                     </div>
 
-                    {hasWon && (
+                    {(hasWon || gameOver) && (
                         <div className="win-message">
-                            <h2>¡Ganaste!</h2>
+                            <h2>{hasWon ? "¡Ganaste!" : "Juego Revelado"}</h2>
+                            <p>Tiempo final: {formatTime(time)}</p>
+                            <p>Pistas usadas: {usedHints.length}</p>
+                            <p>Puntuación: {score}</p>
                             <button onClick={startGame}>Volver a jugar</button>
                             <button onClick={() => navigate("/home")}>Menú principal</button>
                         </div>

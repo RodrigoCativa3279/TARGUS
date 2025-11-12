@@ -1,177 +1,192 @@
 .mini-codycross {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(180deg, #1e1e3c, #2b2b55);
+  background: radial-gradient(circle at top, #181833, #0f0f1f 70%, #080813);
   min-height: 100vh;
-  color: #fff;
+  color: #fefefe;
   text-align: center;
   user-select: none;
   overflow-x: hidden;
+  animation: fadeIn 1s ease;
 }
 
 .mini-codycross h1 {
-  font-size: 2.5rem;
-  color: #ffd700;
+  font-size: 3rem;
+  color: #ffde59;
   margin-bottom: 10px;
+  letter-spacing: 3px;
+  text-shadow: 0 0 25px rgba(255, 222, 89, 0.8);
+  font-weight: 700;
 }
 
 .mini-codycross h2 {
-  font-size: 1.5rem;
-  color: #8be9fd;
+  font-size: 1.4rem;
+  color: #67e8f9;
+  margin-bottom: 8px;
+  text-shadow: 0 0 15px rgba(103, 232, 249, 0.5);
 }
 
 .mini-codycross p {
   font-size: 1.1rem;
+  color: #ddd;
 }
 
 .palabra-container {
-  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  margin-top: 20px;
 }
 
 .palabra-row {
-  margin-bottom: 25px;
+  display: inline-block;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .palabra-row:hover {
-  transform: scale(1.02);
+  transform: scale(1.03);
+  filter: brightness(1.15);
 }
 
 .letra {
-  display: inline-block;
-  width: 45px;
-  height: 45px;
-  border: 2px solid #555;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 54px;
+  height: 54px;
   margin: 4px;
-  background-color: #333;
-  font-size: 26px;
-  line-height: 45px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  border-radius: 12px;
+  border: 2px solid #444;
+  background: linear-gradient(145deg, #252540, #1c1c2e);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
   text-transform: uppercase;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+  transition: all 0.25s ease;
 }
 
 .letra.correcta {
-  background-color: #00b300;
-  color: #fff;
-  border-color: #00ff66;
-  box-shadow: 0 0 10px #00ff66;
+  background: linear-gradient(145deg, #00c851, #00993a);
+  border-color: #00ff88;
+  box-shadow: 0 0 14px #00ff88, 0 0 30px rgba(0, 255, 136, 0.4);
 }
 
 .letra.oculta {
-  color: #ffea00;
-  border-color: #ffea00;
-  box-shadow: 0 0 8px #ffea00;
+  color: #ffeb3b;
+  border-color: #ffeb3b;
+  box-shadow: 0 0 10px #ffeb3b, 0 0 25px rgba(255, 235, 59, 0.4);
 }
 
 .palabra-row.seleccionada .letra {
   border-color: #00bcd4;
-  background-color: #2a2a70;
-  box-shadow: 0 0 6px #00bcd4;
+  background: linear-gradient(145deg, #2f2f70, #23235a);
+  box-shadow: 0 0 18px #00bcd4, 0 0 30px rgba(0, 188, 212, 0.4);
 }
 
 .pista {
-  color: #ffea00;
-  font-size: 0.95rem;
-  margin-top: 8px;
+  color: #ffe97f;
+  font-size: 1rem;
+  margin-top: 6px;
+  font-style: italic;
+  opacity: 0.95;
 }
 
 .palabra-oculta {
-  margin-top: 40px;
-  font-size: 1.3rem;
-  color: #ffea00;
-  letter-spacing: 4px;
+  margin-top: 50px;
+  font-size: 1.5rem;
+  color: #ffd700;
+  letter-spacing: 6px;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
 }
 
 .popup {
-  background-color: rgba(0, 0, 0, 0.85);
-  border: 2px solid #ffea00;
-  padding: 20px 40px;
   margin-top: 25px;
+  background: rgba(30, 30, 60, 0.9);
+  border: 2px solid #ffeb3b;
+  padding: 18px 50px;
+  border-radius: 14px;
+  color: #fff;
   display: inline-block;
-  border-radius: 12px;
   font-size: 1.1rem;
-  animation: aparecer 0.3s ease;
-}
-
-@keyframes aparecer {
-  from {
-    transform: scale(0.9);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
+  box-shadow: 0 0 15px rgba(255, 235, 59, 0.3);
+  animation: aparecer 0.35s ease;
 }
 
 .finalizado {
-  margin-top: 60px;
+  margin-top: 70px;
+  padding: 35px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
 }
 
 .finalizado h2 {
-  color: #00ffcc;
-  margin-bottom: 10px;
-}
-
-.finalizado p {
-  margin-bottom: 15px;
-  font-size: 1.1rem;
+  color: #00e5ff;
+  margin-bottom: 12px;
+  text-shadow: 0 0 20px rgba(0, 229, 255, 0.7);
 }
 
 .finalizado input {
   padding: 10px;
-  font-size: 1rem;
-  border-radius: 6px;
+  border-radius: 8px;
   border: none;
   outline: none;
-  width: 220px;
+  width: 230px;
   text-align: center;
+  margin-top: 10px;
+  background: #282845;
+  color: #fff;
+  font-size: 1rem;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 .finalizado button {
-  margin-left: 10px;
+  margin: 12px 8px 0;
   padding: 10px 25px;
   font-size: 1rem;
   border: none;
-  border-radius: 6px;
-  background-color: #00bcd4;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #00bcd4, #0097a7);
   color: white;
   cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
+  transition: all 0.25s ease;
+  box-shadow: 0 0 12px rgba(0, 188, 212, 0.4);
 }
 
 .finalizado button:hover {
-  background-color: #0097a7;
-  transform: scale(1.05);
+  background: linear-gradient(135deg, #00e5ff, #00acc1);
+  transform: scale(1.08);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.6);
 }
 
 .feedback {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: bold;
-  margin: 10px auto;
+  margin: 14px auto;
   animation: subir 0.8s ease forwards;
 }
 
 .feedback.positivo {
   color: #00ff66;
-  text-shadow: 0 0 10px #00ff66;
+  text-shadow: 0 0 20px #00ff66;
 }
 
 .feedback.negativo {
   color: #ff4444;
-  text-shadow: 0 0 10px #ff4444;
+  text-shadow: 0 0 20px #ff4444;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes subir {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-40px);
-  }
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-40px); }
 }
 
 @keyframes fadeLevel {

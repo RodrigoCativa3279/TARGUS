@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import palabras from "./palabras.json";
+import palabras from "./palabras.json";     // ✅ Palabras válidas para adivinar
+import palabras6 from "./palabras5.json";   // ✅ Palabras posibles como solución
 import "./wordle.css";
 import Navbar from "../../components/navbar/Navbar";
 
@@ -10,18 +11,29 @@ function Wordle() {
     const [currentGuess, setCurrentGuess] = useState("");
     const [gameOver, setGameOver] = useState(false);
     const [message, setMessage] = useState("");
+    const [score, setScore] = useState(0); // 🟢 Puntuación
     const navigate = useNavigate();
 
     const KEYS = "QWERTYUIOPASDFGHJKLZXCVBNM".split("");
 
-    const palabrasFiltradas = palabras.filter((p) => p.length === 5).map((p) => p.toUpperCase());
+    // 🟢 Procesar listas
+    const palabrasValidas = palabras.map((p) => p.toUpperCase()); // todas las que se pueden escribir
+    const palabrasPosibles = palabras6.map((p) => p.toUpperCase()); // las que pueden salir como solución
 
+    // 🟢 Cargar puntuación previa
     useEffect(() => {
+        const savedScore = localStorage.getItem("wordleScore");
+        if (savedScore) setScore(Number(savedScore));
         startNewGame();
     }, []);
 
+    // 🟢 Guardar puntuación
+    useEffect(() => {
+        localStorage.setItem("wordleScore", score);
+    }, [score]);
+
     const startNewGame = () => {
-        const randomWord = palabrasFiltradas[Math.floor(Math.random() * palabrasFiltradas.length)];
+        const randomWord = palabrasPosibles[Math.floor(Math.random() * palabrasPosibles.length)];
         setSolution(randomWord);
         setGuesses([]);
         setCurrentGuess("");
@@ -31,7 +43,6 @@ function Wordle() {
 
     const handleKeyPress = (e) => {
         if (gameOver) return;
-
         const key = e.key ? e.key.toUpperCase() : "";
 
         if (key === "ENTER") {
@@ -39,7 +50,7 @@ function Wordle() {
                 setMessage("La palabra debe tener 5 letras");
                 return;
             }
-            if (!palabrasFiltradas.includes(currentGuess.toUpperCase())) {
+            if (!palabrasValidas.includes(currentGuess.toUpperCase())) {
                 setMessage("❌ No es una palabra válida de la lista");
                 return;
             }
@@ -48,12 +59,17 @@ function Wordle() {
             setGuesses(newGuesses);
 
             if (currentGuess.toUpperCase() === solution) {
-                setMessage("🎉 ¡Ganaste!");
+                const puntosGanados = Math.max(0, 100 - (newGuesses.length - 1) * 15);
+                setScore((prev) => prev + puntosGanados);
+                setMessage(`🎉 ¡Ganaste! +${puntosGanados} puntos`);
                 setGameOver(true);
             } else if (newGuesses.length === 6) {
-                setMessage(`😢 Perdiste. La palabra era: ${solution}`);
+                const puntosPerdidos = 30;
+                setScore((prev) => Math.max(0, prev - puntosPerdidos));
+                setMessage(`😢 Perdiste (-${puntosPerdidos}). La palabra era: ${solution}`);
                 setGameOver(true);
             }
+
             setCurrentGuess("");
         } else if (key === "BACKSPACE") {
             setCurrentGuess(currentGuess.slice(0, -1));
@@ -72,6 +88,7 @@ function Wordle() {
             <Navbar />
             <div className="wordle-container">
                 <h1>Wordle Imposible</h1>
+                <h2>🏆 Puntuación: {score}</h2>
 
                 {guesses.map((guess, i) => (
                     <div className="row" key={i}>
@@ -91,7 +108,7 @@ function Wordle() {
                 {!gameOver && (
                     <div className="row">
                         {[...Array(5)].map((_, i) => (
-                            <span className="cell" key={i}>
+                            <span className="wordle-cell" key={i}>
                                 {currentGuess[i] || ""}
                             </span>
                         ))}

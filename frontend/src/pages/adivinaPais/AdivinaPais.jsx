@@ -3,7 +3,6 @@ import "./AdivinaPais.css";
 import Navbar from "../../components/navbar/Navbar";
 import juego6 from "../../assets/Juego 6.png";
 
-
 export default function AdivinaPais() {
     const [countryData, setCountryData] = useState([]);
     const [randomCountry, setRandomCountry] = useState({});
@@ -12,9 +11,19 @@ export default function AdivinaPais() {
     const [correct, setCorrect] = useState(null);
     const [imgLoad, setImgLoad] = useState(true);
     const [score, setScore] = useState(0);
+    const [streak, setStreak] = useState(0);
     const [gameOver, setGameOver] = useState(false);
-    const [difficulty, setDifficulty] = useState(null); 
+    const [difficulty, setDifficulty] = useState(null);
     const [gameStarted, setGameStarted] = useState(false);
+    const [usedCountries, setUsedCountries] = useState([]); 
+
+    const normalizeText = (text) => {
+        return text
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .trim();
+    };
 
     useEffect(() => {
         if (!difficulty) return;
@@ -39,14 +48,28 @@ export default function AdivinaPais() {
 
     useEffect(() => {
         if (countryData.length > 0 && round <= 10) {
-            const randomNum = Math.floor(Math.random() * countryData.length);
-            const country = countryData[randomNum];
+            let newCountry = null;
+            let attempts = 0;
+
+            do {
+                const randomNum = Math.floor(Math.random() * countryData.length);
+                newCountry = countryData[randomNum];
+                attempts++;
+                if (attempts > 1000) break;
+            } while (usedCountries.includes(newCountry.name.common));
+
+            if (!newCountry || usedCountries.length >= countryData.length) {
+                setGameOver(true);
+                return;
+            }
+
             setRandomCountry({
-                name: country.name.common,
-                officialName: country.name.official,
-                flagUrl: country.flags?.svg || country.flags?.png,
-                spanishName: country.translations?.spa?.common || country.name.common,
+                name: newCountry.name.common,
+                officialName: newCountry.name.official,
+                flagUrl: newCountry.flags?.svg || newCountry.flags?.png,
+                spanishName: newCountry.translations?.spa?.common || newCountry.name.common,
             });
+            setUsedCountries((prev) => [...prev, newCountry.name.common]); 
             setCorrect(null);
             setImgLoad(true);
         } else if (round > 10) {
@@ -54,20 +77,36 @@ export default function AdivinaPais() {
         }
     }, [round, countryData]);
 
+    const getPointsByDifficulty = (diff) => {
+        if (diff === "facil") return 10;
+        if (diff === "medio") return 20;
+        if (diff === "dificil") return 30;
+        return 0;
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!answer.trim()) return;
-        const normalizedAnswer = answer.toLowerCase();
-        const correctName =
-            randomCountry.name.toLowerCase() === normalizedAnswer ||
-            randomCountry.officialName.toLowerCase() === normalizedAnswer ||
-            randomCountry.spanishName.toLowerCase() === normalizedAnswer;
+
+        const normalizedAnswer = normalizeText(answer);
+        const normalizedNames = [
+            normalizeText(randomCountry.name),
+            normalizeText(randomCountry.officialName),
+            normalizeText(randomCountry.spanishName),
+        ];
+
+        const correctName = normalizedNames.includes(normalizedAnswer);
 
         if (correctName) {
             setCorrect(true);
-            setScore((prev) => prev + 1);
+            const basePoints = getPointsByDifficulty(difficulty);
+            const streakBonus = streak >= 2 ? 5 * streak : 0;
+            const gained = basePoints + streakBonus;
+            setScore((prev) => prev + gained);
+            setStreak((prev) => prev + 1);
         } else {
             setCorrect(false);
+            setStreak(0);
         }
     };
 
@@ -79,6 +118,8 @@ export default function AdivinaPais() {
     const restartGame = () => {
         setRound(1);
         setScore(0);
+        setStreak(0);
+        setUsedCountries([]); 
         setGameOver(false);
         setDifficulty(null);
         setGameStarted(false);
@@ -109,7 +150,16 @@ export default function AdivinaPais() {
                 <Navbar />
                 <div className="results-container">
                     <h1>🎉 ¡Juego terminado!</h1>
-                    <p>Tu puntaje final: {score}/10</p>
+                    <p>
+                        Tu puntaje final: <strong>{score}</strong> puntos
+                    </p>
+                    <p>
+                        {score >= 250
+                            ? "🏆 ¡Eres un experto en geografía!"
+                            : score >= 150
+                            ? "🌍 Muy bien, conoces bastantes países"
+                            : "📚 Sigue practicando, lo harás mejor la próxima"}
+                    </p>
                     <button onClick={restartGame}>Jugar de nuevo</button>
                 </div>
             </>
@@ -122,7 +172,16 @@ export default function AdivinaPais() {
             <main className="adivina-main">
                 <h2>Ronda {round}/10</h2>
                 <p className="difficulty-label">
-                    Dificultad: {difficulty === "facil" ? "Fácil" : difficulty === "medio" ? "Media" : "Difícil"}
+                    Dificultad:{" "}
+                    {difficulty === "facil"
+                        ? "Fácil"
+                        : difficulty === "medio"
+                        ? "Media"
+                        : "Difícil"}
+                </p>
+
+                <p className="score-display">
+                    Puntaje: {score} ⭐ | Racha: {streak}
                 </p>
 
                 <div className="flag-container">
@@ -150,9 +209,7 @@ export default function AdivinaPais() {
 
                 {correct !== null && (
                     <div className={`feedback ${correct ? "correct" : "wrong"}`}>
-                        {correct
-                            ? "✅ ¡Correcto!"
-                            : `❌ Era ${randomCountry.spanishName}`}
+                        {correct ? "✅ ¡Correcto!" : `❌ Era ${randomCountry.spanishName}`}
                         <button onClick={nextQuestion}>Siguiente</button>
                     </div>
                 )}
