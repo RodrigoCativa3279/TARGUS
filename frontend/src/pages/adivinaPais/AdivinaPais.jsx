@@ -11,10 +11,19 @@ export default function AdivinaPais() {
     const [correct, setCorrect] = useState(null);
     const [imgLoad, setImgLoad] = useState(true);
     const [score, setScore] = useState(0);
-    const [streak, setStreak] = useState(0); // racha de aciertos
+    const [streak, setStreak] = useState(0);
     const [gameOver, setGameOver] = useState(false);
     const [difficulty, setDifficulty] = useState(null);
     const [gameStarted, setGameStarted] = useState(false);
+
+    // función para quitar tildes y normalizar texto
+    const normalizeText = (text) => {
+        return text
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .trim();
+    };
 
     // obtener datos según dificultad
     useEffect(() => {
@@ -67,22 +76,26 @@ export default function AdivinaPais() {
         e.preventDefault();
         if (!answer.trim()) return;
 
-        const normalizedAnswer = answer.toLowerCase().trim();
-        const correctName =
-            randomCountry.name.toLowerCase() === normalizedAnswer ||
-            randomCountry.officialName.toLowerCase() === normalizedAnswer ||
-            randomCountry.spanishName.toLowerCase() === normalizedAnswer;
+        // normalizar ambas cadenas (sin tildes ni mayúsculas)
+        const normalizedAnswer = normalizeText(answer);
+        const normalizedNames = [
+            normalizeText(randomCountry.name),
+            normalizeText(randomCountry.officialName),
+            normalizeText(randomCountry.spanishName),
+        ];
+
+        const correctName = normalizedNames.includes(normalizedAnswer);
 
         if (correctName) {
             setCorrect(true);
             const basePoints = getPointsByDifficulty(difficulty);
-            const streakBonus = streak >= 2 ? 5 * streak : 0; // bonificación por racha
+            const streakBonus = streak >= 2 ? 5 * streak : 0;
             const gained = basePoints + streakBonus;
             setScore((prev) => prev + gained);
             setStreak((prev) => prev + 1);
         } else {
             setCorrect(false);
-            setStreak(0); // pierde la racha
+            setStreak(0);
         }
     };
 
@@ -101,7 +114,6 @@ export default function AdivinaPais() {
         setCountryData([]);
     };
 
-    // pantalla selección dificultad
     if (!gameStarted) {
         return (
             <>
@@ -120,14 +132,15 @@ export default function AdivinaPais() {
         );
     }
 
-    // pantalla final
     if (gameOver) {
         return (
             <>
                 <Navbar />
                 <div className="results-container">
                     <h1>🎉 ¡Juego terminado!</h1>
-                    <p>Tu puntaje final: <strong>{score}</strong> puntos</p>
+                    <p>
+                        Tu puntaje final: <strong>{score}</strong> puntos
+                    </p>
                     <p>
                         {score >= 250
                             ? "🏆 ¡Eres un experto en geografía!"
@@ -141,7 +154,6 @@ export default function AdivinaPais() {
         );
     }
 
-    // pantalla principal del juego
     return (
         <>
             <Navbar />
@@ -156,7 +168,9 @@ export default function AdivinaPais() {
                         : "Difícil"}
                 </p>
 
-                <p className="score-display">Puntaje: {score} ⭐ | Racha: {streak}</p>
+                <p className="score-display">
+                    Puntaje: {score} ⭐ | Racha: {streak}
+                </p>
 
                 <div className="flag-container">
                     {imgLoad && <div className="loader"></div>}
@@ -183,9 +197,7 @@ export default function AdivinaPais() {
 
                 {correct !== null && (
                     <div className={`feedback ${correct ? "correct" : "wrong"}`}>
-                        {correct
-                            ? "✅ ¡Correcto!"
-                            : `❌ Era ${randomCountry.spanishName}`}
+                        {correct ? "✅ ¡Correcto!" : `❌ Era ${randomCountry.spanishName}`}
                         <button onClick={nextQuestion}>Siguiente</button>
                     </div>
                 )}
