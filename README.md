@@ -115,29 +115,30 @@ Desarrollar una aplicación web multifuncional que permita a los usuarios jugar 
 
 ## Lista de Requerimientos
 ### Requerimientos funcionales
-- Registro e inicio de sesión de usuarios.
-- Gestión de usuarios, juegos, puntuaciones, monedas y configuraciones.
-- Menú general de juegos y menú lateral durante la partida.
-- Sistema de puntuaciones, estadísticas y logros.
-- Juego del día / desafío diario con recompensa especial.
-- Modos contrarreloj en juegos compatibles.
-- Creación de avatar personalizable (cara, ropa, colores, accesorios).
-- Modo oscuro con guardado automático.
-- Sistema de monedas para comprar comodines.
-- Música ambiental configurable.
-- Compartir resultados en redes sociales.
-- Sistema multilenguaje.
-- Foro comunitario para interacción entre usuarios.
-- Roles: usuario común y administrador (gestión completa del contenido).
+- Registro e inicio de sesión de usuarios.✔️
+- Gestión de usuarios, juegos, puntuaciones y configuraciones.✔️
+- Menú general de juegos y menú lateral durante la partida.✔️
+- Sistema de estadísticas y logros.❌
+- Sistema de puntuaciones️️.✔️
+- Juego del día / desafío diario con recompensa especial.❌
+- Modos contrarreloj en juegos compatibles.✔️
+- Creación de avatar personalizable.✔️
+- Modo oscuro con guardado automático.❌
+- Sistema de monedas para comprar comodines.❌
+- Música ambiental configurable.❌
+- Compartir resultados en redes sociales.❌
+- Sistema multilenguaje.✔️
+- Foro comunitario para interacción entre usuarios.❌
+- Roles: usuario común y administrador (gestión completa del contenido).✔️
 
 ### Requerimientos no funcionales
-- Tiempo de respuesta menor a 1 segundo.
-- Carga inicial completa en menos de 4 segundos.
-- Interfaz intuitiva y accesible para todas las edades.
-- Diseño responsive para celular, tablet y PC.
-- Seguridad en el almacenamiento de datos personales.
-- Disponibilidad 24/7.
-- Arquitectura escalable para soportar más usuarios y nuevos juegos.
+- Tiempo de respuesta menor a 1 segundo.✔️
+- Carga inicial completa en menos de 4 segundos.✔️
+- Interfaz intuitiva y accesible para todas las edades.✔️
+- Diseño responsive para celular, tablet y PC.✔️
+- Seguridad en el almacenamiento de datos personales.✔️
+- Disponibilidad 24/7.✔️
+- Arquitectura escalable para soportar más usuarios y nuevos juegos.✔️
 
 ## Tecnologías utilizadas
 - Frontend: React + Vite
