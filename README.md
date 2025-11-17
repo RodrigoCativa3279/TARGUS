@@ -1,4 +1,17 @@
 # [TARGUS](https://targus-app.onrender.com/home)
+**Arduino Marcos**
+
+**Cativa Rodrigo**
+
+**Silva Benjamín**
+
+**Vargas Lucas**
+
+**Profesor**: Jackson Daniel Calderon Vargas
+
+**Materia**: Desarrollo de Sistemas
+
+**Proyecto Integrador – 2025**
 
 ## Guía de instalación y ejecución local
 
@@ -85,3 +98,54 @@ Las llamadas del frontend usan rutas relativas `/api/...`, y el backend permite 
 - CORS: si usás otro dominio, seteá `FRONTEND_URL`.
 - DB: el backend habilita SSL automáticamente si el host no es `localhost`.
 - Si ves 404 del frontend, asegurate de haber corrido `npm run build` en `frontend/`.
+
+
+## Descripción del proyecto
+
+TARGUS es una aplicación web diseñada para combinar entretenimiento y aprendizaje mediante juegos de lógica, deducción y memoria. La plataforma busca ofrecer una experiencia divertida pero también educativa, donde cada usuario pueda desarrollar sus habilidades cognitivas mientras disfruta de distintos desafíos interactivos.
+
+## ¿Cómo surge la idea o necesidad del proyecto?
+
+La idea surge al observar que la mayoría de los juegos en la web y en dispositivos móviles están orientados únicamente al ocio. En un contexto donde la estimulación mental es cada vez más necesaria, TARGUS propone una alternativa que fusione diversión, entrenamiento cerebral y progreso personal.
+Además, muchas apps similares se centran en un solo tipo de juego y carecen de interacción social. TARGUS busca cubrir ese vacío ofreciendo variedad, personalización y herramientas comunitarias.
+
+## Objetivo
+
+Desarrollar una aplicación web multifuncional que permita a los usuarios jugar diversos juegos de deducción y habilidad mental, con sistemas de puntuación, recompensas, personalización de avatar, desafíos diarios y un foro comunitario. El sistema gestionará perfiles, estadísticas, misiones y configuraciones personales, todo dentro de una experiencia intuitiva, rápida y amigable.
+
+## Lista de Requerimientos
+### Requerimientos funcionales
+- Registro e inicio de sesión de usuarios.
+- Gestión de usuarios, juegos, puntuaciones, monedas y configuraciones.
+- Menú general de juegos y menú lateral durante la partida.
+- Sistema de puntuaciones, estadísticas y logros.
+- Juego del día / desafío diario con recompensa especial.
+- Modos contrarreloj en juegos compatibles.
+- Creación de avatar personalizable (cara, ropa, colores, accesorios).
+- Modo oscuro con guardado automático.
+- Sistema de monedas para comprar comodines.
+- Música ambiental configurable.
+- Compartir resultados en redes sociales.
+- Sistema multilenguaje.
+- Foro comunitario para interacción entre usuarios.
+- Roles: usuario común y administrador (gestión completa del contenido).
+
+### Requerimientos no funcionales
+- Tiempo de respuesta menor a 1 segundo.
+- Carga inicial completa en menos de 4 segundos.
+- Interfaz intuitiva y accesible para todas las edades.
+- Diseño responsive para celular, tablet y PC.
+- Seguridad en el almacenamiento de datos personales.
+- Disponibilidad 24/7.
+- Arquitectura escalable para soportar más usuarios y nuevos juegos.
+
+## Tecnologías utilizadas
+- Frontend: React + Vite
+- Estilos: TailwindCSS o CSS Modules
+- Internacionalización: i18next
+- Backend: Node.js + Express
+- Base de datos: MongoDB o Firebase Firestore
+- Control de versiones: Git + GitHub
+- Pruebas de API: Postman
+- IDE: Visual Studio Code
+- Otras: APIs externas (a definir según juego)
