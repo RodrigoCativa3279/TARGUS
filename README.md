@@ -103,19 +103,6 @@ Las llamadas del frontend usan rutas relativas `/api/...`, y el backend permite 
 - Si ves 404 del frontend, asegurate de haber corrido `npm run build` en `frontend/`.
 
 
-## Descripción del proyecto
-
-TARGUS es una aplicación web diseñada para combinar entretenimiento y aprendizaje mediante juegos de lógica, deducción y memoria. La plataforma busca ofrecer una experiencia divertida pero también educativa, donde cada usuario pueda desarrollar sus habilidades cognitivas mientras disfruta de distintos desafíos interactivos.
-
-## ¿Cómo surge la idea o necesidad del proyecto?
-
-La idea surge al observar que la mayoría de los juegos en la web y en dispositivos móviles están orientados únicamente al ocio. En un contexto donde la estimulación mental es cada vez más necesaria, TARGUS propone una alternativa que fusione diversión, entrenamiento cerebral y progreso personal.
-Además, muchas apps similares se centran en un solo tipo de juego y carecen de interacción social. TARGUS busca cubrir ese vacío ofreciendo variedad, personalización y herramientas comunitarias.
-
-## Objetivo
-
-Desarrollar una aplicación web multifuncional que permita a los usuarios jugar diversos juegos de deducción y habilidad mental, con sistemas de puntuación, recompensas, personalización de avatar, desafíos diarios y un foro comunitario. El sistema gestionará perfiles, estadísticas, misiones y configuraciones personales, todo dentro de una experiencia intuitiva, rápida y amigable.
-
 ## Lista de Requerimientos
 ### Requerimientos funcionales
 - Registro e inicio de sesión de usuarios.✔️
@@ -143,13 +130,3 @@ Desarrollar una aplicación web multifuncional que permita a los usuarios jugar 
 - Disponibilidad 24/7.✔️
 - Arquitectura escalable para soportar más usuarios y nuevos juegos.✔️
 
-## Tecnologías utilizadas
-- Frontend: React + Vite
-- Estilos: TailwindCSS o CSS Modules
-- Internacionalización: i18next
-- Backend: Node.js + Express
-- Base de datos: MongoDB o Firebase Firestore
-- Control de versiones: Git + GitHub
-- Pruebas de API: Postman
-- IDE: Visual Studio Code
-- Otras: APIs externas (a definir según juego)
