@@ -1,19 +1,18 @@
 # [TARGUS](https://targus-app.onrender.com/home)
-TARGUS – Plataforma de Juegos Cognitivos
+# TARGUS – Plataforma de Juegos Cognitivos
 
-Arduino Marcos – Cativa Rodrigo – Silva Benjamín – Vargas Lucas
-ET 36 DE 15 “Alte Guillermo Brown”
-Proyecto Informático II
-Buenos Aires, Argentina
+#### Arduino Marcos – Cativa Rodrigo – Silva Benjamín – Vargas Lucas
+#### ET 36 DE 15 “Alte Guillermo Brown”
+#### Proyecto Informático II
+#### Buenos Aires, Argentina
 
-Descripción del Proyecto
-
+## Descripción del Proyecto
 TARGUS es una plataforma web desarrollada para ofrecer una experiencia de entretenimiento orientada al desarrollo cognitivo.
 A diferencia de los juegos tradicionales, que solo se centran en la diversión, TARGUS permite ejercitar la memoria, la lógica, la velocidad mental y la deducción mediante una serie de desafíos y actividades interactivas.
 
 La aplicación incluye registro e inicio de sesión, personalización de avatar, sistema de monedas, juegos diarios y configuraciones ajustables, buscando una experiencia dinámica y accesible para los usuarios.
 
-¿Cómo surge la idea del proyecto?
+## ¿Cómo surge la idea del proyecto?
 
 Se observó que muchos estudiantes buscan opciones para entrenar su mente mientras se divierten, pero la mayoría de las aplicaciones disponibles son simples, repetitivas o no ofrecen progresión.
 Por este motivo, se decidió desarrollar una plataforma propia que combinara entretenimiento, desafío mental y una interfaz moderna accesible para diferentes usuarios y dispositivos.
