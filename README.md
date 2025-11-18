@@ -1,5 +1,4 @@
-# [TARGUS](https://targus-app.onrender.com/home)
-# TARGUS – Plataforma de Juegos Cognitivos
+# [TARGUS – Plataforma de Juegos Cognitivos](https://targus-app.onrender.com/home)
 
 #### Arduino Marcos – Cativa Rodrigo – Silva Benjamín – Vargas Lucas
 #### ET 36 DE 15 “Alte Guillermo Brown”
