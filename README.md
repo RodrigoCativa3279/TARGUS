@@ -2,7 +2,7 @@
 
 #### Arduino Marcos – Cativa Rodrigo – Silva Benjamín – Vargas Lucas
 #### ET 36 DE 15 “Alte Guillermo Brown”
-#### Proyecto Informático II
+#### Desarrollo de Sistemas
 #### Buenos Aires, Argentina
 
 ## Descripción del Proyecto
